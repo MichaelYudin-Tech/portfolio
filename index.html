@@ -125,6 +125,9 @@
             animation: fadeUp 0.8s ease-out backwards;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .project:nth-child(1) { animation-delay: 0.1s; }
@@ -274,21 +277,21 @@
         <section>
             <p class="section-label">Current Projects</p>
             <div class="projects">
-                <article class="project">
+                <a href="https://trajectfi-private.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
                     <div class="project-header">
                         <h2>TrajectFi</h2>
                         <span class="project-tag">Finance</span>
                     </div>
                     <p>Financial trajectory visualization. See where you're actually heading, not just where you are right now.</p>
-                </article>
+                </a>
 
-                <article class="project">
+                <a href="https://jewish-clock.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
                     <div class="project-header">
                         <h2>Jewish Clock</h2>
                         <span class="project-tag">Utility</span>
                     </div>
-                    <p>Precise halakhic times calculated with the astronomical accuracy these ancient rhythms deserve.</p>
-                </article>
+                    <p>Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle lighting time again.</p>
+                </a>
             </div>
         </section>
 
