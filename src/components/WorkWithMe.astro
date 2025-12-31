@@ -1,0 +1,157 @@
+---
+---
+<div class="work-with-me-container">
+    <a href="mailto:Michael.Yudin@protonmail.com" id="work-with-me" class="work-with-me">
+        Let's work together
+    </a>
+</div>
+
+<style>
+    .work-with-me-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 0 80px; /* Space around the element */
+        width: 100%;
+        position: relative;
+        z-index: 10;
+    }
+
+    .work-with-me {
+        font-family: 'Fraunces', serif;
+        font-size: 3rem; /* Large and impactful */
+        font-weight: 300;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 0; 
+        transition: opacity 0.8s ease;
+        position: relative;
+        
+        /* Gradient Text Setup */
+        color: rgba(255, 255, 255, 0.15); /* Dim base color */
+        background-clip: text;
+        -webkit-background-clip: text;
+        
+        /* The Gradient Overlay */
+        background-image: radial-gradient(
+            circle 250px at var(--grad-x, 50%) var(--grad-y, 50%), 
+            #c9a227 0%, 
+            transparent 100%
+        );
+        /* 
+           We use color-mix or just simple text-fill-color trick.
+           If we want the text to be dim usually, and light up with gold gradient:
+        */
+        -webkit-text-fill-color: transparent;
+        background-color: rgba(255,255,255,0.1); /* Fallback/Base dimness */
+        
+        /* Re-doing the layering for better effect: 
+           1. Base text is visible but dim.
+           2. Gradient moves over it. 
+           Actually, background-clip: text with a gradient that has a transparent outer part works best.
+        */
+    }
+
+    /* Better approach for "Flashlight" effect on text: */
+    .work-with-me {
+        color: transparent;
+        background-color: #333; /* Dark base grey */
+        background-image: radial-gradient(
+            circle 150px at var(--grad-x, 50%) var(--grad-y, 50%), 
+            #c9a227 0%, 
+            #c9a227 20%,
+            #444 60%
+        );
+        background-size: 100% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        will-change: background-position, background-image;
+    }
+
+    @media (max-width: 768px) {
+        .work-with-me {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<script>
+    const el = document.getElementById('work-with-me');
+    
+    if (el) {
+        // Fade in
+        setTimeout(() => {
+            el.style.opacity = '1';
+        }, 300);
+
+        // State
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 50; // Percent
+        let currentY = 50; // Percent
+        
+        let clientWidth = 0;
+        let clientHeight = 0;
+
+        // Configuration
+        const LERP_FACTOR = 0.08; // Smooth lag
+
+        const updateDimensions = () => {
+            const rect = el.getBoundingClientRect();
+            clientWidth = rect.width;
+            clientHeight = rect.height;
+        };
+        
+        // Init dimensions
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+
+        // Mouse Move
+        window.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            // Calculate mouse position relative to the element (in pixels)
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Convert to percentage for background position? 
+            // Or just keep pixels for 'at Xpx Ypx' which is more precise.
+            mouseX = x;
+            mouseY = y;
+        });
+
+        // Mobile autonomous movement
+        let isMobile = window.matchMedia('(max-width: 768px)').matches;
+        let time = 0;
+
+        function animate() {
+            if (isMobile) {
+                time += 0.02;
+                // Move gradient in a slow figure-8 or circle
+                const rect = el.getBoundingClientRect(); // Use live rect in case of reflow
+                const w = rect.width || 200;
+                const h = rect.height || 50;
+                
+                // Oscillate around center
+                const targetX = (w / 2) + Math.cos(time) * (w * 0.4);
+                const targetY = (h / 2) + Math.sin(time * 0.7) * (h * 0.8); // More vertical movement variation
+                
+                currentX += (targetX - currentX) * 0.05;
+                currentY += (targetY - currentY) * 0.05;
+
+            } else {
+                // Desktop Lerp
+                currentX += (mouseX - currentX) * LERP_FACTOR;
+                currentY += (mouseY - currentY) * LERP_FACTOR;
+            }
+
+            // Apply to CSS
+            el.style.setProperty('--grad-x', `${currentX}px`);
+            el.style.setProperty('--grad-y', `${currentY}px`);
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+</script>
