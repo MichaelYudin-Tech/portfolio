@@ -64,6 +64,8 @@
             right: -300px;
             opacity: 0.8;
             animation: float-1 20s ease-in-out infinite alternate;
+            margin-top: var(--scroll-offset, 0px);
+            will-change: margin-top;
         }
 
         .orb-2 {
@@ -74,6 +76,8 @@
             left: -200px;
             opacity: 0.6;
             animation: float-2 25s ease-in-out infinite alternate-reverse;
+            margin-top: var(--scroll-offset, 0px);
+            will-change: margin-top;
         }
 
         @keyframes float-1 {
@@ -195,13 +199,61 @@
             transition: opacity 0.4s ease;
         }
 
-        .project:hover {
-            border-color: #3a3a3d;
-            transform: translateY(-4px);
+        /* Projects Container Hover States */
+        .projects:hover .project {
+            opacity: 0.3;
+            transform: scale(0.98);
+        }
+
+        .projects:hover .project:hover {
+            opacity: 1;
+            transform: scale(1.02);
+            z-index: 10;
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
 
         .project:hover::before {
-            opacity: 0.6;
+            opacity: 1;
+        }
+
+        /* Preview Image Styles */
+        .project-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .project:hover .project-preview {
+            opacity: 0.2;
+            /* Subtle background */
+        }
+
+        /* Make content relatively positioned to sit on top of image */
+        .project-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transform: scale(1.1);
+            transition: transform 6s ease-out;
+            /* Slow pan effect */
+        }
+
+        .project:hover .project-preview img {
+            transform: scale(1);
         }
 
         .project-header {
@@ -312,6 +364,17 @@
                 margin-bottom: 60px;
             }
         }
+
+        /* Scramble Effect Styles */
+        .scramble-gold {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+        }
+
+        .scramble-muted {
+            color: var(--accent);
+            opacity: 0.3;
+        }
     </style>
 </head>
 
@@ -333,30 +396,46 @@
             <div class="projects">
                 <a href="https://trajectfi-private.vercel.app" target="_blank" rel="noopener noreferrer"
                     class="project">
-                    <div class="project-header">
-                        <h2>TrajectFi</h2>
-                        <span class="project-tag">Finance</span>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h2>TrajectFi</h2>
+                            <span class="project-tag">Finance</span>
+                        </div>
+                        <p>Financial trajectory visualization. See where you're actually heading, not just where you are
+                            right now.</p>
                     </div>
-                    <p>Financial trajectory visualization. See where you're actually heading, not just where you are
-                        right now.</p>
+                    <div class="project-preview">
+                        <img src="/assets/trajectfi.webp" alt="TrajectFi Preview" loading="lazy">
+                    </div>
                 </a>
 
                 <a href="https://jewish-clock.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
-                    <div class="project-header">
-                        <h2>Jewish Clock</h2>
-                        <span class="project-tag">Utility</span>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h2>Jewish Clock</h2>
+                            <span class="project-tag">Utility</span>
+                        </div>
+                        <p>Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle
+                            lighting time again.</p>
                     </div>
-                    <p>Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle
-                        lighting time again.</p>
+                    <div class="project-preview">
+                        <img src="/assets/jewish-clock.webp" alt="Jewish Clock Preview" loading="lazy">
+                    </div>
                 </a>
 
                 <a href="https://avqb.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
-                    <div class="project-header">
-                        <h2>AVQB</h2>
-                        <span class="project-tag">Business</span>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h2>AVQB</h2>
+                            <span class="project-tag">Business</span>
+                        </div>
+                        <p>Premium business website for an Israeli battery import company. Clean, modern design with
+                            smooth
+                            animations and a cohesive brand identity.</p>
                     </div>
-                    <p>Premium business website for an Israeli battery import company. Clean, modern design with smooth
-                        animations and a cohesive brand identity.</p>
+                    <div class="project-preview">
+                        <img src="/assets/avqb.webp" alt="AVQB Preview" loading="lazy">
+                    </div>
                 </a>
             </div>
         </section>
