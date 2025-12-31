@@ -208,12 +208,17 @@
         }
 
         /* Projects Container Hover States */
-        .projects:hover .project {
+        /* Projects Container Hover/Focus States */
+        /* Base state: If container is being interacted with (hover or has active item), dim everything */
+        .projects:hover .project,
+        .projects.has-focus .project {
             opacity: 0.3;
             transform: scale(0.98);
         }
 
-        .projects:hover .project:hover {
+        /* Active Item State (Hover or Class) */
+        .projects:hover .project:hover,
+        .projects.has-focus .project.is-focused {
             opacity: 1;
             transform: scale(1.05);
             /* Increased growth */
@@ -222,7 +227,8 @@
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
         }
 
-        .project:hover::before {
+        .project:hover::before,
+        .project.is-focused::before {
             opacity: 1;
         }
 
@@ -242,7 +248,8 @@
             mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
 
-        .project:hover .project-preview {
+        .project:hover .project-preview,
+        .project.is-focused .project-preview {
             opacity: 0.4;
             /* Increased visibility */
         }
@@ -255,7 +262,8 @@
         }
 
         /* Move text slightly to give breathing room */
-        .project:hover .project-content {
+        .project:hover .project-content,
+        .project.is-focused .project-content {
             transform: translateY(-5px);
         }
 
@@ -270,7 +278,8 @@
             /* Slow, smooth drift */
         }
 
-        .project:hover .project-preview img {
+        .project:hover .project-preview img,
+        .project.is-focused .project-preview img {
             /* End state: Zoomed out and centered (sliding up) */
             transform: scale(1) translateY(0);
         }
@@ -372,6 +381,22 @@
 
             .project {
                 padding: 28px;
+                min-height: 280px;
+                /* Force minimum height to show more of preview image */
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                /* Align content to bottom if image is background */
+            }
+
+            .project-content {
+                /* Ensure content stays readable */
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+
+            .project p {
+                color: #e0e0e0;
+                /* Lighter text for better contrast against image */
             }
 
             .project-header {

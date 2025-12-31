@@ -114,8 +114,54 @@ titles.forEach(title => {
 
     card.addEventListener('mouseleave', () => {
         title.style.color = ''; // Revert color
-        // Optional: Scramble back or just stay? Usually just staying is fine, 
-        // or we could 'heal' it back if we wanted a reverse effect, but normally resetting isn't needed 
-        // if the scramble ends on the correct text.
     });
 });
+
+// --- Mobile/Scroll Focus Logic ---
+// Use IntersectionObserver to highlight cards when they are center viewport (mostly for mobile)
+const observerOptions = {
+    root: null,
+    rootMargin: '-40% 0px -40% 0px', // Active when in the middle 20% of screen
+    threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+    // Check if device supports hover (basic check)
+    // We can enable this always as a "scroll highlight" feature
+    const projectsContainer = document.querySelector('.projects');
+
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Remove focus from others
+            document.querySelectorAll('.project').forEach(p => p.classList.remove('is-focused'));
+
+            // Add focus to current
+            entry.target.classList.add('is-focused');
+            projectsContainer.classList.add('has-focus');
+
+            // Trigger text scramble if not already running context
+            const title = entry.target.querySelector('h2');
+            if (title) {
+                // Manually trigger the scramble instance we created earlier?
+                // We need access to the TextScramble instance. 
+                // Let's attach it to the element or just recreate since it’s cheap.
+                // Recreating is safer here to avoid closure complexity.
+                title.style.color = 'var(--accent)';
+                new TextScramble(title).setText(title.innerText);
+            }
+        } else {
+            // We don't remove properties immediately to keep the "dimmed" state stable 
+            // while scrolling between items.
+            // But if we scroll fast, we might want to cleanup? 
+            // Let's leave cleanup to the "isIntersecting" of the next item.
+        }
+    });
+}, observerOptions);
+
+const projects = document.querySelectorAll('.project');
+projects.forEach(project => observer.observe(project));
+
+// Cleanup focus when clicking outside or scrolling away completely?
+// For simpler UX, we might just let the last one stay focused or rely on hover on desktop.
+// On desktop, hover CSS overrides this cleanly because we used combined selectors.
+
