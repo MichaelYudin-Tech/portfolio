@@ -46,8 +46,8 @@ class TextScramble {
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
             const to = newText[i] || '';
-            const start = Math.floor(Math.random() * 40);
-            const end = start + Math.floor(Math.random() * 40);
+            const start = Math.floor(Math.random() * 100);
+            const end = start + Math.floor(Math.random() * 80);
             this.queue.push({ from, to, start, end });
         }
 
@@ -68,7 +68,7 @@ class TextScramble {
                 complete++;
                 output += to;
             } else if (this.frame >= start) {
-                if (!char || Math.random() < 0.28) {
+                if (!char || Math.random() < 0.1) { // slowed down char switching
                     char = this.randomChar();
                     this.queue[i].char = char;
                 }
