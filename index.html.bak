@@ -24,6 +24,7 @@
             --accent: #c9a227;
             --card-bg: #141416;
             --card-border: #2a2a2d;
+            --orb-opacity: 0.6;
         }
 
         body {
@@ -48,96 +49,91 @@
             mix-blend-mode: overlay;
         }
 
+        /* Orb - Fuzzy Light Ball */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(80px);
             z-index: 0;
             pointer-events: none;
+            /* Unified transition for all properties */
+            transition: all 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform, width, height, top, opacity;
         }
 
         .orb-1 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(201, 162, 39, 0.45) 0%, transparent 70%);
-            top: -300px;
-            right: -300px;
-            opacity: 0.8;
-            animation: float-1 20s ease-in-out infinite alternate;
-            margin-top: var(--scroll-offset, 0px);
-            will-change: margin-top;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
+            /* Start: Top Center */
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, rgba(201, 162, 39, 0.35) 0%, transparent 70%);
-            bottom: -200px;
-            left: -200px;
-            opacity: 0.6;
-            animation: float-2 25s ease-in-out infinite alternate-reverse;
+
+            top: -250px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+
+            opacity: var(--orb-opacity);
+
+            /* Parallax applied via JS */
             margin-top: var(--scroll-offset, 0px);
-            will-change: margin-top;
         }
 
-        @keyframes float-1 {
+        /* Float animation */
+        @keyframes pulse-float {
             0% {
-                transform: translate(0, 0);
-                filter: hue-rotate(0deg);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translate(-30px, 30px);
-                filter: hue-rotate(15deg);
+                transform: translateX(-50%) scale(1);
                 opacity: 0.5;
             }
-        }
-
-        @keyframes float-2 {
-            0% {
-                transform: translate(0, 0);
-                filter: hue-rotate(0deg);
-                opacity: 0.6;
-            }
 
             100% {
-                transform: translate(30px, -30px);
-                filter: hue-rotate(-15deg);
-                opacity: 0.3;
+                transform: translateX(-50%) scale(1.05);
+                opacity: 0.7;
             }
         }
+
+        .orb-1:not(.footer-mode) {
+            animation: pulse-float 8s ease-in-out infinite alternate;
+        }
+
+        /* Footer Light Interaction - "The Lightbar" */
+        body.footer-active .orb-1 {
+            /* End: Bottom Full Width Lightbar */
+            top: auto !important;
+            bottom: -100px !important;
+
+            left: 0 !important;
+            right: 0 !important;
+
+            width: 100vw !important;
+            height: 300px !important;
+
+            /* Override Parallax */
+            margin-top: 0 !important;
+            transform: translateX(0) scale(1) !important;
+
+            /* Visual change */
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.8) 0%, transparent 70%);
+            opacity: 1;
+            filter: blur(60px);
+        }
+
+        /* Remove Orb 2 */
+        .orb-2 {
+            display: none;
+        }
+
+
+
+
 
         /* Footer Light Interaction */
         .orb {
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        body.footer-active .orb-1 {
-            /* Reposition to bottom center */
-            top: calc(100vh - 350px) !important;
-            right: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 600px !important;
 
-            /* Override JS parallax */
-            margin-top: 0 !important;
 
-            /* Visuals */
-            background: radial-gradient(circle, rgba(201, 162, 39, 0.6) 0%, transparent 60%);
-            opacity: 1;
-            border-radius: 40% 40% 0 0;
 
-            /* Stop floating */
-            animation: none;
-            transform: none !important;
-        }
-
-        body.footer-active .orb-2 {
-            opacity: 0;
-            transform: scale(0.5);
-        }
 
         .container {
             max-width: 900px;
@@ -495,7 +491,6 @@
 <body>
     <div class="noise"></div>
     <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
     <script type="module" src="/main.js"></script>
 
     <div class="container">

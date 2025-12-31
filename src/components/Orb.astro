@@ -1,0 +1,96 @@
+<div class="orb orb-1"></div>
+
+<style>
+    .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 0;
+        pointer-events: none;
+        transition: all 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, width, height, top, opacity;
+    }
+
+    .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(201, 162, 39, 0.35) 0%, transparent 70%);
+        top: -250px;
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        opacity: var(--orb-opacity);
+        margin-top: var(--scroll-offset, 0px);
+    }
+
+    @keyframes pulse-float {
+        0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+        100% { transform: translateX(-50%) scale(1.05); opacity: 0.7; }
+    }
+
+    .orb-1:not(:global(.footer-mode)) {
+        animation: pulse-float 8s ease-in-out infinite alternate;
+    }
+
+    /* Footer Interaction */
+    :global(body.footer-active) .orb-1 {
+        top: auto !important;
+        bottom: -100px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        height: 300px !important;
+        margin-top: 0 !important;
+        transform: translateX(0) scale(1) !important;
+        background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.8) 0%, transparent 70%);
+        opacity: 1;
+        filter: blur(60px);
+    }
+</style>
+
+<script>
+    const orb = document.querySelector('.orb-1');
+    
+    // Parallax logic
+    window.addEventListener('scroll', () => {
+        if (document.body.classList.contains('footer-active')) return;
+        const scrollY = window.scrollY;
+        const speed = 0.5;
+        const yOffset = scrollY * speed;
+        if (orb) {
+            orb.style.setProperty('--scroll-offset', `${yOffset}px`);
+        }
+    });
+
+    // Footer Observer Logic
+    // We add this here to ensure it manages the 'footer-active' class on body
+    // which affects the specific orb styles defined above.
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const body = document.body;
+            if (entry.isIntersecting) {
+                body.classList.add('footer-active');
+            } else {
+                body.classList.remove('footer-active');
+                
+                // Sync parallax back when leaving footer
+                const currentOrb = document.querySelector('.orb-1');
+                if (currentOrb) {
+                    const scrollY = window.scrollY;
+                    const speed = 0.5;
+                    const yOffset = scrollY * speed;
+                    currentOrb.style.setProperty('--scroll-offset', `${yOffset}px`);
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px"
+    });
+
+    // Wait for DOM content to be ready or check if footer exists immediately
+    // Since this script runs on the client, we need to find the footer
+    // We might need to select it more robustly if it's not immediately available, 
+    // but in Astro components <script> runs after HTML is parsed.
+    const footer = document.querySelector('footer');
+    if (footer) footerObserver.observe(footer);
+</script>

@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SupportSection from '../components/SupportSection.astro';
+import Footer from '../components/Footer.astro';
+import Orb from '../components/Orb.astro';
+import Noise from '../components/Noise.astro';
+
+const projects = [
+    {
+        title: "TrajectFi",
+        tag: "Finance",
+        description: "Financial trajectory visualization. See where you're actually heading, not just where you are right now.",
+        url: "https://trajectfi-private.vercel.app",
+        image: "/assets/trajectfi.webp",
+        delay: 0.1
+    },
+    {
+        title: "Jewish Clock",
+        tag: "Utility",
+        description: "Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle lighting time again.",
+        url: "https://jewish-clock.vercel.app",
+        image: "/assets/jewish-clock.webp",
+        delay: 0.2
+    },
+    {
+        title: "AVQB",
+        tag: "Business",
+        description: "Premium business website for an Israeli battery import company. Clean, modern design with smooth animations and a cohesive brand identity.",
+        url: "https://avqb.vercel.app",
+        image: "/assets/avqb.webp",
+        delay: 0.3
+    }
+];
+---
+
+<Layout>
+    <Noise />
+    <Orb />
+    
+    <div class="container">
+        <Header>
+            A stay-at-home dad of three in Israel, building financial insights, daily utilities, and
+            premium web experiences between diaper changes and bedtime.
+        </Header>
+
+        <section>
+            <p class="section-label">Current Projects</p>
+            <div class="projects">
+                {projects.map(project => (
+                    <ProjectCard {...project} />
+                ))}
+            </div>
+        </section>
+
+        <SupportSection />
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 80px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .section-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 32px;
+        font-weight: 500;
+    }
+
+    .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-bottom: 100px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 60px 20px 40px;
+        }
+        .projects {
+            margin-bottom: 60px;
+        }
+    }
+</style>
+
+<script>
+    // --- Mobile/Scroll Focus Logic ---
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        const projectsContainer = document.querySelector('.projects');
+
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.project').forEach(p => p.classList.remove('is-focused'));
+                entry.target.classList.add('is-focused');
+                if(projectsContainer) projectsContainer.classList.add('has-focus');
+            }
+        });
+    }, observerOptions);
+
+    const projects = document.querySelectorAll('.project');
+    if (window.matchMedia('(hover: none)').matches) {
+        projects.forEach(project => observer.observe(project));
+    }
+</script>

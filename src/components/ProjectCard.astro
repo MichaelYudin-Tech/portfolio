@@ -1,0 +1,278 @@
+---
+interface Props {
+    title: string;
+    tag: string;
+    description: string;
+    url: string;
+    image: string;
+    delay?: number;
+}
+
+const { title, tag, description, url, image, delay = 0 } = Astro.props;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="project" style={`animation-delay: ${delay}s`}>
+    <div class="project-content">
+        <div class="project-header">
+            <h2 class="project-title">{title}</h2>
+            <span class="project-tag">{tag}</span>
+        </div>
+        <p>{description}</p>
+    </div>
+    <div class="project-preview">
+        <img src={image} alt={`${title} Preview`} loading="lazy">
+    </div>
+</a>
+
+<style>
+    .project {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 40px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: fadeUp 0.8s ease-out backwards;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .project::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    /* Focus States */
+    :global(.projects.has-focus) .project { opacity: 0.3; transform: scale(0.98); }
+    @media (hover: hover) {
+        :global(.projects:hover) .project { opacity: 0.3; transform: scale(0.98); }
+    }
+
+    :global(.projects.has-focus) .project.is-focused {
+        opacity: 1;
+        transform: scale(1.05);
+        z-index: 10;
+        border-color: var(--accent);
+        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    @media (hover: hover) {
+        :global(.projects:hover) .project:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            z-index: 10;
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .project.is-focused::before,
+    .project:hover::before {
+        opacity: 1;
+    }
+
+    /* Preview Image Styles */
+    .project-preview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        overflow: hidden;
+        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    }
+
+    .project.is-focused .project-preview,
+    .project:hover .project-preview {
+        opacity: 0.4;
+    }
+
+    .project-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transform: scale(1.2) translateY(10%);
+        transition: transform 8s ease-out;
+    }
+
+    .project.is-focused .project-preview img,
+    .project:hover .project-preview img {
+        transform: scale(1) translateY(0);
+    }
+
+    .project-content {
+        position: relative;
+        z-index: 2;
+        transition: transform 0.4s ease;
+    }
+
+    .project.is-focused .project-content,
+    .project:hover .project-content {
+        transform: translateY(-5px);
+    }
+
+    .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        gap: 16px;
+    }
+
+    h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.75rem;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+    }
+
+    .project-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 6px 12px;
+        background: rgba(201, 162, 39, 0.1);
+        color: var(--accent);
+        border-radius: 20px;
+        white-space: nowrap;
+        font-weight: 500;
+    }
+
+    p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        font-weight: 300;
+        line-height: 1.7;
+    }
+    
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .project {
+            padding: 28px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .project-content { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); }
+        p { color: #e0e0e0; }
+        .project-header { flex-direction: column; gap: 12px; }
+    }
+</style>
+
+<script>
+    // --- Scramble Logic ---
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+
+    class TextScramble {
+        el: HTMLElement;
+        originalText: string;
+        frame: number;
+        queue: any[];
+        frameRequest: any;
+        resolve: any;
+
+        constructor(el) {
+            this.el = el;
+            this.originalText = el.innerText;
+            this.frame = 0;
+            this.queue = [];
+            this.update = this.update.bind(this);
+        }
+
+        setText(newText) {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => this.resolve = resolve);
+
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || '';
+                const to = newText[i] || '';
+                const start = Math.floor(Math.random() * 20);
+                const end = start + Math.floor(Math.random() * 30);
+                this.queue.push({ from, to, start, end });
+            }
+
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
+        }
+
+        update() {
+            let output = '';
+            let complete = 0;
+
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i]; // eslint-disable-line
+
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    const progress = (this.frame - start) / (end - start);
+                    const shouldSwap = Math.random() < (1 - progress) * 0.9;
+
+                    if (!char || shouldSwap) {
+                        char = letters[Math.floor(Math.random() * letters.length)];
+                        this.queue[i].char = char;
+                    }
+                    const isGold = Math.random() < 0.5;
+                    output += `<span class="${isGold ? 'scramble-gold' : 'scramble-muted'} scramble-motion">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+
+            this.el.innerHTML = output;
+
+            if (complete === this.queue.length) {
+                if(this.resolve) this.resolve();
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+    }
+
+    // Initialize on all instances of this component
+    const cards = document.querySelectorAll('.project');
+    cards.forEach(card => {
+        const title = card.querySelector('.project-title') as HTMLElement;
+        if(!title) return;
+        
+        const fx = new TextScramble(title);
+        const originalText = title.innerText;
+
+        card.addEventListener('mouseenter', () => {
+            title.style.color = 'var(--accent)';
+            fx.setText(originalText);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            title.style.color = '';
+        });
+        
+        // This is primarily handled by CSS hover now, but kept for the scramble trigger
+    });
+</script>

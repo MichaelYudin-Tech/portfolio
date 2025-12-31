@@ -3,21 +3,19 @@ import { inject } from '@vercel/analytics';
 inject();
 
 // --- Background Orb Parallax ---
-const orbs = document.querySelectorAll('.orb');
+const orb = document.querySelector('.orb-1');
 window.addEventListener('scroll', () => {
-    // If footer is active, disable parallax updates to prevent fighting with CSS
+    // If footer is active, disable parallax updates to let CSS take over
     if (document.body.classList.contains('footer-active')) return;
 
+    // Use a simpler parallax factor
     const scrollY = window.scrollY;
-    orbs.forEach((orb, index) => {
-        // Different speeds for depth perception
-        const speed = (index + 1) * 0.5;
-        const yOffset = scrollY * speed;
-        // We update a CSS variable or direct transform. 
-        // Since we have an existing animation on the orbs (float), we need to be careful not to override it.
-        // Best approach: wrap the orb in a container or use a css variable for the scroll offset.
+    const speed = 0.5;
+    const yOffset = scrollY * speed;
+
+    if (orb) {
         orb.style.setProperty('--scroll-offset', `${yOffset}px`);
-    });
+    }
 });
 
 
@@ -31,8 +29,6 @@ class TextScramble {
         this.frame = 0;
         this.queue = [];
         this.scrambling = false;
-
-        // Split text into an array of objects representing final state
         this.init();
     }
 
@@ -49,8 +45,8 @@ class TextScramble {
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
             const to = newText[i] || '';
-            const start = Math.floor(Math.random() * 20); // Much shorter delay
-            const end = start + Math.floor(Math.random() * 30); // Shorter duration
+            const start = Math.floor(Math.random() * 20);
+            const end = start + Math.floor(Math.random() * 30);
             this.queue.push({ from, to, start, end });
         }
 
@@ -71,7 +67,6 @@ class TextScramble {
                 complete++;
                 output += to;
             } else if (this.frame >= start) {
-                // progressive slowdown
                 const progress = (this.frame - start) / (end - start);
                 const shouldSwap = Math.random() < (1 - progress) * 0.9;
 
@@ -106,63 +101,44 @@ const titles = document.querySelectorAll('.project h2');
 titles.forEach(title => {
     const fx = new TextScramble(title);
     const originalText = title.innerText;
-
-    // Find parent project card to handle hover
     const card = title.closest('.project');
 
     card.addEventListener('mouseenter', () => {
-        title.style.color = 'var(--accent)'; // Turn gold
+        title.style.color = 'var(--accent)';
         fx.setText(originalText);
     });
 
     card.addEventListener('mouseleave', () => {
-        title.style.color = ''; // Revert color
+        title.style.color = '';
     });
 });
 
 // --- Mobile/Scroll Focus Logic ---
-// Use IntersectionObserver to highlight cards when they are center viewport (mostly for mobile)
 const observerOptions = {
     root: null,
-    rootMargin: '-40% 0px -40% 0px', // Active when in the middle 20% of screen
+    rootMargin: '-40% 0px -40% 0px',
     threshold: 0
 };
 
 const observer = new IntersectionObserver((entries) => {
-    // Check if device supports hover (basic check)
-    // We can enable this always as a "scroll highlight" feature
     const projectsContainer = document.querySelector('.projects');
 
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Remove focus from others
             document.querySelectorAll('.project').forEach(p => p.classList.remove('is-focused'));
-
-            // Add focus to current
             entry.target.classList.add('is-focused');
             projectsContainer.classList.add('has-focus');
 
-            // Trigger text scramble if not already running context
             const title = entry.target.querySelector('h2');
             if (title) {
-                // Manually trigger the scramble instance we created earlier?
-                // We need access to the TextScramble instance. 
-                // Let's attach it to the element or just recreate since it’s cheap.
-                // Recreating is safer here to avoid closure complexity.
                 title.style.color = 'var(--accent)';
                 new TextScramble(title).setText(title.innerText);
             }
-        } else {
-            // We don't remove properties immediately to keep the "dimmed" state stable 
-            // while scrolling between items.
-            // But if we scroll fast, we might want to cleanup? 
-            // Let's leave cleanup to the "isIntersecting" of the next item.
         }
     });
 }, observerOptions);
 
 const projects = document.querySelectorAll('.project');
-// Only run observer if device does NOT support hover (i.e. mobile/tablet)
 if (window.matchMedia('(hover: none)').matches) {
     projects.forEach(project => observer.observe(project));
 }
@@ -175,22 +151,19 @@ const footerObserver = new IntersectionObserver((entries) => {
         } else {
             document.body.classList.remove('footer-active');
 
-            // Re-sync parallax positions when leaving footer to prevent jumping?
-            // Since we disabled updates, the variables are stale.
-            // We should ideally update them one last time or let the scroll event pick up.
-            // The requestAnimationFrame loop or scroll event triggers frequently so it should be fine.
-            // But to be safe, we can force an update.
-            const scrollY = window.scrollY;
-            orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 0.5;
+            // Sync parallax back when leaving footer
+            // This prevents a sudden jump if the scroll position is different
+            if (orb) {
+                const scrollY = window.scrollY;
+                const speed = 0.5;
                 const yOffset = scrollY * speed;
                 orb.style.setProperty('--scroll-offset', `${yOffset}px`);
-            });
+            }
         }
     });
 }, {
-    threshold: 0.2, // Trigger when 20% of footer is visible
-    rootMargin: "0px 0px 0px 0px"
+    threshold: 0.1, // Trigger slightly earlier
+    rootMargin: "0px"
 });
 
 const footer = document.querySelector('footer');
