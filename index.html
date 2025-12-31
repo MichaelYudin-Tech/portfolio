@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael | Developer & Builder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Source+Sans+3:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -39,21 +42,58 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             z-index: 1000;
+            mix-blend-mode: overlay;
         }
 
-        .glow {
+        .orb {
             position: fixed;
-            width: 600px;
-            height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            top: -200px;
-            right: -200px;
+            filter: blur(100px);
             z-index: 0;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%);
+            top: -300px;
+            right: -300px;
+            opacity: 0.6;
+            animation: float-1 20s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            opacity: 0.4;
+            animation: float-2 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float-1 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-30px, 30px);
+            }
+        }
+
+        @keyframes float-2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(30px, -30px);
+            }
         }
 
         .container {
@@ -74,6 +114,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -130,9 +171,17 @@
             display: block;
         }
 
-        .project:nth-child(1) { animation-delay: 0.1s; }
-        .project:nth-child(2) { animation-delay: 0.2s; }
-        .project:nth-child(3) { animation-delay: 0.3s; }
+        .project:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .project:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project:nth-child(3) {
+            animation-delay: 0.3s;
+        }
 
         .project::before {
             content: '';
@@ -265,33 +314,39 @@
         }
     </style>
 </head>
+
 <body>
     <div class="noise"></div>
-    <div class="glow"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
     <div class="container">
         <header>
             <h1>Hi, I'm <span>Michael</span></h1>
-            <p class="intro">A stay-at-home dad of three in Israel, building small useful tools between diaper changes and bedtime.</p>
+            <p class="intro">A stay-at-home dad of three in Israel, building financial insights, daily utilities, and
+                premium web experiences between diaper changes and bedtime.</p>
         </header>
 
         <section>
             <p class="section-label">Current Projects</p>
             <div class="projects">
-                <a href="https://trajectfi-private.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
+                <a href="https://trajectfi-private.vercel.app" target="_blank" rel="noopener noreferrer"
+                    class="project">
                     <div class="project-header">
                         <h2>TrajectFi</h2>
                         <span class="project-tag">Finance</span>
                     </div>
-                    <p>Financial trajectory visualization. See where you're actually heading, not just where you are right now.</p>
+                    <p>Financial trajectory visualization. See where you're actually heading, not just where you are
+                        right now.</p>
                 </a>
 
-                    <a href="https://jewish-clock.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
+                <a href="https://jewish-clock.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
                     <div class="project-header">
                         <h2>Jewish Clock</h2>
                         <span class="project-tag">Utility</span>
                     </div>
-                    <p>Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle lighting time again.</p>
+                    <p>Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle
+                        lighting time again.</p>
                 </a>
 
                 <a href="https://avqb.vercel.app" target="_blank" rel="noopener noreferrer" class="project">
@@ -299,7 +354,8 @@
                         <h2>AVQB</h2>
                         <span class="project-tag">Business</span>
                     </div>
-                    <p>Premium business website for an Israeli battery import company. Clean, modern design with smooth animations and a cohesive brand identity.</p>
+                    <p>Premium business website for an Israeli battery import company. Clean, modern design with smooth
+                        animations and a cohesive brand identity.</p>
                 </a>
             </div>
         </section>
@@ -308,7 +364,8 @@
             <p>Your support helps me keep building and supports my family.</p>
             <a href="https://www.buymeacoffee.com/Michael.Tech" class="coffee-btn">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2 21V19H20V21H2ZM20 8V5H22V8H20ZM20 8H18V3H4V16H18V10H20V17C20 17.5523 19.5523 18 19 18H3C2.44772 18 2 17.5523 2 17V2C2 1.44772 2.44772 1 3 1H19C19.5523 1 20 1.44772 20 2V8Z"/>
+                    <path
+                        d="M2 21V19H20V21H2ZM20 8V5H22V8H20ZM20 8H18V3H4V16H18V10H20V17C20 17.5523 19.5523 18 19 18H3C2.44772 18 2 17.5523 2 17V2C2 1.44772 2.44772 1 3 1H19C19.5523 1 20 1.44772 20 2V8Z" />
                 </svg>
                 Buy me a coffee
             </a>
@@ -319,4 +376,5 @@
         </footer>
     </div>
 </body>
+
 </html>
