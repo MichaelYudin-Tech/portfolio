@@ -164,6 +164,36 @@
                 `radial-gradient(circle ${maskSize}px at 50% ${orbCenterY}px, rgba(0,0,0,0.4) 0%, transparent 70%)`);
             noiseReveal.style.setProperty('mask-image', 
                 `radial-gradient(circle ${maskSize}px at 50% ${orbCenterY}px, rgba(0,0,0,0.4) 0%, transparent 70%)`);
+
+            // Parallax: noise moves at 30% of scroll speed (0.3 factor)
+            // This creates a depth illusion where the noise texture is on a separate layer
+            const parallaxFactor = -0.8;
+            // Negative offset makes it move up slower than content (effectively drifting down relative to content) -> Depth
+            // Or positive? "shift the background position based on scroll". 
+            // Standard parallax: background moves slower than foreground. 
+            // If we scroll down (scrollY increases), content moves up.
+            // If background-position-y increases, background moves down.
+            // If background-position-y decreases, background moves up.
+            // To make it move slower than content (which moves up by X), we want background to move up by less than X.
+            // So we want it to move up (negative direction in CSS pixels usually? No, scrollY is positive).
+            // Actually, background-attachment: fixed does not move. 
+            // If we want it to move *slower* than the scroll (as if it's further away), it should effectively move *with* the camera a bit.
+            // If we use scrollY * factor, as scrollY (viewport top) goes down document, the value increases.
+            // background-position-y: 100px means the background image is shifted 100px down.
+            // So if scrollY is 100, and we set pos to 30px.
+            // As we scroll down, text moves UP relative to viewport.
+            // Background moves DOWN relative to viewport (because 30px > 0, and default is 0). 
+            // Wait, if it's position: fixed, it stays in place relative to viewport.
+            // So without this, it's static (infinite depth).
+            // To make it feel closer than infinity but further than content:
+            // Content moves up at speed 1.
+            // We want this to move up at speed < 1 (relative to viewport? No, relative to content?).
+            // If it's fixed, it doesn't move relative to viewport.
+            // If we offset it by +scrollY * 0.3, it moves DOWN relative to viewport.
+            // This makes it act like it's "following" the scroll view but lagging behind.
+            // Let's stick to the requested logic: noiseOffset = scrollY * parallaxFactor.
+            const noiseOffset = scrollY * parallaxFactor;
+            noiseReveal.style.setProperty('--noise-offset', `${noiseOffset}px`);
         }
     }
 
