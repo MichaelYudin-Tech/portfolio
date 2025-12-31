@@ -1,96 +1,157 @@
-<div class="orb orb-1"></div>
+<div class="orb orb-float"></div>
+<div class="orb orb-floor"></div>
 
 <style>
     .orb {
         position: fixed;
-        border-radius: 50%;
         filter: blur(80px);
         z-index: 0;
         pointer-events: none;
-        transition: all 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        will-change: transform, width, height, top, opacity;
-    }
-
-    .orb-1 {
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(201, 162, 39, 0.35) 0%, transparent 70%);
+        will-change: transform, width, height, top, opacity, border-radius;
+        /* Start with some defaults to avoid FOUC */
         top: -250px;
         left: 50%;
-        transform: translateX(-50%) translateY(0);
-        opacity: var(--orb-opacity);
-        margin-top: var(--scroll-offset, 0px);
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        transform: translate3d(-50%, 0, 0);
+    }
+
+    .orb-float {
+        background: radial-gradient(circle at 50% 50%, rgba(201, 162, 39, 0.35) 0%, transparent 70%);
+        opacity: 1;
+    }
+
+    .orb-floor {
+        background: linear-gradient(to top, rgba(201, 162, 39, 0.35) 0%, transparent 50%);
+        opacity: 0;
     }
 
     @keyframes pulse-float {
-        0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-        100% { transform: translateX(-50%) scale(1.05); opacity: 0.7; }
+        0% { transform: translate3d(-50%, var(--orb-y, 0px), 0) scale(1); }
+        100% { transform: translate3d(-50%, var(--orb-y, 0px), 0) scale(1.05); }
     }
 
-    .orb-1:not(:global(.footer-mode)) {
+    .orb-float {
         animation: pulse-float 8s ease-in-out infinite alternate;
-    }
-
-    /* Footer Interaction */
-    :global(body.footer-active) .orb-1 {
-        top: auto !important;
-        bottom: -100px !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100vw !important;
-        height: 300px !important;
-        margin-top: 0 !important;
-        transform: translateX(0) scale(1) !important;
-        background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.8) 0%, transparent 70%);
-        opacity: 1;
-        filter: blur(60px);
     }
 </style>
 
 <script>
-    const orb = document.querySelector('.orb-1');
+    const orbFloat = document.querySelector('.orb-float');
+    const orbFloor = document.querySelector('.orb-floor');
     
-    // Parallax logic
-    window.addEventListener('scroll', () => {
-        if (document.body.classList.contains('footer-active')) return;
+    function updateOrb() {
+        if (!orbFloat || !orbFloor) return;
+        
         const scrollY = window.scrollY;
-        const speed = 0.5;
-        const yOffset = scrollY * speed;
-        if (orb) {
-            orb.style.setProperty('--scroll-offset', `${yOffset}px`);
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.min(Math.max(scrollY / maxScroll, 0), 1) : 0;
+        const smoothProgress = progress;
+
+        // --- Geometry Calculations (Common) ---
+        
+        const startWidth = 600;
+        const endWidth = window.innerWidth;
+        const currentWidth = startWidth + (endWidth - startWidth) * smoothProgress;
+        
+        const startHeight = 600;
+        const endHeight = 300;
+        
+        // --- Mix Calculation ---
+        const mixStart = 0.6;
+        const mixEnd = 1.0;
+        let mix = 0;
+        if (smoothProgress > mixStart) {
+            mix = (smoothProgress - mixStart) / (mixEnd - mixStart);
+            if (mix > 1) mix = 1;
+        }
+
+        // --- Positioning ---
+        const startY = 0;
+        // Fix: Align bottom of element with bottom of viewport
+        // Top calculation logic: 
+        // We want (InitialTop + Y) + Height = WindowHeight
+        // (-250 + Y) + endHeight = WindowHeight
+        // Y = WindowHeight - endHeight + 250
+        const endTargetY = window.innerHeight - endHeight + 250; 
+        
+        const currentY = startY + (endTargetY - startY) * smoothProgress;
+        
+        const currentHeight = startHeight + (endHeight - startHeight) * smoothProgress;
+        const currentRadius = 50 * (1 - mix);
+
+        // Opacity
+        const baseAlphaStart = 0.35;
+        const baseAlphaEnd = 0.8;
+        const currentBaseAlpha = baseAlphaStart + (baseAlphaEnd - baseAlphaStart) * smoothProgress;
+
+        const commonCssText = `
+            height: ${currentHeight}px;
+            --orb-y: ${currentY}px;
+            transform: translate3d(-50%, ${currentY}px, 0);
+            border-radius: ${currentRadius}%;
+        `;
+        
+        orbFloat.style.cssText = commonCssText;
+        orbFloor.style.cssText = commonCssText;
+        
+        // Basic width for float
+        orbFloat.style.width = `${currentWidth}px`;
+
+        // --- Layer Specifics ---
+
+        // Float Orb
+        const floatAlpha = currentBaseAlpha * (1 - mix);
+        orbFloat.style.opacity = mix >= 1 ? '0' : '1'; 
+        if (mix < 1) {
+            orbFloat.style.background = `radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, ${floatAlpha}) 0%, transparent 70%)`;
+        }
+
+        // Floor Orb
+        const floorAlpha = currentBaseAlpha * mix; // Start fading in
+        orbFloor.style.opacity = mix <= 0 ? '0' : '1';
+        
+        if (mix > 0) {
+            // Fix 1: Reduce blur to avoid dim edges
+            // As mix goes 0->1, blur goes 80px -> 0px (or smaller) ?
+            // User suggestion: blur(80 * (1 - mix) * 2) ... effectively decreasing blur.
+            // Let's keep some blur for softness, maybe 20px at end?
+            // Actually, (1-mix) makes it 0 at end. Is 0 blur desirable?
+            // "Floor light" usually has some blur. Let's try 20px floor.
+            // User formula: 80 * (1 - mix) * 2 -> At mix 0.5: 80*0.5*2 = 80. At mix 1: 0.
+            const blurAmount = Math.max(20, 80 * (1 - mix)); 
+            orbFloor.style.filter = `blur(${blurAmount}px)`;
+            
+            // Fix 3: Widen to compensate for edge fade
+            // mix 0 -> 0 extra width
+            // mix 1 -> 160 extra width
+            const extraWidth = 160 * mix;
+            orbFloor.style.width = `${currentWidth + extraWidth}px`;
+            
+            const gradientHeight = 50 + (mix * 50); 
+            orbFloor.style.background = `linear-gradient(to top, rgba(201, 162, 39, ${floorAlpha}) 0%, transparent ${gradientHeight}%)`;
+        } else {
+            // Reset to defaults if we scroll back up
+            orbFloor.style.filter = 'blur(80px)';
+            orbFloor.style.width = `${currentWidth}px`;
+        }
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateOrb();
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 
-    // Footer Observer Logic
-    // We add this here to ensure it manages the 'footer-active' class on body
-    // which affects the specific orb styles defined above.
-    const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const body = document.body;
-            if (entry.isIntersecting) {
-                body.classList.add('footer-active');
-            } else {
-                body.classList.remove('footer-active');
-                
-                // Sync parallax back when leaving footer
-                const currentOrb = document.querySelector('.orb-1');
-                if (currentOrb) {
-                    const scrollY = window.scrollY;
-                    const speed = 0.5;
-                    const yOffset = scrollY * speed;
-                    currentOrb.style.setProperty('--scroll-offset', `${yOffset}px`);
-                }
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: "0px"
+    window.addEventListener('resize', () => {
+        updateOrb();
     });
 
-    // Wait for DOM content to be ready or check if footer exists immediately
-    // Since this script runs on the client, we need to find the footer
-    // We might need to select it more robustly if it's not immediately available, 
-    // but in Astro components <script> runs after HTML is parsed.
-    const footer = document.querySelector('footer');
-    if (footer) footerObserver.observe(footer);
+    updateOrb();
 </script>
