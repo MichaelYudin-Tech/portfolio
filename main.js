@@ -5,6 +5,9 @@ inject();
 // --- Background Orb Parallax ---
 const orbs = document.querySelectorAll('.orb');
 window.addEventListener('scroll', () => {
+    // If footer is active, disable parallax updates to prevent fighting with CSS
+    if (document.body.classList.contains('footer-active')) return;
+
     const scrollY = window.scrollY;
     orbs.forEach((orb, index) => {
         // Different speeds for depth perception
@@ -164,7 +167,31 @@ if (window.matchMedia('(hover: none)').matches) {
     projects.forEach(project => observer.observe(project));
 }
 
-// Cleanup focus when clicking outside or scrolling away completely?
-// For simpler UX, we might just let the last one stay focused or rely on hover on desktop.
-// On desktop, hover CSS overrides this cleanly because we used combined selectors.
+// --- Footer "Light Up" Interaction ---
+const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.body.classList.add('footer-active');
+        } else {
+            document.body.classList.remove('footer-active');
 
+            // Re-sync parallax positions when leaving footer to prevent jumping?
+            // Since we disabled updates, the variables are stale.
+            // We should ideally update them one last time or let the scroll event pick up.
+            // The requestAnimationFrame loop or scroll event triggers frequently so it should be fine.
+            // But to be safe, we can force an update.
+            const scrollY = window.scrollY;
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.5;
+                const yOffset = scrollY * speed;
+                orb.style.setProperty('--scroll-offset', `${yOffset}px`);
+            });
+        }
+    });
+}, {
+    threshold: 0.2, // Trigger when 20% of footer is visible
+    rootMargin: "0px 0px 0px 0px"
+});
+
+const footer = document.querySelector('footer');
+if (footer) footerObserver.observe(footer);

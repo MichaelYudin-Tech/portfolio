@@ -108,6 +108,37 @@
             }
         }
 
+        /* Footer Light Interaction */
+        .orb {
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.footer-active .orb-1 {
+            /* Reposition to bottom center */
+            top: calc(100vh - 350px) !important;
+            right: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 600px !important;
+
+            /* Override JS parallax */
+            margin-top: 0 !important;
+
+            /* Visuals */
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.6) 0%, transparent 60%);
+            opacity: 1;
+            border-radius: 40% 40% 0 0;
+
+            /* Stop floating */
+            animation: none;
+            transform: none !important;
+        }
+
+        body.footer-active .orb-2 {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
