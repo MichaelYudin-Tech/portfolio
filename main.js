@@ -46,8 +46,8 @@ class TextScramble {
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
             const to = newText[i] || '';
-            const start = Math.floor(Math.random() * 100);
-            const end = start + Math.floor(Math.random() * 80);
+            const start = Math.floor(Math.random() * 20); // Much shorter delay
+            const end = start + Math.floor(Math.random() * 30); // Shorter duration
             this.queue.push({ from, to, start, end });
         }
 
@@ -68,12 +68,16 @@ class TextScramble {
                 complete++;
                 output += to;
             } else if (this.frame >= start) {
-                if (!char || Math.random() < 0.1) { // slowed down char switching
+                // progressive slowdown
+                const progress = (this.frame - start) / (end - start);
+                const shouldSwap = Math.random() < (1 - progress) * 0.9;
+
+                if (!char || shouldSwap) {
                     char = this.randomChar();
                     this.queue[i].char = char;
                 }
-                const isGold = Math.random() < 0.5; // Randomly highlight scrambling chars
-                output += `<span class="${isGold ? 'scramble-gold' : 'scramble-muted'}">${char}</span>`;
+                const isGold = Math.random() < 0.5;
+                output += `<span class="${isGold ? 'scramble-gold' : 'scramble-muted'} scramble-motion">${char}</span>`;
             } else {
                 output += from;
             }
