@@ -136,6 +136,35 @@
             orbFloor.style.filter = 'blur(80px)';
             orbFloor.style.width = `${currentWidth}px`;
         }
+
+        // --- Noise Reveal Broadcast ---
+        const noiseReveal = document.querySelector('.noise-reveal');
+        if (noiseReveal) {
+            // Orb is centered horizontally
+            const orbCenterX = window.innerWidth / 2; 
+            
+            // Calculate absolute Y position of the orb center relative to the document
+            // The orb uses fixed positioning with top: -250px and transform-y: currentY
+            // So visual top is -250 + currentY
+            // Center is top + half height
+            // But we need viewport relative coordinates for fixed position mask?
+            // "noise-reveal" is position: fixed.
+            // So we need viewport coordinates.
+            
+            // visualTop relative to viewport = -250 + currentY
+            const visualTop = -250 + currentY;
+            const orbCenterY = visualTop + (currentHeight / 2);
+            
+            noiseReveal.style.setProperty('--orb-x', `50%`);
+            noiseReveal.style.setProperty('--orb-y', `${orbCenterY}px`);
+            
+            // Scale mask size with orb size
+            const maskSize = currentWidth * 0.5;
+            noiseReveal.style.setProperty('-webkit-mask-image', 
+                `radial-gradient(circle ${maskSize}px at 50% ${orbCenterY}px, rgba(0,0,0,0.4) 0%, transparent 70%)`);
+            noiseReveal.style.setProperty('mask-image', 
+                `radial-gradient(circle ${maskSize}px at 50% ${orbCenterY}px, rgba(0,0,0,0.4) 0%, transparent 70%)`);
+        }
     }
 
     let ticking = false;

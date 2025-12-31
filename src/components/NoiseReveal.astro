@@ -1,0 +1,19 @@
+<div class="noise-reveal"></div>
+
+<style>
+    .noise-reveal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('/assets/noisy-texture-100x100-o100-d14-c-757575-t0.png') repeat;
+        opacity: 0.15;
+        pointer-events: none;
+        z-index: 1;
+        
+        /* Mask - circular gradient, transparent by default */
+        -webkit-mask-image: radial-gradient(circle 300px at var(--orb-x, 50%) var(--orb-y, -250px), rgba(0,0,0,0.4) 0%, transparent 70%);
+        mask-image: radial-gradient(circle 300px at var(--orb-x, 50%) var(--orb-y, -250px), rgba(0,0,0,0.4) 0%, transparent 70%);
+    }
+</style>
