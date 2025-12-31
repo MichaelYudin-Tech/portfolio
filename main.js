@@ -159,7 +159,10 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 const projects = document.querySelectorAll('.project');
-projects.forEach(project => observer.observe(project));
+// Only run observer if device does NOT support hover (i.e. mobile/tablet)
+if (window.matchMedia('(hover: none)').matches) {
+    projects.forEach(project => observer.observe(project));
+}
 
 // Cleanup focus when clicking outside or scrolling away completely?
 // For simpler UX, we might just let the last one stay focused or rely on hover on desktop.

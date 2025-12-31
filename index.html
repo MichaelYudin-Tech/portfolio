@@ -207,29 +207,50 @@
             transition: opacity 0.4s ease;
         }
 
-        /* Projects Container Hover States */
         /* Projects Container Hover/Focus States */
-        /* Base state: If container is being interacted with (hover or has active item), dim everything */
-        .projects:hover .project,
+
+        /* 1. SCROLL/JS FOCUS (Mobile/All) */
         .projects.has-focus .project {
             opacity: 0.3;
             transform: scale(0.98);
         }
 
+        /* 2. HOVER FOCUS (Desktop only) */
+        @media (hover: hover) {
+            .projects:hover .project {
+                opacity: 0.3;
+                transform: scale(0.98);
+            }
+        }
+
         /* Active Item State (Hover or Class) */
-        .projects:hover .project:hover,
+        /* Active Item State */
         .projects.has-focus .project.is-focused {
             opacity: 1;
             transform: scale(1.05);
-            /* Increased growth */
             z-index: 10;
             border-color: var(--accent);
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
         }
 
-        .project:hover::before,
+        @media (hover: hover) {
+            .projects:hover .project:hover {
+                opacity: 1;
+                transform: scale(1.05);
+                z-index: 10;
+                border-color: var(--accent);
+                box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            }
+        }
+
         .project.is-focused::before {
             opacity: 1;
+        }
+
+        @media (hover: hover) {
+            .project:hover::before {
+                opacity: 1;
+            }
         }
 
         /* Preview Image Styles */
@@ -248,10 +269,14 @@
             mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
 
-        .project:hover .project-preview,
         .project.is-focused .project-preview {
             opacity: 0.4;
-            /* Increased visibility */
+        }
+
+        @media (hover: hover) {
+            .project:hover .project-preview {
+                opacity: 0.4;
+            }
         }
 
         /* Make content relatively positioned to sit on top of image */
@@ -262,9 +287,14 @@
         }
 
         /* Move text slightly to give breathing room */
-        .project:hover .project-content,
         .project.is-focused .project-content {
             transform: translateY(-5px);
+        }
+
+        @media (hover: hover) {
+            .project:hover .project-content {
+                transform: translateY(-5px);
+            }
         }
 
         .project-preview img {
@@ -278,10 +308,14 @@
             /* Slow, smooth drift */
         }
 
-        .project:hover .project-preview img,
         .project.is-focused .project-preview img {
-            /* End state: Zoomed out and centered (sliding up) */
             transform: scale(1) translateY(0);
+        }
+
+        @media (hover: hover) {
+            .project:hover .project-preview img {
+                transform: scale(1) translateY(0);
+            }
         }
 
         .project-header {
