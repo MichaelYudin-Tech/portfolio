@@ -8,7 +8,7 @@ window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     orbs.forEach((orb, index) => {
         // Different speeds for depth perception
-        const speed = (index + 1) * 0.15;
+        const speed = (index + 1) * 0.5;
         const yOffset = scrollY * speed;
         // We update a CSS variable or direct transform. 
         // Since we have an existing animation on the orbs (float), we need to be careful not to override it.

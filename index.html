@@ -83,20 +83,28 @@
         @keyframes float-1 {
             0% {
                 transform: translate(0, 0);
+                filter: hue-rotate(0deg);
+                opacity: 0.8;
             }
 
             100% {
                 transform: translate(-30px, 30px);
+                filter: hue-rotate(15deg);
+                opacity: 0.5;
             }
         }
 
         @keyframes float-2 {
             0% {
                 transform: translate(0, 0);
+                filter: hue-rotate(0deg);
+                opacity: 0.6;
             }
 
             100% {
                 transform: translate(30px, -30px);
+                filter: hue-rotate(-15deg);
+                opacity: 0.3;
             }
         }
 
@@ -207,10 +215,11 @@
 
         .projects:hover .project:hover {
             opacity: 1;
-            transform: scale(1.02);
+            transform: scale(1.05);
+            /* Increased growth */
             z-index: 10;
             border-color: var(--accent);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
         }
 
         .project:hover::before {
@@ -226,20 +235,28 @@
             height: 100%;
             z-index: -1;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
             pointer-events: none;
             overflow: hidden;
+            /* Add masking to fade the bottom of the image so text stays readable if needed */
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
 
         .project:hover .project-preview {
-            opacity: 0.2;
-            /* Subtle background */
+            opacity: 0.4;
+            /* Increased visibility */
         }
 
         /* Make content relatively positioned to sit on top of image */
         .project-content {
             position: relative;
             z-index: 2;
+            transition: transform 0.4s ease;
+        }
+
+        /* Move text slightly to give breathing room */
+        .project:hover .project-content {
+            transform: translateY(-5px);
         }
 
         .project-preview img {
@@ -247,13 +264,15 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
-            transform: scale(1.1);
-            transition: transform 6s ease-out;
-            /* Slow pan effect */
+            /* Start state: Zoomed in and slightly down */
+            transform: scale(1.2) translateY(10%);
+            transition: transform 8s ease-out;
+            /* Slow, smooth drift */
         }
 
         .project:hover .project-preview img {
-            transform: scale(1);
+            /* End state: Zoomed out and centered (sliding up) */
+            transform: scale(1) translateY(0);
         }
 
         .project-header {
