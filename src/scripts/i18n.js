@@ -212,9 +212,14 @@ const translations = {
     },
 };
 
-/** Get stored language or default to English */
+/** Get stored language, or detect from browser/device language */
 function getLang() {
-    return localStorage.getItem("portfolio-lang") || "en";
+    const stored = localStorage.getItem("portfolio-lang");
+    if (stored) return stored;
+
+    // Detect device language — default to Hebrew if browser is set to Hebrew
+    const browserLang = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    return browserLang.startsWith("he") ? "he" : "en";
 }
 
 /** Set language and persist */
