@@ -1,5 +1,21 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "../assets/logo2.png";
+---
+
 <header>
-    <h1 data-i18n="header.greeting">Hi, I'm <span>Michael</span></h1>
+    <div class="brand">
+        <Image
+            src={logoImage}
+            alt="MichaelTech Logo"
+            class="logo"
+            width={144}
+            height={144}
+            quality="high"
+            loading="eager"
+        />
+        <h1 data-i18n="header.greeting">Hi, I'm <span>Michael</span></h1>
+    </div>
     <p class="intro" data-i18n="header.bio">
         <slot />
     </p>
@@ -11,12 +27,27 @@
         animation: fadeUp 0.8s ease-out;
     }
 
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        border-radius: 50%; /* optional: remove if the logo has its own shape constraints */
+    }
+
     h1 {
         font-family: "Fraunces", serif;
         font-size: clamp(2.5rem, 8vw, 4rem);
         font-weight: 300;
         letter-spacing: -0.02em;
-        margin-bottom: 24px;
+        margin: 0;
         color: var(--text);
     }
 

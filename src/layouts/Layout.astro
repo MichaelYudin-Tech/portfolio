@@ -1,6 +1,18 @@
 ---
 import "../styles/global.css";
 import LangToggle from "../components/LangToggle.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = "Michael Yudin | Developer & Builder",
+    description = "Full-stack developer based in Israel, specializing in production-grade web applications, real-time systems, and cross-platform mobile solutions.",
+    image = "/og-image.png",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -8,7 +20,21 @@ import LangToggle from "../components/LangToggle.astro";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Michael | Developer & Builder</title>
+        <meta name="description" content={description} />
+        <title>{title}</title>
+
+        <!-- Open Graph / Meta -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={image} />
+        <meta property="og:url" content={Astro.url} />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+
+        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link

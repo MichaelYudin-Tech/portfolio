@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://michael.tech', // Placeholder, update if known
+    site: 'https://michaeltech.net',
+    integrations: [sitemap()],
 });
