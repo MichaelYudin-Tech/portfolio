@@ -1,39 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import SupportSection from '../components/SupportSection.astro';
-import Footer from '../components/Footer.astro';
-import Orb from '../components/Orb.astro';
-import Noise from '../components/Noise.astro';
-import NoiseReveal from '../components/NoiseReveal.astro';
-import WorkWithMe from '../components/WorkWithMe.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SupportSection from "../components/SupportSection.astro";
+import Footer from "../components/Footer.astro";
+import Orb from "../components/Orb.astro";
+import Noise from "../components/Noise.astro";
+import NoiseReveal from "../components/NoiseReveal.astro";
+import WorkWithMe from "../components/WorkWithMe.astro";
 
 const projects = [
     {
+        title: "KT-RMS",
+        tag: "Enterprise",
+        description:
+            "Full-stack, offline-first inventory management system for a supermarket chain. Barcode scanning, real-time stock tracking, and role-based access — built with React, Supabase, and Capacitor.",
+        url: "/projects/kt-rms",
+        image: "/assets/kt-rms.svg",
+        delay: 0.1,
+        internal: true,
+        i18nKey: "project.ktrms",
+    },
+    {
         title: "TrajectFi",
         tag: "Finance",
-        description: "Financial trajectory visualization. See where you're actually heading, not just where you are right now.",
+        description:
+            "Financial trajectory visualization. See where you're actually heading, not just where you are right now.",
         url: "https://trajectfi-private.vercel.app",
         image: "/assets/trajectfi.webp",
-        delay: 0.1
+        delay: 0.2,
+        i18nKey: "project.trajectfi",
     },
     {
         title: "Jewish Clock",
         tag: "Utility",
-        description: "Precise halakhic times with personal alerts so that you never miss Shema or Shabbat candle lighting time again.",
+        description: "Precise halakhic times with personal alerts.",
         url: "https://jewish-clock.vercel.app",
         image: "/assets/jewish-clock.webp",
-        delay: 0.2
+        delay: 0.3,
+        i18nKey: "project.jewishclock",
     },
     {
         title: "AVQB",
         tag: "Business",
-        description: "Premium business website for an Israeli battery import company. Clean, modern design with smooth animations and a cohesive brand identity.",
+        description:
+            "Business catalog and branding website for an Israeli importer of Voltronic and Winmaxx products.",
         url: "https://avqb.vercel.app",
         image: "/assets/avqb.webp",
-        delay: 0.3
-    }
+        delay: 0.4,
+        i18nKey: "project.avqb",
+    },
 ];
 ---
 
@@ -41,19 +57,21 @@ const projects = [
     <Noise />
     <NoiseReveal />
     <Orb />
-    
+
     <div class="container">
         <Header>
-            A stay-at-home dad of three in Israel, building financial insights, daily utilities, and
-            premium web experiences between diaper changes and bedtime.
+            Full-stack developer based in Israel, specializing in
+            production-grade web applications, real-time systems, and
+            cross-platform mobile solutions with React, TypeScript, and
+            Supabase.
         </Header>
 
         <section>
-            <p class="section-label">Current Projects</p>
+            <p class="section-label" data-i18n="projects.label">
+                Current Projects
+            </p>
             <div class="projects">
-                {projects.map(project => (
-                    <ProjectCard {...project} />
-                ))}
+                {projects.map((project) => <ProjectCard {...project} />)}
             </div>
         </section>
 
@@ -102,24 +120,27 @@ const projects = [
     // --- Mobile/Scroll Focus Logic ---
     const observerOptions = {
         root: null,
-        rootMargin: '-40% 0px -40% 0px',
-        threshold: 0
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
-        const projectsContainer = document.querySelector('.projects');
+        const projectsContainer = document.querySelector(".projects");
 
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                document.querySelectorAll('.project').forEach(p => p.classList.remove('is-focused'));
-                entry.target.classList.add('is-focused');
-                if(projectsContainer) projectsContainer.classList.add('has-focus');
+                document
+                    .querySelectorAll(".project")
+                    .forEach((p) => p.classList.remove("is-focused"));
+                entry.target.classList.add("is-focused");
+                if (projectsContainer)
+                    projectsContainer.classList.add("has-focus");
             }
         });
     }, observerOptions);
 
-    const projects = document.querySelectorAll('.project');
-    if (window.matchMedia('(hover: none)').matches) {
-        projects.forEach(project => observer.observe(project));
+    const projects = document.querySelectorAll(".project");
+    if (window.matchMedia("(hover: none)").matches) {
+        projects.forEach((project) => observer.observe(project));
     }
 </script>

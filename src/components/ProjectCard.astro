@@ -6,21 +6,46 @@ interface Props {
     url: string;
     image: string;
     delay?: number;
+    internal?: boolean;
+    i18nKey?: string;
 }
 
-const { title, tag, description, url, image, delay = 0 } = Astro.props;
+const {
+    title,
+    tag,
+    description,
+    url,
+    image,
+    delay = 0,
+    internal = false,
+    i18nKey,
+} = Astro.props;
 ---
 
-<a href={url} target="_blank" rel="noopener noreferrer" class="project" style={`animation-delay: ${delay}s`}>
+<a
+    href={url}
+    target={internal ? undefined : "_blank"}
+    rel={internal ? undefined : "noopener noreferrer"}
+    class="project"
+    style={`animation-delay: ${delay}s`}
+>
     <div class="project-content">
         <div class="project-header">
-            <h2 class="project-title">{title}</h2>
-            <span class="project-tag">{tag}</span>
+            <h2
+                class="project-title"
+                data-i18n={i18nKey ? `${i18nKey}.title` : undefined}
+            >
+                {title}
+            </h2>
+            <span
+                class="project-tag"
+                data-i18n={i18nKey ? `${i18nKey}.tag` : undefined}>{tag}</span
+            >
         </div>
-        <p>{description}</p>
+        <p data-i18n={i18nKey ? `${i18nKey}.desc` : undefined}>{description}</p>
     </div>
     <div class="project-preview">
-        <img src={image} alt={`${title} Preview`} loading="lazy">
+        <img src={image} alt={`${title} Preview`} loading="lazy" />
     </div>
 </a>
 
@@ -40,21 +65,32 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
     }
 
     .project::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent),
+            transparent
+        );
         opacity: 0;
         transition: opacity 0.4s ease;
     }
 
     /* Focus States */
-    :global(.projects.has-focus) .project { opacity: 0.3; transform: scale(0.98); }
+    :global(.projects.has-focus) .project {
+        opacity: 0.3;
+        transform: scale(0.98);
+    }
     @media (hover: hover) {
-        :global(.projects:hover) .project { opacity: 0.3; transform: scale(0.98); }
+        :global(.projects:hover) .project {
+            opacity: 0.3;
+            transform: scale(0.98);
+        }
     }
 
     :global(.projects.has-focus) .project.is-focused {
@@ -134,7 +170,7 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
     }
 
     h2 {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-size: 1.75rem;
         font-weight: 400;
         letter-spacing: -0.01em;
@@ -158,10 +194,16 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
         font-weight: 300;
         line-height: 1.7;
     }
-    
+
     @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Mobile */
@@ -173,15 +215,23 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
             flex-direction: column;
             justify-content: flex-end;
         }
-        .project-content { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); }
-        p { color: #e0e0e0; }
-        .project-header { flex-direction: column; gap: 12px; }
+        .project-content {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        p {
+            color: #e0e0e0;
+        }
+        .project-header {
+            flex-direction: column;
+            gap: 12px;
+        }
     }
 </style>
 
 <script>
     // --- Scramble Logic ---
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+    const letters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 
     class TextScramble {
         el: HTMLElement;
@@ -202,12 +252,12 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
         setText(newText) {
             const oldText = this.el.innerText;
             const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve);
+            const promise = new Promise((resolve) => (this.resolve = resolve));
 
             this.queue = [];
             for (let i = 0; i < length; i++) {
-                const from = oldText[i] || '';
-                const to = newText[i] || '';
+                const from = oldText[i] || "";
+                const to = newText[i] || "";
                 const start = Math.floor(Math.random() * 20);
                 const end = start + Math.floor(Math.random() * 30);
                 this.queue.push({ from, to, start, end });
@@ -220,7 +270,7 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
         }
 
         update() {
-            let output = '';
+            let output = "";
             let complete = 0;
 
             for (let i = 0, n = this.queue.length; i < n; i++) {
@@ -234,11 +284,12 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
                     const shouldSwap = Math.random() < (1 - progress) * 0.9;
 
                     if (!char || shouldSwap) {
-                        char = letters[Math.floor(Math.random() * letters.length)];
+                        char =
+                            letters[Math.floor(Math.random() * letters.length)];
                         this.queue[i].char = char;
                     }
                     const isGold = Math.random() < 0.5;
-                    output += `<span class="${isGold ? 'scramble-gold' : 'scramble-muted'} scramble-motion">${char}</span>`;
+                    output += `<span class="${isGold ? "scramble-gold" : "scramble-muted"} scramble-motion">${char}</span>`;
                 } else {
                     output += from;
                 }
@@ -247,7 +298,7 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
             this.el.innerHTML = output;
 
             if (complete === this.queue.length) {
-                if(this.resolve) this.resolve();
+                if (this.resolve) this.resolve();
             } else {
                 this.frameRequest = requestAnimationFrame(this.update);
                 this.frame++;
@@ -256,23 +307,23 @@ const { title, tag, description, url, image, delay = 0 } = Astro.props;
     }
 
     // Initialize on all instances of this component
-    const cards = document.querySelectorAll('.project');
-    cards.forEach(card => {
-        const title = card.querySelector('.project-title') as HTMLElement;
-        if(!title) return;
-        
+    const cards = document.querySelectorAll(".project");
+    cards.forEach((card) => {
+        const title = card.querySelector(".project-title") as HTMLElement;
+        if (!title) return;
+
         const fx = new TextScramble(title);
         const originalText = title.innerText;
 
-        card.addEventListener('mouseenter', () => {
-            title.style.color = 'var(--accent)';
+        card.addEventListener("mouseenter", () => {
+            title.style.color = "var(--accent)";
             fx.setText(originalText);
         });
 
-        card.addEventListener('mouseleave', () => {
-            title.style.color = '';
+        card.addEventListener("mouseleave", () => {
+            title.style.color = "";
         });
-        
+
         // This is primarily handled by CSS hover now, but kept for the scramble trigger
     });
 </script>

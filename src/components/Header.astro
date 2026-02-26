@@ -1,6 +1,6 @@
 <header>
-    <h1>Hi, I'm <span>Michael</span></h1>
-    <p class="intro">
+    <h1 data-i18n="header.greeting">Hi, I'm <span>Michael</span></h1>
+    <p class="intro" data-i18n="header.bio">
         <slot />
     </p>
 </header>
@@ -12,7 +12,7 @@
     }
 
     h1 {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-size: clamp(2.5rem, 8vw, 4rem);
         font-weight: 300;
         letter-spacing: -0.02em;
@@ -32,11 +32,19 @@
     }
 
     @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     @media (max-width: 600px) {
-        header { margin-bottom: 60px; }
+        header {
+            margin-bottom: 60px;
+        }
     }
 </style>

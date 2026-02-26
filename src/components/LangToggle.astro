@@ -1,0 +1,72 @@
+---
+
+---
+
+<button
+    class="lang-toggle"
+    id="lang-toggle"
+    data-i18n-toggle
+    aria-label="Switch language"
+>
+    עברית
+</button>
+
+<style>
+    .lang-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-muted);
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 0.04em;
+        font-family: "Source Sans 3", sans-serif;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .lang-toggle:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(201, 162, 39, 0.15);
+    }
+
+    :global([dir="rtl"]) .lang-toggle {
+        right: auto;
+        left: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .lang-toggle {
+            top: 14px;
+            right: 14px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+        }
+
+        :global([dir="rtl"]) .lang-toggle {
+            right: auto;
+            left: 14px;
+        }
+    }
+</style>
+
+<script>
+    const toggleBtn = document.getElementById("lang-toggle");
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+            const i18n = (window as any).__i18n;
+            if (i18n) {
+                i18n.toggleLang();
+            }
+        });
+    }
+</script>

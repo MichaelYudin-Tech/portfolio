@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#0a0a0b" width="1200" height="630"/>
+  <rect fill="#141416" x="60" y="60" width="1080" height="510" rx="16" stroke="#2a2a2d" stroke-width="1"/>
+  
+  <!-- Grid lines for "dashboard" feel -->
+  <line x1="60" y1="140" x2="1140" y2="140" stroke="#1a1a1d" stroke-width="0.5"/>
+  <line x1="320" y1="140" x2="320" y2="570" stroke="#1a1a1d" stroke-width="0.5"/>
+  
+  <!-- Sidebar items -->
+  <rect fill="rgba(201,162,39,0.12)" x="80" y="170" width="220" height="36" rx="8"/>
+  <rect fill="#1a1a1d" x="80" y="220" width="220" height="36" rx="8"/>
+  <rect fill="#1a1a1d" x="80" y="270" width="220" height="36" rx="8"/>
+  <rect fill="#1a1a1d" x="80" y="320" width="220" height="36" rx="8"/>
+  <rect fill="#1a1a1d" x="80" y="370" width="220" height="36" rx="8"/>
+  
+  <!-- Header area -->
+  <text fill="#c9a227" font-family="sans-serif" font-size="28" font-weight="300" x="360" y="108">KT-RMS</text>
+  <rect fill="#1a1a1d" x="900" y="80" width="220" height="36" rx="18"/>
+  
+  <!-- Main content area - table rows -->
+  <rect fill="#1a1a1d" x="360" y="160" width="760" height="44" rx="0"/>
+  <rect fill="rgba(201,162,39,0.06)" x="360" y="212" width="760" height="44" rx="0"/>
+  <rect fill="#1a1a1d" x="360" y="264" width="760" height="44" rx="0"/>
+  <rect fill="rgba(201,162,39,0.06)" x="360" y="316" width="760" height="44" rx="0"/>
+  <rect fill="#1a1a1d" x="360" y="368" width="760" height="44" rx="0"/>
+  <rect fill="rgba(201,162,39,0.06)" x="360" y="420" width="760" height="44" rx="0"/>
+  <rect fill="#1a1a1d" x="360" y="472" width="760" height="44" rx="0"/>
+  
+  <!-- Status dots -->
+  <circle fill="#4ade80" cx="1080" cy="182" r="5"/>
+  <circle fill="#4ade80" cx="1080" cy="234" r="5"/>
+  <circle fill="#facc15" cx="1080" cy="286" r="5"/>
+  <circle fill="#4ade80" cx="1080" cy="338" r="5"/>
+  <circle fill="#f87171" cx="1080" cy="390" r="5"/>
+  <circle fill="#4ade80" cx="1080" cy="442" r="5"/>
+  <circle fill="#facc15" cx="1080" cy="494" r="5"/>
+  
+  <!-- Bottom stat cards -->
+  <rect fill="rgba(201,162,39,0.08)" x="360" y="530" width="170" height="40" rx="8"/>
+  <rect fill="rgba(201,162,39,0.08)" x="545" y="530" width="170" height="40" rx="8"/>
+  <rect fill="rgba(201,162,39,0.08)" x="730" y="530" width="170" height="40" rx="8"/>
+</svg>

@@ -2,30 +2,108 @@
 
 ---
 
-<div class="work-with-me-container">
-    <a
-        href="mailto:Michael.Yudin@protonmail.com"
-        id="work-with-me"
-        class="work-with-me"
-    >
-        Let's work together
-    </a>
-</div>
+<section class="contact-section">
+    <div class="work-with-me-container">
+        <a
+            href="mailto:Michael.Yudin@protonmail.com"
+            id="work-with-me"
+            class="work-with-me"
+        >
+            <span data-i18n="contact.cta">Let's work together</span>
+        </a>
+    </div>
+
+    <div class="contact-details">
+        <p class="contact-label" data-i18n="contact.label">Get in Touch</p>
+        <div class="contact-links">
+            <a
+                href="mailto:Michael.Yudin@protonmail.com"
+                class="contact-link"
+                id="contact-email"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="M22 4L12 13L2 4"></path>
+                </svg>
+                <span data-i18n="contact.email"
+                    >Michael.Yudin@protonmail.com</span
+                >
+            </a>
+            <a
+                href="https://www.michaeltech.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+                id="contact-website"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20"></path>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                    ></path>
+                </svg>
+                <span data-i18n="contact.website">michaeltech.net</span>
+            </a>
+            <a
+                href="https://www.michaeltech.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+                id="contact-location"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span data-i18n="contact.location">Harish, Israel</span>
+            </a>
+        </div>
+    </div>
+</section>
 
 <style>
+    .contact-section {
+        padding: 40px 0 20px;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+        animation: fadeUp 0.8s ease-out 0.2s backwards;
+    }
+
     .work-with-me-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 60px 0 80px; /* Space around the element */
+        padding: 20px 0 40px;
         width: 100%;
-        position: relative;
-        z-index: 10;
     }
 
     .work-with-me {
         font-family: "Fraunces", serif;
-        font-size: 3rem; /* Large and impactful */
+        font-size: 3rem;
         font-weight: 300;
         text-decoration: none;
         cursor: pointer;
@@ -33,35 +111,9 @@
         transition: opacity 0.8s ease;
         position: relative;
 
-        /* Gradient Text Setup */
-        color: rgba(255, 255, 255, 0.15); /* Dim base color */
-        background-clip: text;
-        -webkit-background-clip: text;
-
-        /* The Gradient Overlay */
-        background-image: radial-gradient(
-            circle 250px at var(--grad-x, 50%) var(--grad-y, 50%),
-            #c9a227 0%,
-            transparent 100%
-        );
-        /* 
-           We use color-mix or just simple text-fill-color trick.
-           If we want the text to be dim usually, and light up with gold gradient:
-        */
-        -webkit-text-fill-color: transparent;
-        background-color: rgba(255, 255, 255, 0.1); /* Fallback/Base dimness */
-
-        /* Re-doing the layering for better effect: 
-           1. Base text is visible but dim.
-           2. Gradient moves over it. 
-           Actually, background-clip: text with a gradient that has a transparent outer part works best.
-        */
-    }
-
-    /* Better approach for "Flashlight" effect on text: */
-    .work-with-me {
+        /* Flashlight gradient text */
         color: transparent;
-        background-color: #333; /* Dark base grey */
+        background-color: #333;
         background-image: radial-gradient(
             circle 150px at var(--grad-x, 50%) var(--grad-y, 50%),
             #c9a227 0%,
@@ -75,9 +127,97 @@
         will-change: background-position, background-image;
     }
 
+    /* Contact details area */
+    .contact-details {
+        text-align: center;
+        padding: 32px 0 0;
+        border-top: 1px solid var(--card-border);
+    }
+
+    .contact-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 24px;
+        font-weight: 500;
+    }
+
+    .contact-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+    }
+
+    .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        padding: 10px 16px;
+        border-radius: 10px;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+    }
+
+    .contact-link::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        background: rgba(201, 162, 39, 0.06);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+
+    .contact-link:hover {
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
+
+    .contact-link:hover::before {
+        opacity: 1;
+    }
+
+    .contact-link svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        transition: color 0.35s ease;
+    }
+
+    .contact-link:hover svg {
+        filter: drop-shadow(0 0 6px rgba(201, 162, 39, 0.4));
+    }
+
     @media (max-width: 768px) {
         .work-with-me {
             font-size: 2rem;
+        }
+
+        .contact-links {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-link {
+            font-size: 0.9rem;
+        }
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 </style>
@@ -94,14 +234,13 @@
         // State
         let mouseX = 0;
         let mouseY = 0;
-        let currentX = 50; // Percent
-        let currentY = 50; // Percent
+        let currentX = 50;
+        let currentY = 50;
 
         let clientWidth = 0;
         let clientHeight = 0;
 
-        // Configuration
-        const LERP_FACTOR = 0.08; // Smooth lag
+        const LERP_FACTOR = 0.08;
 
         const updateDimensions = () => {
             const rect = el.getBoundingClientRect();
@@ -109,48 +248,35 @@
             clientHeight = rect.height;
         };
 
-        // Init dimensions
         updateDimensions();
         window.addEventListener("resize", updateDimensions);
 
-        // Mouse Move
         window.addEventListener("mousemove", (e) => {
             const rect = el.getBoundingClientRect();
-            // Calculate mouse position relative to the element (in pixels)
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Convert to percentage for background position?
-            // Or just keep pixels for 'at Xpx Ypx' which is more precise.
-            mouseX = x;
-            mouseY = y;
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
         });
 
-        // Mobile autonomous movement
         let isMobile = window.matchMedia("(max-width: 768px)").matches;
         let time = 0;
 
         function animate() {
             if (isMobile) {
                 time += 0.003;
-                // Move gradient in a slow figure-8 or circle
-                const rect = el.getBoundingClientRect(); // Use live rect in case of reflow
+                const rect = el.getBoundingClientRect();
                 const w = rect.width || 200;
                 const h = rect.height || 50;
 
-                // Oscillate around center
                 const targetX = w / 2 + Math.cos(time) * (w * 0.4);
-                const targetY = h / 2 + Math.sin(time * 0.7) * (h * 0.8); // More vertical movement variation
+                const targetY = h / 2 + Math.sin(time * 0.7) * (h * 0.8);
 
                 currentX += (targetX - currentX) * 0.05;
                 currentY += (targetY - currentY) * 0.05;
             } else {
-                // Desktop Lerp
                 currentX += (mouseX - currentX) * LERP_FACTOR;
                 currentY += (mouseY - currentY) * LERP_FACTOR;
             }
 
-            // Apply to CSS
             el.style.setProperty("--grad-x", `${currentX}px`);
             el.style.setProperty("--grad-y", `${currentY}px`);
 

@@ -1,0 +1,931 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Noise from "../../components/Noise.astro";
+import NoiseReveal from "../../components/NoiseReveal.astro";
+import Orb from "../../components/Orb.astro";
+import Footer from "../../components/Footer.astro";
+import WorkWithMe from "../../components/WorkWithMe.astro";
+import SupportSection from "../../components/SupportSection.astro";
+
+const features = [
+    {
+        icon: "📱",
+        title: "Barcode Scanning",
+        desc: "Real-time camera-based scanning with multiple modes — Stock In, Stock Out, Lookup, Direct-to-Shelf, Return to Supplier.",
+    },
+    {
+        icon: "📦",
+        title: "Inventory Ledger",
+        desc: "Immutable transaction ledger tracking every stock movement with a full audit trail.",
+    },
+    {
+        icon: "🔄",
+        title: "Real-Time Tracking",
+        desc: "Trigger-automated current_stock table for instant stock level queries without recalculating history.",
+    },
+    {
+        icon: "👥",
+        title: "Role-Based Access",
+        desc: "Granular permissions system (Admin, Manager, Clerk, Trainee) with location-scoped role assignments.",
+    },
+    {
+        icon: "🌐",
+        title: "Offline-First",
+        desc: "IndexedDB storage with Dexie.js, operation queuing, and background sync for seamless transitions.",
+    },
+    {
+        icon: "🇮🇱",
+        title: "Full Hebrew / RTL",
+        desc: "Complete internationalization with i18next, dynamic RTL/LTR layout switching.",
+    },
+    {
+        icon: "📊",
+        title: "Smart Low-Stock Alerts",
+        desc: "Per-product configurable thresholds with parent-child pack aggregation.",
+    },
+    {
+        icon: "📋",
+        title: "CSV Import",
+        desc: "Bulk product lookup and auto-population from supplier CSV files with Hebrew encoding support.",
+    },
+];
+
+const stack = {
+    frontend: [
+        "React 19",
+        "TypeScript",
+        "Zustand + Immer",
+        "React Router 7",
+        "Tailwind CSS 4",
+        "i18next",
+    ],
+    backend: [
+        "Supabase (PostgreSQL)",
+        "Row-Level Security",
+        "SQL Functions & Triggers",
+        "30+ Managed Migrations",
+    ],
+    mobile: [
+        "Capacitor 7 (Android/iOS)",
+        "PWA (Vite Plugin)",
+        "ZXing Barcode Scanner",
+        "Service Workers + Workbox",
+    ],
+    data: [
+        "Dexie.js (IndexedDB)",
+        "Zod (Validation)",
+        "PapaParse (CSV)",
+        "Axios",
+    ],
+};
+---
+
+<Layout>
+    <Noise />
+    <NoiseReveal />
+    <Orb />
+
+    <div class="page">
+        <!-- Back Link -->
+        <a href="/" class="back-link" id="back-home">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            <span data-i18n="ktrms.back">Back</span>
+        </a>
+
+        <!-- Hero -->
+        <header class="hero">
+            <div class="hero-meta">
+                <span class="tag" data-i18n="ktrms.tag1">Enterprise</span>
+                <span class="tag tag-secondary" data-i18n="ktrms.tag2"
+                    >Production</span
+                >
+                <span class="tag tag-secondary" data-i18n="ktrms.tag3"
+                    >Private Repo</span
+                >
+            </div>
+            <h1 data-i18n="ktrms.title">KT-RMS</h1>
+            <p class="subtitle" data-i18n="ktrms.subtitle">
+                Supermarket Inventory Management System
+            </p>
+            <p class="hero-description" data-i18n="ktrms.hero.desc">
+                A full-stack, offline-first inventory management PWA for a
+                supermarket chain — built with React, Supabase, and Capacitor
+                for cross-platform deployment on web, Android, and iOS.
+            </p>
+        </header>
+
+        <!-- Problem / Solution -->
+        <section class="section">
+            <div class="two-col">
+                <div class="col">
+                    <p class="section-label" data-i18n="ktrms.problem.label">
+                        The Problem
+                    </p>
+                    <p class="body-text" data-i18n="ktrms.problem.text">
+                        The client's supermarket chain was managing inventory
+                        with manual processes. Stock counts were unreliable,
+                        popular items would go out-of-stock without warning, and
+                        warehouse staff in areas with poor connectivity had no
+                        way to record movements. They needed a custom-built
+                        system tailored to their workflows, with a full
+                        Hebrew/RTL interface — one that's easy to adopt and
+                        built incrementally to match the chain's evolving needs.
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="section-label" data-i18n="ktrms.solution.label">
+                        The Solution
+                    </p>
+                    <p class="body-text" data-i18n="ktrms.solution.text">
+                        I designed KT-RMS as an offline-first, mobile-native
+                        inventory system with real-time barcode scanning, an
+                        immutable transaction ledger, role-based access control,
+                        and background sync. Staff can scan, track, and manage
+                        inventory from any device — smartphones on the warehouse
+                        floor, tablets at the dock, or desktops in the back
+                        office.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section">
+            <p class="section-label" data-i18n="ktrms.features.label">
+                Key Features
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M3 7V5a2 2 0 0 1 2-2h6"></path><path
+                                d="M13 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"
+                            ></path><path d="M7 12h10"></path><path
+                                d="M1 12l3-3 3 3"></path><rect
+                                x="9"
+                                y="17"
+                                width="6"
+                                height="2"
+                                rx="1"></rect></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.1.title">Barcode Scanning</h3>
+                    <p data-i18n="ktrms.feature.1.desc">
+                        Real-time camera-based scanning with multiple modes —
+                        Stock In, Stock Out, Lookup, Direct-to-Shelf, Return to
+                        Supplier.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+                            ></path><path d="m3.3 7 8.7 5 8.7-5"></path><path
+                                d="M12 22V12"></path></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.2.title">Inventory Ledger</h3>
+                    <p data-i18n="ktrms.feature.2.desc">
+                        Immutable transaction ledger tracking every stock
+                        movement with a full audit trail.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M21.5 2v6h-6"></path><path
+                                d="M2.5 22v-6h6"></path><path
+                                d="M2.5 11.5a10 10 0 0 1 18.4-4.4L21.5 8"
+                            ></path><path
+                                d="M21.5 12.5a10 10 0 0 1-18.4 4.4L2.5 16"
+                            ></path></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.3.title">
+                        Real-Time Tracking
+                    </h3>
+                    <p data-i18n="ktrms.feature.3.desc">
+                        Trigger-automated current_stock table for instant stock
+                        level queries without recalculating history.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                            ></path><circle cx="9" cy="7" r="4"></circle><path
+                                d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path
+                                d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.4.title">Role-Based Access</h3>
+                    <p data-i18n="ktrms.feature.4.desc">
+                        Granular permissions system (Admin, Manager, Clerk,
+                        Trainee) with location-scoped role assignments.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M12 22c1.1 0 2-4.5 2-10S13.1 2 12 2s-2 4.5-2 10 .9 10 2 10Z"
+                            ></path><path
+                                d="M22 12c0 1.1-4.5 2-10 2S2 13.1 2 12s4.5-2 10-2 10 .9 10 2Z"
+                            ></path><circle cx="12" cy="12" r="10"
+                            ></circle></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.5.title">Offline-First</h3>
+                    <p data-i18n="ktrms.feature.5.desc">
+                        IndexedDB storage with Dexie.js, operation queuing, and
+                        background sync for seamless transitions.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M4 21V14"></path><path d="M4 10V3"
+                            ></path><path d="M12 21V12"></path><path d="M12 8V3"
+                            ></path><path d="M20 21V16"></path><path
+                                d="M20 12V3"></path><path d="M1 14h6"
+                            ></path><path d="M9 8h6"></path><path d="M17 16h6"
+                            ></path></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.6.title">Full Hebrew / RTL</h3>
+                    <p data-i18n="ktrms.feature.6.desc">
+                        Complete internationalization with i18next, dynamic
+                        RTL/LTR layout switching.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.7.title">
+                        Smart Low-Stock Alerts
+                    </h3>
+                    <p data-i18n="ktrms.feature.7.desc">
+                        Per-product configurable thresholds with parent-child
+                        pack aggregation.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                            ></path><polyline points="14 2 14 8 20 8"
+                            ></polyline><line x1="16" y1="13" x2="8" y2="13"
+                            ></line><line x1="16" y1="17" x2="8" y2="17"
+                            ></line><line x1="10" y1="9" x2="8" y2="9"
+                            ></line></svg
+                        ></span
+                    >
+                    <h3 data-i18n="ktrms.feature.8.title">CSV Import</h3>
+                    <p data-i18n="ktrms.feature.8.desc">
+                        Bulk product lookup and auto-population from supplier
+                        CSV files with Hebrew encoding support.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="section">
+            <p class="section-label" data-i18n="ktrms.arch.label">
+                Architecture
+            </p>
+            <div class="arch-diagram">
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="ktrms.arch.frontend"
+                        >Frontend</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.frontend.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="ktrms.arch.backend"
+                        >Backend</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.backend.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="ktrms.arch.mobile"
+                        >Mobile & PWA</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.mobile.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="ktrms.arch.data"
+                        >Data Layer</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.data.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Design -->
+        <section class="section">
+            <p class="section-label" data-i18n="ktrms.db.label">
+                Database Design
+            </p>
+            <div class="db-highlights">
+                <div class="db-card">
+                    <h3 data-i18n="ktrms.db.1.title">Immutable Ledger</h3>
+                    <p data-i18n="ktrms.db.1.desc">
+                        inventory_transactions is append-only with correction
+                        chaining via corrected_transaction_id. No edits, no
+                        deletes — full audit trail.
+                    </p>
+                </div>
+                <div class="db-card">
+                    <h3 data-i18n="ktrms.db.2.title">Derived Stock Table</h3>
+                    <p data-i18n="ktrms.db.2.desc">
+                        current_stock is automatically maintained by PostgreSQL
+                        triggers on every transaction insert — no recalculation
+                        needed.
+                    </p>
+                </div>
+                <div class="db-card">
+                    <h3 data-i18n="ktrms.db.3.title">Hierarchical Locations</h3>
+                    <p data-i18n="ktrms.db.3.desc">
+                        Locations support unlimited nesting via self-referencing
+                        parent_id with materialized paths and short codes for
+                        barcode labels.
+                    </p>
+                </div>
+                <div class="db-card">
+                    <h3 data-i18n="ktrms.db.4.title">32 Managed Migrations</h3>
+                    <p data-i18n="ktrms.db.4.desc">
+                        Clean, incremental database evolution tracked in version
+                        control — from initial schema to production-grade RLS
+                        policies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Flow -->
+        <section class="section">
+            <p class="section-label" data-i18n="ktrms.flows.label">
+                Key User Flows
+            </p>
+            <div class="flow-list">
+                <div class="flow-item">
+                    <span class="flow-number">01</span>
+                    <div>
+                        <h3 data-i18n="ktrms.flow.1.title">
+                            Barcode Scan → Stock Movement
+                        </h3>
+                        <p data-i18n="ktrms.flow.1.desc">
+                            Staff selects mode (IN/OUT/Direct-to-Shelf), scans
+                            barcode, system identifies product, opens
+                            transaction form with context-aware location
+                            filtering.
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-number">02</span>
+                    <div>
+                        <h3 data-i18n="ktrms.flow.2.title">
+                            Product Registration
+                        </h3>
+                        <p data-i18n="ktrms.flow.2.desc">
+                            Scan unknown barcode → system checks database then
+                            CSV → auto-populates form with available data →
+                            staff completes and saves.
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-number">03</span>
+                    <div>
+                        <h3 data-i18n="ktrms.flow.3.title">
+                            Inventory Dashboard
+                        </h3>
+                        <p data-i18n="ktrms.flow.3.desc">
+                            Real-time stock levels with low-stock highlighting,
+                            filterable views, and parent-child aggregation
+                            toggle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note -->
+        <section class="section note-section">
+            <div class="note-card">
+                <p data-i18n="ktrms.note.text">
+                    This is an active, production-targeted project for a real
+                    business client. Code is private. Screenshots and live demo
+                    available on request.
+                </p>
+                <a
+                    href="mailto:Michael.Yudin@protonmail.com"
+                    class="note-cta"
+                    id="kt-rms-contact"
+                >
+                    <span data-i18n="ktrms.note.cta">Request a Demo</span>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <WorkWithMe />
+        <SupportSection />
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    .page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Back link */
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 48px;
+        transition: color 0.3s ease;
+    }
+    .back-link:hover {
+        color: var(--accent);
+    }
+    .back-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Hero */
+    .hero {
+        margin-bottom: 80px;
+        animation: fadeUp 0.8s ease-out;
+    }
+    .hero-meta {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 6px 14px;
+        background: rgba(201, 162, 39, 0.12);
+        color: var(--accent);
+        border-radius: 20px;
+        font-weight: 500;
+    }
+    .tag-secondary {
+        background: rgba(138, 138, 138, 0.1);
+        color: var(--text-muted);
+    }
+    h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+        color: var(--text);
+    }
+    .subtitle {
+        font-family: "Fraunces", serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: var(--accent);
+        margin-bottom: 24px;
+    }
+    .hero-description {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 640px;
+        line-height: 1.7;
+        font-weight: 300;
+    }
+
+    /* Sections */
+    .section {
+        margin-bottom: 80px;
+        animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    .section-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 28px;
+        font-weight: 500;
+    }
+
+    /* Two Column */
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    .body-text {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    /* Features Grid */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .feature-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 28px;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .feature-card:hover {
+        border-color: rgba(201, 162, 39, 0.3);
+        transform: translateY(-2px);
+    }
+    .feature-icon {
+        display: block;
+        margin-bottom: 14px;
+        color: var(--text-muted);
+        transition: color 0.35s ease;
+    }
+    .feature-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .feature-card:hover .feature-icon {
+        color: var(--accent);
+    }
+    .feature-card h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-bottom: 8px;
+        color: var(--text);
+    }
+    .feature-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* Architecture Diagram */
+    .arch-diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .arch-layer {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 24px 32px;
+        width: 100%;
+        text-align: center;
+        transition: border-color 0.3s ease;
+    }
+    .arch-layer:hover {
+        border-color: rgba(201, 162, 39, 0.3);
+    }
+    .arch-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 14px;
+    }
+    .arch-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    .arch-chip {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+        background: rgba(201, 162, 39, 0.08);
+        color: var(--text);
+        border-radius: 6px;
+        font-weight: 400;
+    }
+    .arch-connector {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .arch-connector svg {
+        width: 16px;
+        height: 32px;
+        color: var(--card-border);
+    }
+
+    /* Database Design */
+    .db-highlights {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .db-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 28px;
+        transition: all 0.35s ease;
+    }
+    .db-card:hover {
+        border-color: rgba(201, 162, 39, 0.3);
+    }
+    .db-card h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 10px;
+        color: var(--accent);
+    }
+    .db-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* User Flows */
+    .flow-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .flow-item {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 28px;
+        transition: border-color 0.3s ease;
+    }
+    .flow-item:hover {
+        border-color: rgba(201, 162, 39, 0.3);
+    }
+    .flow-number {
+        font-family: "Fraunces", serif;
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: rgba(201, 162, 39, 0.25);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 40px;
+    }
+    .flow-item h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: var(--text);
+    }
+    .flow-item p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* Note */
+    .note-section {
+        margin-bottom: 40px;
+    }
+    .note-card {
+        text-align: center;
+        padding: 48px 32px;
+        border: 1px solid rgba(201, 162, 39, 0.15);
+        border-radius: 16px;
+        background: linear-gradient(
+            135deg,
+            rgba(201, 162, 39, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            0 0 60px rgba(201, 162, 39, 0.04);
+    }
+    .note-card p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 24px;
+        line-height: 1.7;
+    }
+    .note-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent);
+        color: var(--bg);
+        padding: 14px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+    .note-cta:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+    }
+    .note-cta svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .page {
+            padding: 24px 20px 40px;
+        }
+        .hero {
+            margin-bottom: 56px;
+        }
+        .two-col {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        .db-highlights {
+            grid-template-columns: 1fr;
+        }
+        .section {
+            margin-bottom: 56px;
+        }
+        .arch-layer {
+            padding: 20px 16px;
+        }
+    }
+</style>

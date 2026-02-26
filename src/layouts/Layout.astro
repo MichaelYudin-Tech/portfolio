@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import LangToggle from "../components/LangToggle.astro";
 ---
 
 <!doctype html>
@@ -16,10 +17,12 @@ import "../styles/global.css";
         />
     </head>
     <body>
+        <LangToggle />
         <slot />
         <script>
             import { inject } from "@vercel/analytics";
             import Lenis from "lenis";
+            import "../scripts/i18n.js";
 
             inject();
 
