@@ -7,11 +7,48 @@
 const translations = {
     en: {
         // Header
-        "header.greeting": "Hi, I'm <span>Michael</span>",
-        "header.bio": "Full-stack developer based in Israel, specializing in production-grade web applications, real-time systems, and cross-platform mobile solutions with React, TypeScript, and Supabase.",
+        "header.greeting": "Michael<span>Tech</span>",
+        "header.bio": "MichaelTech — Web Development, Software Solutions & Digital Marketing. Custom web development and software solutions for businesses. We build fast, modern websites, web applications, and software systems tailored to business needs. Our services include website development, web apps, business management systems, landing pages, Google Ads campaigns, SEO, and ongoing digital marketing. From a simple business site to a complete management system — we help businesses build a strong digital presence and achieve real results.<br/><br/>Full-Stack Developer from Israel. Specializing in Production-grade web applications, Real-Time systems, and Cross-Platform mobile solutions with React, TypeScript, and Supabase.",
+
+        // Packages
+        "packages.label": "Digital Solutions",
+
+        "package.1.title": "Digital Presence",
+        "package.1.price": "Starting from ₪1,500<span class='asterisk'>*</span>",
+        "package.1.desc": "A stunning, fast landing page or business website to establish your brand.",
+        "package.1.btn": "Order via WhatsApp",
+        "package.1.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27m%20interested%20in%20the%20Digital%20Presence%20package.",
+        "package.1.f1": "Custom Design",
+        "package.1.f2": "SEO Optimized",
+        "package.1.f3": "Mobile Responsive",
+        "package.1.f4": "Contact Form Integration",
+
+        "package.2.title": "Advanced Web App",
+        "package.2.price": "Starting from ₪4,500<span class='asterisk'>*</span>",
+        "package.2.desc": "Custom web applications, dashboards, or portals with full functionality.",
+        "package.2.btn": "Order via WhatsApp",
+        "package.2.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27m%20interested%20in%20the%20Advanced%20Web%20App%20package.",
+        "package.2.f1": "User Authentication",
+        "package.2.f2": "Database Integration",
+        "package.2.f3": "Payment Gateway (Optional)",
+        "package.2.f4": "Custom Admin Dashboard",
+
+        "package.3.title": "Complete Business Solution",
+        "package.3.price": "Custom Pricing<span class='asterisk'>*</span>",
+        "package.3.desc": "Enterprise-grade software, offline-first apps, and marketing management.",
+        "package.3.btn": "Consult via WhatsApp",
+        "package.3.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27d%20like%20to%20consult%20about%20a%20Complete%20Business%20Solution.",
+        "package.3.f1": "Cross-Platform (Web/iOS/Android)",
+        "package.3.f2": "Real-Time Sync & Offline Support",
+        "package.3.f3": "Digital Marketing & SEO Campaigns",
+        "package.3.f4": "Ongoing Maintenance & Support",
+
+        "packages.footnote.1": "<span class='asterisk'>*</span> Prices are estimates and include a set amount of work hours. Additional features will increase the total price.",
+        "packages.footnote.2": "<span class='asterisk'>*</span> Payment terms: Small packages require 2 payment milestones (50% start, 50% delivery). Larger projects have 3 or more milestones.",
+        "packages.footnote.3": "<span class='asterisk'>*</span> Post-delivery work and updates are charged at ₪200-₪450 per hour depending on complexity.",
 
         // Section labels
-        "projects.label": "Current Projects",
+        "projects.label": "Current Projects & Clients",
 
         // Project cards
         "project.ktrms.title": "KT-RMS",
@@ -34,6 +71,8 @@ const translations = {
         "contact.cta": "Let's work together",
         "contact.label": "Get in Touch",
         "contact.email": "Michael.Yudin@protonmail.com",
+        "contact.whatsapp": "WhatsApp Me",
+        "contact.wa.link": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27d%20like%20to%20work%20together.",
         "contact.website": "michaeltech.net",
         "contact.location": "Harish, Israel",
 
@@ -110,11 +149,48 @@ const translations = {
 
     he: {
         // Header
-        "header.greeting": "היי, אני <span>מיכאל</span>",
-        "header.bio": "מפתח Full-Stack מישראל. מתמחה בבניית אפליקציות ווב ברמת Production, מערכות Real-Time ופתרונות מובייל Cross-Platform עם React, TypeScript ו-Supabase.",
+        "header.greeting": "Michael<span>Tech</span>",
+        "header.bio": "MichaelTech — פיתוח אתרים, פתרונות תוכנה ושיווק דיגיטלי. פיתוח אתרים ופתרונות תוכנה מותאמים אישית לעסקים. אנחנו בונים אתרים מהירים ומודרניים, אפליקציות ווב ומערכות תוכנה מותאמות לצרכי העסק. השירותים שלנו כוללים בניית אתרים, פיתוח אפליקציות ווב, מערכות ניהול לעסקים, דפי נחיתה, ניהול קמפיינים בגוגל אדס, קידום אורגני (SEO) ושיווק דיגיטלי שוטף. מאתר עסקי פשוט ועד מערכת ניהול מלאה — אנחנו עוזרים לעסקים לבנות נוכחות דיגיטלית חזקה ולהשיג תוצאות אמיתיות.<br/><br/>מפתח Full-Stack מישראל. מתמחה בבניית אפליקציות ווב ברמת Production, מערכות Real-Time ופתרונות מובייל Cross-Platform עם React, TypeScript ו-Supabase.",
+
+        // Packages
+        "packages.label": "פתרונות דיגיטליים",
+
+        "package.1.title": "נוכחות דיגיטלית",
+        "package.1.price": "החל מ-₪1,500<span class='asterisk'>*</span>",
+        "package.1.desc": "דף נחיתה או אתר תדמית מהיר ומעוצב לביסוס המותג שלך.",
+        "package.1.btn": "הזמן בוואטסאפ",
+        "package.1.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אני%20מתעניין%20בחבילת%20הנוכחות%20הדיגיטלית.",
+        "package.1.f1": "עיצוב מותאם אישית",
+        "package.1.f2": "אופטימיזציה למנועי חיפוש (SEO)",
+        "package.1.f3": "התאמה מושלמת למובייל",
+        "package.1.f4": "אינטגרציה של טפסי יצירת קשר",
+
+        "package.2.title": "אפליקציית ווב מתקדמת",
+        "package.2.price": "החל מ-₪4,500<span class='asterisk'>*</span>",
+        "package.2.desc": "אפליקציות ווב, דשבורדים או פורטלים עם פונקציונליות מלאה.",
+        "package.2.btn": "הזמן בוואטסאפ",
+        "package.2.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אני%20מתעניין%20בחבילת%20אפליקציית%20וויב%20מתקדמת.",
+        "package.2.f1": "הרשמה וניהול משתמשים",
+        "package.2.f2": "אינטגרציה למסד נתונים",
+        "package.2.f3": "אפשרות לסליקת אשראי",
+        "package.2.f4": "דשבורד ניהול מותאם אישית",
+
+        "package.3.title": "פתרון עסקי מושלם",
+        "package.3.price": "תמחור מותאם<span class='asterisk'>*</span>",
+        "package.3.desc": "תוכנה ברמת אנטרפרייז, מערכות תומכות אופליין וניהול שיווק מקיף.",
+        "package.3.btn": "ייעוץ בוואטסאפ",
+        "package.3.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אשמח%20להתייעץ%20לגבי%20פתרון%20עסקי%20כולל.",
+        "package.3.f1": "תמיכה בכל הפלטפורמות",
+        "package.3.f2": "סנכרון בזמן אמת ותמיכה באופליין",
+        "package.3.f3": "ניהול קמפיינים ושיווק דיגיטלי",
+        "package.3.f4": "תחזוקה שוטפת ותמיכה טכנית",
+
+        "packages.footnote.1": "<span class='asterisk'>*</span> המחירים הינם הערכה וכוללים כמות מוגדרת של שעות עבודה. תוספת פיצ'רים תעלה את המחיר בהתאם.",
+        "packages.footnote.2": "<span class='asterisk'>*</span> תנאי תשלום: חבילות קטנות משולמות בשתי פעימות. פרויקטים גדולים משולמים ב-3 או יותר אבני דרך.",
+        "packages.footnote.3": "<span class='asterisk'>*</span> עבודה לאחר מסירה תתומחר ב-₪200-₪450 לשעת עבודה, בהתאם למורכבות.",
 
         // Section labels
-        "projects.label": "פרויקטים נוכחיים",
+        "projects.label": "פרויקטים ולקוחות",
 
         // Project cards
         "project.ktrms.title": "KT-RMS",
@@ -137,6 +213,8 @@ const translations = {
         "contact.cta": "בואו נעבוד ביחד",
         "contact.label": "יצירת קשר",
         "contact.email": "Michael.Yudin@protonmail.com",
+        "contact.whatsapp": "שלחו וואטסאפ",
+        "contact.wa.link": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20הייתי%20שמח%20שנעבוד%20ביחד.",
         "contact.website": "michaeltech.net",
         "contact.location": "חריש, ישראל",
 
@@ -242,6 +320,14 @@ function applyLang(lang) {
         const key = el.getAttribute("data-i18n");
         if (dict[key] !== undefined) {
             el.innerHTML = dict[key];
+        }
+    });
+
+    // Translate all hrefs with data-i18n-href
+    document.querySelectorAll("[data-i18n-href]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-href");
+        if (dict[key] !== undefined) {
+            el.href = dict[key];
         }
     });
 
