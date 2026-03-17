@@ -14,7 +14,6 @@ const translations = {
         "packages.label": "Digital Solutions",
 
         "package.1.title": "Digital Presence",
-        "package.1.price": "Starting from ₪1,500<span class='asterisk'>*</span>",
         "package.1.desc": "A stunning, fast landing page or business website to establish your brand.",
         "package.1.btn": "Order via WhatsApp",
         "package.1.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27m%20interested%20in%20the%20Digital%20Presence%20package.",
@@ -24,7 +23,6 @@ const translations = {
         "package.1.f4": "Contact Form Integration",
 
         "package.2.title": "Advanced Web App",
-        "package.2.price": "Starting from ₪4,500<span class='asterisk'>*</span>",
         "package.2.desc": "Custom web applications, dashboards, or portals with full functionality.",
         "package.2.btn": "Order via WhatsApp",
         "package.2.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27m%20interested%20in%20the%20Advanced%20Web%20App%20package.",
@@ -34,7 +32,6 @@ const translations = {
         "package.2.f4": "Custom Admin Dashboard",
 
         "package.3.title": "Complete Business Solution",
-        "package.3.price": "Custom Pricing<span class='asterisk'>*</span>",
         "package.3.desc": "Enterprise-grade software, offline-first apps, and marketing management.",
         "package.3.btn": "Consult via WhatsApp",
         "package.3.wa": "https://wa.me/972505992409?text=Hi%20Michael%2C%20I%27d%20like%20to%20consult%20about%20a%20Complete%20Business%20Solution.",
@@ -42,10 +39,6 @@ const translations = {
         "package.3.f2": "Real-Time Sync & Offline Support",
         "package.3.f3": "Digital Marketing & SEO Campaigns",
         "package.3.f4": "Ongoing Maintenance & Support",
-
-        "packages.footnote.1": "<span class='asterisk'>*</span> Prices are estimates and include a set amount of work hours. Additional features will increase the total price.",
-        "packages.footnote.2": "<span class='asterisk'>*</span> Payment terms: Small packages require 2 payment milestones (50% start, 50% delivery). Larger projects have 3 or more milestones.",
-        "packages.footnote.3": "<span class='asterisk'>*</span> Post-delivery work and updates are charged at ₪200-₪450 per hour depending on complexity.",
 
         // Section labels
         "projects.label": "Current Projects & Clients",
@@ -156,7 +149,6 @@ const translations = {
         "packages.label": "פתרונות דיגיטליים",
 
         "package.1.title": "נוכחות דיגיטלית",
-        "package.1.price": "החל מ-₪1,500<span class='asterisk'>*</span>",
         "package.1.desc": "דף נחיתה או אתר תדמית מהיר ומעוצב לביסוס המותג שלך.",
         "package.1.btn": "הזמן בוואטסאפ",
         "package.1.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אני%20מתעניין%20בחבילת%20הנוכחות%20הדיגיטלית.",
@@ -166,7 +158,6 @@ const translations = {
         "package.1.f4": "אינטגרציה של טפסי יצירת קשר",
 
         "package.2.title": "אפליקציית ווב מתקדמת",
-        "package.2.price": "החל מ-₪4,500<span class='asterisk'>*</span>",
         "package.2.desc": "אפליקציות ווב, דשבורדים או פורטלים עם פונקציונליות מלאה.",
         "package.2.btn": "הזמן בוואטסאפ",
         "package.2.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אני%20מתעניין%20בחבילת%20אפליקציית%20וויב%20מתקדמת.",
@@ -176,7 +167,6 @@ const translations = {
         "package.2.f4": "דשבורד ניהול מותאם אישית",
 
         "package.3.title": "פתרון עסקי מושלם",
-        "package.3.price": "תמחור מותאם<span class='asterisk'>*</span>",
         "package.3.desc": "תוכנה ברמת אנטרפרייז, מערכות תומכות אופליין וניהול שיווק מקיף.",
         "package.3.btn": "ייעוץ בוואטסאפ",
         "package.3.wa": "https://wa.me/972505992409?text=היי%20מיכאל%2C%20אשמח%20להתייעץ%20לגבי%20פתרון%20עסקי%20כולל.",
@@ -184,10 +174,6 @@ const translations = {
         "package.3.f2": "סנכרון בזמן אמת ותמיכה באופליין",
         "package.3.f3": "ניהול קמפיינים ושיווק דיגיטלי",
         "package.3.f4": "תחזוקה שוטפת ותמיכה טכנית",
-
-        "packages.footnote.1": "<span class='asterisk'>*</span> המחירים הינם הערכה וכוללים כמות מוגדרת של שעות עבודה. תוספת פיצ'רים תעלה את המחיר בהתאם.",
-        "packages.footnote.2": "<span class='asterisk'>*</span> תנאי תשלום: חבילות קטנות משולמות בשתי פעימות. פרויקטים גדולים משולמים ב-3 או יותר אבני דרך.",
-        "packages.footnote.3": "<span class='asterisk'>*</span> עבודה לאחר מסירה תתומחר ב-₪200-₪450 לשעת עבודה, בהתאם למורכבות.",
 
         // Section labels
         "projects.label": "פרויקטים ולקוחות",
