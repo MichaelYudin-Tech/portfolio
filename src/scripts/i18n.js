@@ -60,6 +60,10 @@ const translations = {
         "project.avqb.tag": "Business",
         "project.avqb.desc": "Business catalog and branding website for an Israeli importer of Voltronic and Winmaxx products.",
 
+        "project.pigumyashir.title": "Pigum Yashir",
+        "project.pigumyashir.tag": "Business",
+        "project.pigumyashir.desc": "Marketing site for an Israeli mobile scaffolding rental service — interactive price calculator, transparent pricing, and direct WhatsApp contact.",
+
         // WorkWithMe / Contact
         "contact.cta": "Let's work together",
         "contact.label": "Get in Touch",
@@ -194,6 +198,10 @@ const translations = {
         "project.avqb.title": "AVQB",
         "project.avqb.tag": "עסקי",
         "project.avqb.desc": "אתר תדמית קטלוגי עסקי לחברת ייבוא של מוצרי Voltronic ו-Winmaxx.",
+
+        "project.pigumyashir.title": "פיגום ישיר",
+        "project.pigumyashir.tag": "עסקי",
+        "project.pigumyashir.desc": "אתר שיווקי לחברת השכרת פיגומים ניידים בישראל — מחשבון מחיר אינטראקטיבי, מחירים שקופים ויצירת קשר ישירה בוואטסאפ.",
 
         // WorkWithMe / Contact
         "contact.cta": "בואו נעבוד ביחד",
