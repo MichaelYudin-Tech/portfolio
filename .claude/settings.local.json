@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:pigum-yashir.co.il)",
       "Bash(bun run *)",
-      "Bash(grep -v \":0$\")"
+      "Bash(grep -v \":0$\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
