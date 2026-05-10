@@ -40,6 +40,10 @@ const translations = {
         "package.3.f3": "Digital Marketing & SEO Campaigns",
         "package.3.f4": "Ongoing Maintenance & Support",
 
+        // Blog nav
+        "blog.link.label": "Blog",
+        "blog.link.href": "/blog",
+
         // Section labels
         "projects.label": "Current Projects & Clients",
 
@@ -178,6 +182,10 @@ const translations = {
         "package.3.f2": "סנכרון בזמן אמת ותמיכה באופליין",
         "package.3.f3": "ניהול קמפיינים ושיווק דיגיטלי",
         "package.3.f4": "תחזוקה שוטפת ותמיכה טכנית",
+
+        // Blog nav
+        "blog.link.label": "בלוג",
+        "blog.link.href": "/he/blog",
 
         // Section labels
         "projects.label": "פרויקטים ולקוחות",

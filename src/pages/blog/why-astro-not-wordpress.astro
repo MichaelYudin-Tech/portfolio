@@ -1,0 +1,591 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import Noise from "../../components/Noise.astro";
+import NoiseReveal from "../../components/NoiseReveal.astro";
+import Orb from "../../components/Orb.astro";
+import Footer from "../../components/Footer.astro";
+import WorkWithMe from "../../components/WorkWithMe.astro";
+import avqbScores from "../../assets/blog/avqb-pagespeed.png";
+import pigumScores from "../../assets/blog/pigum-yashir-pagespeed.png";
+
+const siteUrl = "https://michaeltech.net";
+const slug = "why-astro-not-wordpress";
+const canonical = `${siteUrl}/blog/${slug}`;
+const altLangUrl = `${siteUrl}/he/blog/${slug}`;
+const datePublished = "2026-05-10";
+const dateModified = "2026-05-10";
+
+const title =
+    "Why I Build Business Websites with Astro Instead of WordPress | MichaelTech";
+const description =
+    "Astro vs WordPress for small business websites. Why I switched, what my clients actually get, and where WordPress still wins.";
+
+const keywords = [
+    "astro vs wordpress small business",
+    "wordpress alternative business website",
+    "astro website for small business",
+    "fast business website framework",
+].join(", ");
+
+const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: "Why I Build Business Websites with Astro Instead of WordPress",
+    description,
+    image: [`${siteUrl}/og-image.png`],
+    datePublished,
+    dateModified,
+    inLanguage: "en",
+    author: {
+        "@type": "Person",
+        name: "Michael Yudin",
+        url: siteUrl,
+    },
+    publisher: {
+        "@type": "Organization",
+        name: "MichaelTech",
+        url: siteUrl,
+        logo: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/favicon.png`,
+        },
+    },
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonical,
+    },
+    keywords,
+};
+
+const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteUrl}/blog`,
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: "Why I Build Business Websites with Astro Instead of WordPress",
+            item: canonical,
+        },
+    ],
+};
+---
+
+<Layout
+    title={title}
+    description={description}
+    lang="en"
+    altLangUrl={altLangUrl}
+    altLangCode="he"
+    canonical={canonical}
+    type="article"
+    publishedTime={datePublished}
+    modifiedTime={dateModified}
+    author="Michael Yudin"
+    keywords={keywords}
+>
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(articleJsonLd)}
+    />
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(breadcrumbsJsonLd)}
+    />
+
+    <Noise />
+    <NoiseReveal />
+    <Orb />
+
+    <div class="page">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/blog">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Why Astro, not WordPress</span>
+        </nav>
+
+        <article>
+            <header class="hero">
+                <div class="hero-meta">
+                    <span class="tag">Web Development</span>
+                    <time datetime={datePublished}>May 10, 2026</time>
+                    <span class="dot" aria-hidden="true">·</span>
+                    <span>7 min read</span>
+                </div>
+                <h1>
+                    Why I Build Business Websites with Astro Instead of
+                    WordPress
+                </h1>
+                <p class="lede">
+                    Most small businesses are still on WordPress. I used to
+                    build with it too. Here's why I stopped, what I use now,
+                    and what my clients actually get out of it.
+                </p>
+            </header>
+
+            <div class="prose">
+                <p>
+                    Walk into any small business in 2026 and ask who runs their
+                    website. Ten times out of ten, the answer is WordPress.
+                    Sometimes the owner knows that, sometimes they don't —
+                    they just know there's a monthly invoice for "site
+                    maintenance" and the homepage feels slow.
+                </p>
+
+                <p>
+                    I built with WordPress for years. It pays the bills for a
+                    lot of agencies. But for the kind of work I take on now —
+                    five-to-twenty-page marketing sites for businesses that
+                    want to look serious online and get found on Google — I
+                    stopped reaching for it. Here's the thinking.
+                </p>
+
+                <h2>The problem with WordPress for small business sites in 2026</h2>
+
+                <p>
+                    WordPress isn't broken. It powers a huge slice of the web
+                    for a reason: a non-technical owner can log in and change
+                    the homepage banner without calling a developer. That's a
+                    real superpower if you have a content team pushing daily
+                    posts, or a complex catalog with thousands of products.
+                </p>
+
+                <p>
+                    The problem is that almost no small business site needs
+                    that. A scaffolding rental company doesn't update its
+                    pricing page on Tuesdays. A boutique importer doesn't run
+                    a daily editorial schedule. They want a clean,
+                    professional site that loads fast, ranks on Google, and
+                    doesn't break. And every month, with WordPress, you're
+                    paying for capabilities you don't use:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Security maintenance.</strong> WordPress core
+                        and every plugin you install is an attack surface.
+                        Skip a few updates and you're a target. Most owners
+                        outsource this — and pay for it monthly.
+                    </li>
+                    <li>
+                        <strong>Plugin bloat.</strong> A typical small business
+                        site ends up with 15-30 plugins, half of which load on
+                        every page. Each one ships its own CSS and JavaScript,
+                        and they fight each other.
+                    </li>
+                    <li>
+                        <strong>Performance.</strong> Out of the box,
+                        WordPress assembles each page on demand by querying a
+                        database. That's slow. People paper over it with
+                        caching plugins, but caching is a workaround, not a
+                        fix.
+                    </li>
+                    <li>
+                        <strong>Hidden cost stack.</strong> Hosting that's
+                        actually fast, premium themes, premium plugins for
+                        forms or SEO or backups — you can easily clear $400
+                        a year before you've sold anything.
+                    </li>
+                </ul>
+
+                <p>
+                    None of this is WordPress's fault. It's a powerful tool
+                    being used to crack a walnut.
+                </p>
+
+                <h2>What is Astro? (in business-owner language)</h2>
+
+                <p>
+                    Astro is a website framework. The thing that makes it
+                    different is when the work happens.
+                </p>
+
+                <p>
+                    Think of WordPress like a restaurant that cooks every meal
+                    when you order. Customer walks in, kitchen fires up, plate
+                    arrives — slower, but flexible. Astro is more like a
+                    bakery that printed every page in the morning and stacks
+                    them by the door. When a visitor lands, the page is
+                    already there. No database call, no kitchen fire-up.
+                </p>
+
+                <p>
+                    The technical version: Astro builds your site once, into
+                    plain HTML files. It ships zero JavaScript by default,
+                    only adding it where you actually need interactivity. The
+                    result is sites that score in the high 90s on Google's
+                    PageSpeed Insights without any tuning, and that don't
+                    require a database or a server constantly running in the
+                    background.
+                </p>
+
+                <p>
+                    For a marketing site, that's the whole job. Be fast, be
+                    findable, look sharp, work everywhere.
+                </p>
+
+                <h2>My stack: Astro + Sanity + Tailwind</h2>
+
+                <p>
+                    Astro on its own gets you a fast site, but I pair it with
+                    two more pieces:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Sanity</strong> handles content. It's a small,
+                        clean editor where the client logs in and changes
+                        copy, swaps images, edits a price list — and Astro
+                        rebuilds the site automatically when they hit publish.
+                        The client gets the "I can edit my own site" benefit
+                        of WordPress, without WordPress.
+                    </li>
+                    <li>
+                        <strong>Tailwind</strong> is how I build the design.
+                        It lets me hit pixel-perfect layouts on phones,
+                        tablets, and desktops without dragging in a
+                        heavyweight theme. Every site ends up consistent,
+                        responsive, and styled exactly the way the brand
+                        needs.
+                    </li>
+                </ul>
+
+                <p>
+                    Astro is the glue. Sanity holds the words. Tailwind paints
+                    the picture. The owner gets a site that loads instantly,
+                    they can edit themselves, and that doesn't need a team to
+                    keep alive.
+                </p>
+
+                <h2>Real results from real client sites</h2>
+
+                <p>
+                    Two recent projects, both live, both serving Israeli small
+                    businesses. The numbers below are mobile PageSpeed Insights
+                    scores — the test Google itself uses to evaluate a site's
+                    Core Web Vitals.
+                </p>
+
+                <h3>AVQB — importer of Voltronic and Winmaxx products</h3>
+
+                <p>
+                    AVQB needed a clean catalog and brand site that made them
+                    look credible to wholesalers. Built on Astro:
+                </p>
+
+                <figure>
+                    <Image
+                        src={avqbScores}
+                        alt="Google PageSpeed Insights mobile scores for the AVQB website: Performance 90, Accessibility 94, Best Practices 96, SEO 100."
+                        widths={[400, 800]}
+                        sizes="(max-width: 700px) 100vw, 700px"
+                        loading="lazy"
+                    />
+                    <figcaption>
+                        AVQB mobile scores: 90 Performance · 94 Accessibility ·
+                        96 Best Practices · 100 SEO.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    A 100/100 SEO score and 90 on mobile performance is
+                    something most WordPress sites need a dedicated optimization
+                    pass — and a paid plugin or two — just to approach.
+                </p>
+
+                <h3>Pigum Yashir — mobile scaffolding rental</h3>
+
+                <p>
+                    A service business that lives or dies on local search
+                    visibility. The redesigned site went live with Google Ads
+                    conversion tracking wired in from day one and generated
+                    its first qualified lead within 24 hours.
+                </p>
+
+                <figure>
+                    <Image
+                        src={pigumScores}
+                        alt="Google PageSpeed Insights mobile scores for the Pigum Yashir website: Performance 99, Accessibility 88, Best Practices 100, SEO 100."
+                        widths={[400, 800]}
+                        sizes="(max-width: 700px) 100vw, 700px"
+                        loading="lazy"
+                    />
+                    <figcaption>
+                        Pigum Yashir mobile scores: 99 Performance · 88
+                        Accessibility · 100 Best Practices · 100 SEO.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    A 99 on mobile performance puts the site in roughly the
+                    top 1% of pages Google measures. For a business whose
+                    customers are calling from the side of the road on a
+                    phone, that's not vanity — that's whether the page loads
+                    before they bounce to a competitor.
+                </p>
+
+                <p>
+                    For comparison: typical WordPress small business sites
+                    I've audited score between 35 and 60 on mobile
+                    performance, with first contentful paint somewhere
+                    between 3 and 6 seconds. The Astro sites above land in
+                    well under 1.5 seconds, on the same hardware, on the same
+                    networks.
+                </p>
+
+                <h2>When you shouldn't switch to Astro</h2>
+
+                <p>
+                    I'd be lying if I said Astro is right for everyone. A few
+                    cases where I tell prospects to stay on WordPress (or
+                    Shopify, or Webflow, depending on the situation):
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Heavy e-commerce.</strong> If you need
+                        WooCommerce with 10,000 SKUs, complex variant pricing,
+                        and a stream of inventory updates, the WordPress
+                        ecosystem is genuinely hard to beat on a budget.
+                    </li>
+                    <li>
+                        <strong>Daily editorial workflow.</strong> A team of
+                        20 editors pushing content, with revision history and
+                        editorial roles? WordPress was built for that exact
+                        shape of org.
+                    </li>
+                    <li>
+                        <strong>Plugin-dependent business logic.</strong> If
+                        your booking system, your membership site, and your
+                        forum are all WordPress plugins gluing into each
+                        other, ripping that out is a re-platform, not a
+                        redesign. Astro isn't the right cost answer there.
+                    </li>
+                </ul>
+
+                <p>
+                    The honest test: how often does your content change, and
+                    how complex is the back-end logic? If the answer is "a
+                    few times a month" and "not very" — which is most small
+                    businesses I talk to — Astro will give you a faster,
+                    cheaper, safer site. If the answer is "constantly" and
+                    "heavily" — keep what's working.
+                </p>
+
+                <h2>If your WordPress site is slow and costing you monthly</h2>
+
+                <p>
+                    If you're a business owner paying every month for
+                    WordPress maintenance, your site still loads slowly, and
+                    you suspect you're overpaying for a setup you don't need
+                    — let's talk. I build fast, secure, low-maintenance
+                    websites for small businesses, and most of my clients
+                    come to me from exactly that situation.
+                </p>
+
+                <p>
+                    You can see <a href="/projects/kt-rms"
+                        >a deeper case study of recent work</a
+                    > or browse the <a href="/#packages">service packages</a>.
+                    Or scroll down and message me directly.
+                </p>
+            </div>
+        </article>
+
+        <WorkWithMe />
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    .page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+    .breadcrumbs a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .breadcrumbs a:hover {
+        color: var(--accent);
+    }
+    .breadcrumbs [aria-current="page"] {
+        color: var(--text);
+    }
+
+    .hero {
+        margin-bottom: 56px;
+        animation: fadeUp 0.8s ease-out;
+    }
+    .hero-meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+    .tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 5px 14px;
+        background: rgba(201, 162, 39, 0.12);
+        color: var(--accent);
+        border-radius: 18px;
+        font-weight: 500;
+    }
+    .dot {
+        color: var(--text-muted);
+        opacity: 0.5;
+    }
+
+    h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--text);
+        margin-bottom: 20px;
+    }
+
+    .lede {
+        font-size: 1.2rem;
+        line-height: 1.65;
+        color: var(--text-muted);
+        font-weight: 300;
+        max-width: 640px;
+    }
+
+    .prose {
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: var(--text);
+        font-weight: 300;
+        animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    .prose p {
+        margin-bottom: 1.4em;
+        color: var(--text);
+        opacity: 0.92;
+    }
+    .prose h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        margin: 3em 0 1em;
+        color: var(--text);
+        line-height: 1.25;
+    }
+    .prose h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 2.2em 0 0.8em;
+        color: var(--accent);
+    }
+    .prose ul {
+        margin: 0 0 1.6em 1.4em;
+        padding: 0;
+    }
+    .prose li {
+        margin-bottom: 0.7em;
+        color: var(--text);
+        opacity: 0.92;
+    }
+    .prose strong {
+        color: var(--text);
+        font-weight: 500;
+    }
+    .prose a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        transition: opacity 0.3s ease;
+    }
+    .prose a:hover {
+        opacity: 0.75;
+    }
+
+    figure {
+        margin: 2.4em 0;
+        text-align: center;
+    }
+    figure :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid var(--card-border);
+        background: var(--card-bg);
+        padding: 16px;
+    }
+    figcaption {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-style: italic;
+        line-height: 1.5;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .page {
+            padding: 24px 20px 40px;
+        }
+        .hero {
+            margin-bottom: 40px;
+        }
+        .prose {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .prose ul {
+            margin-left: 1.2em;
+        }
+    }
+</style>

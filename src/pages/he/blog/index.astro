@@ -1,0 +1,284 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Noise from "../../../components/Noise.astro";
+import NoiseReveal from "../../../components/NoiseReveal.astro";
+import Orb from "../../../components/Orb.astro";
+import Footer from "../../../components/Footer.astro";
+
+const siteUrl = "https://michaeltech.net";
+const canonical = `${siteUrl}/he/blog`;
+const altLangUrl = `${siteUrl}/blog`;
+
+const posts = [
+    {
+        title: "למה אני בונה אתרים עסקיים עם Astro ולא עם WordPress",
+        description:
+            "וורדפרס הפך לברירת מחדל לאתרים עסקיים — ולדעתי הוא לא צריך להיות כזה. הנה למה אני עובד עם Astro, מה זה נותן ללקוחות שלי, ומתי דווקא וורדפרס עדיין הבחירה הנכונה.",
+        url: "/he/blog/why-astro-not-wordpress",
+        date: "2026-05-10",
+        dateLabel: "10 במאי 2026",
+        readTime: "כ-7 דקות קריאה",
+        tag: "פיתוח אתרים",
+    },
+];
+
+const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "הבלוג של MichaelTech",
+    url: canonical,
+    inLanguage: "he",
+    description:
+        "מחשבות על פיתוח אתרים, ביצועים, ובניית אתרים עסקיים מהירים — ממיכאל יודין, MichaelTech.",
+    author: {
+        "@type": "Person",
+        name: "Michael Yudin",
+        url: siteUrl,
+    },
+};
+---
+
+<Layout
+    title="בלוג | MichaelTech — פיתוח אתרים, מאת מיכאל יודין"
+    description="מחשבות על פיתוח אתרים מודרני, ביצועים, ובניית אתרים עסקיים מהירים — ממיכאל יודין, MichaelTech."
+    lang="he"
+    altLangUrl={altLangUrl}
+    altLangCode="en"
+    canonical={canonical}
+    author="Michael Yudin"
+>
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(blogJsonLd)}
+    />
+
+    <Noise />
+    <NoiseReveal />
+    <Orb />
+
+    <div class="page">
+        <a href="/" class="back-link" aria-label="חזרה לדף הבית">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            <span>חזרה לדף הבית</span>
+        </a>
+
+        <header class="hero">
+            <p class="eyebrow">בלוג</p>
+            <h1>מחשבות על בניית אתרים מהירים.</h1>
+            <p class="lede">
+                כתיבה כנה על פיתוח ווב, ביצועים, וההחלטות שעומדות מאחורי הכלים
+                שאני בוחר בעבודה עם לקוחות.
+            </p>
+        </header>
+
+        <section class="post-list" aria-label="פוסטים בבלוג">
+            {
+                posts.map((post) => (
+                    <article class="post-card">
+                        <a href={post.url} class="post-link">
+                            <div class="post-meta">
+                                <span class="post-tag">{post.tag}</span>
+                                <time datetime={post.date}>
+                                    {post.dateLabel}
+                                </time>
+                                <span class="post-read">{post.readTime}</span>
+                            </div>
+                            <h2>{post.title}</h2>
+                            <p>{post.description}</p>
+                            <span class="read-more">
+                                לקריאת הפוסט
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </a>
+                    </article>
+                ))
+            }
+        </section>
+
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    .page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 80px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 48px;
+        transition: color 0.3s ease;
+    }
+    .back-link:hover {
+        color: var(--accent);
+    }
+    .back-link svg {
+        width: 18px;
+        height: 18px;
+        transform: scaleX(-1);
+    }
+
+    .hero {
+        margin-bottom: 64px;
+        animation: fadeUp 0.8s ease-out;
+    }
+    .eyebrow {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+    .hero h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        color: var(--text);
+        line-height: 1.2;
+    }
+    .lede {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 620px;
+        line-height: 1.7;
+        font-weight: 300;
+    }
+
+    .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 80px;
+    }
+
+    .post-card {
+        animation: fadeUp 0.8s ease-out 0.15s backwards;
+    }
+
+    .post-link {
+        display: block;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 32px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .post-link:hover {
+        border-color: rgba(201, 162, 39, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+    }
+    .post-tag {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        padding: 4px 12px;
+        background: rgba(201, 162, 39, 0.12);
+        color: var(--accent);
+        border-radius: 16px;
+        font-weight: 500;
+    }
+    .post-meta time,
+    .post-read {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .post-link h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.4rem, 3vw, 1.85rem);
+        font-weight: 400;
+        margin-bottom: 12px;
+        color: var(--text);
+        line-height: 1.35;
+        letter-spacing: -0.005em;
+    }
+    .post-link p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+
+    .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    .read-more svg {
+        width: 14px;
+        height: 14px;
+        transform: scaleX(-1);
+        transition: transform 0.35s ease;
+    }
+    .post-link:hover .read-more svg {
+        transform: scaleX(-1) translateX(4px);
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .page {
+            padding: 60px 20px 40px;
+        }
+        .post-link {
+            padding: 24px;
+        }
+    }
+</style>

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:pigum-yashir.co.il)"
+      "WebFetch(domain:pigum-yashir.co.il)",
+      "Bash(bun run *)"
     ]
   }
 }

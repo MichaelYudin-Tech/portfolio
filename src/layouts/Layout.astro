@@ -6,29 +6,87 @@ interface Props {
     title?: string;
     description?: string;
     image?: string;
+    lang?: "en" | "he";
+    altLangUrl?: string;
+    altLangCode?: "en" | "he";
+    canonical?: string;
+    type?: "website" | "article";
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    keywords?: string;
 }
 
 const {
     title = "MichaelTech | Michael Yudin | Web Development & Software Solutions",
     description = "MichaelTech — Custom web development, software solutions, and digital marketing. Full-stack developer from Israel, building fast websites, web apps, and business management systems.",
     image = "/og-image.png",
+    lang = "en",
+    altLangUrl,
+    altLangCode,
+    canonical,
+    type = "website",
+    publishedTime,
+    modifiedTime,
+    author,
+    keywords,
 } = Astro.props;
+
+const dir = lang === "he" ? "rtl" : "ltr";
+const isStaticBilingual = !!altLangUrl;
+const canonicalHref = canonical ?? Astro.url.toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} dir={dir}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
+        {keywords && <meta name="keywords" content={keywords} />}
+        {author && <meta name="author" content={author} />}
         <title>{title}</title>
+
+        <link rel="canonical" href={canonicalHref} />
+
+        {
+            isStaticBilingual && altLangUrl && altLangCode && (
+                <>
+                    <link rel="alternate" hreflang={lang} href={canonicalHref} />
+                    <link rel="alternate" hreflang={altLangCode} href={altLangUrl} />
+                    <link
+                        rel="alternate"
+                        hreflang="x-default"
+                        href={lang === "en" ? canonicalHref : altLangUrl}
+                    />
+                </>
+            )
+        }
 
         <!-- Open Graph / Meta -->
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={type} />
         <meta property="og:image" content={image} />
-        <meta property="og:url" content={Astro.url} />
+        <meta property="og:url" content={canonicalHref} />
+        <meta property="og:locale" content={lang === "he" ? "he_IL" : "en_US"} />
+        {
+            isStaticBilingual && altLangCode && (
+                <meta
+                    property="og:locale:alternate"
+                    content={altLangCode === "he" ? "he_IL" : "en_US"}
+                />
+            )
+        }
+        {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+        {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+        {author && type === "article" && <meta property="article:author" content={author} />}
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="/favicon.png" />
@@ -38,34 +96,143 @@ const {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Source+Sans+3:wght@300;400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Source+Sans+3:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
+
+        <slot name="head" />
     </head>
     <body>
-        <LangToggle />
+        {
+            isStaticBilingual && altLangUrl && altLangCode ? (
+                <a
+                    class="lang-toggle static-lang-toggle"
+                    href={altLangUrl}
+                    data-alt-lang={altLangCode}
+                    aria-label="Switch language"
+                >
+                    {altLangCode === "he" ? "עברית" : "English"}
+                </a>
+            ) : (
+                <LangToggle />
+            )
+        }
         <slot />
-        <script>
-            import { inject } from "@vercel/analytics";
-            import Lenis from "lenis";
-            import "../scripts/i18n.js";
+        {
+            !isStaticBilingual && (
+                <script>
+                    import { inject } from "@vercel/analytics";
+                    import Lenis from "lenis";
+                    import "../scripts/i18n.js";
 
-            inject();
+                    inject();
 
-            const lenis = new Lenis({
-                duration: 1.5,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                orientation: "vertical",
-                gestureOrientation: "vertical",
-                smoothWheel: true,
-            });
+                    const lenis = new Lenis({
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        orientation: "vertical",
+                        gestureOrientation: "vertical",
+                        smoothWheel: true,
+                    });
 
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
+                    function raf(time) {
+                        lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    }
 
-            requestAnimationFrame(raf);
-        </script>
+                    requestAnimationFrame(raf);
+                </script>
+            )
+        }
+        {
+            isStaticBilingual && (
+                <script>
+                    import { inject } from "@vercel/analytics";
+                    import Lenis from "lenis";
+
+                    inject();
+
+                    const lenis = new Lenis({
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        orientation: "vertical",
+                        gestureOrientation: "vertical",
+                        smoothWheel: true,
+                    });
+
+                    function raf(time) {
+                        lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+
+                    requestAnimationFrame(raf);
+
+                    // Persist language choice when user clicks the static toggle,
+                    // so the homepage (which uses client-side i18n) opens in the chosen language next visit.
+                    const toggle = document.querySelector(".static-lang-toggle");
+                    if (toggle) {
+                        toggle.addEventListener("click", () => {
+                            const altLang = toggle.getAttribute("data-alt-lang");
+                            if (altLang) {
+                                try {
+                                    localStorage.setItem("portfolio-lang", altLang);
+                                } catch (e) {
+                                    /* localStorage unavailable */
+                                }
+                            }
+                        });
+                    }
+                </script>
+            )
+        }
     </body>
 </html>
+
+<style is:global>
+    .static-lang-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-muted);
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 0.04em;
+        font-family: "Source Sans 3", sans-serif;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .static-lang-toggle:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(201, 162, 39, 0.15);
+    }
+
+    [dir="rtl"] .static-lang-toggle {
+        right: auto;
+        left: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .static-lang-toggle {
+            top: 14px;
+            right: 14px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+        }
+
+        [dir="rtl"] .static-lang-toggle {
+            right: auto;
+            left: 14px;
+        }
+    }
+</style>
