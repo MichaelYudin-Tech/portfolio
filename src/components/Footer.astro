@@ -1,7 +1,22 @@
+---
+interface Props {
+    lang?: "en" | "he";
+}
+const { lang } = Astro.props;
+---
+
 <footer>
-    <p data-i18n="footer.text">
-        Built with care in <span>Harish, Israel</span>
-    </p>
+    {
+        lang === "he" ? (
+            <p>נבנה באהבה ב<span>חריש, ישראל</span></p>
+        ) : lang === "en" ? (
+            <p>Built with care in <span>Harish, Israel</span></p>
+        ) : (
+            <p data-i18n="footer.text">
+                Built with care in <span>Harish, Israel</span>
+            </p>
+        )
+    }
 </footer>
 
 <style>

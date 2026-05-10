@@ -35,10 +35,20 @@ const {
 const dir = lang === "he" ? "rtl" : "ltr";
 const isStaticBilingual = !!altLangUrl;
 const canonicalHref = canonical ?? Astro.url.toString();
+const siteOrigin = Astro.site
+    ? new URL(Astro.site).origin
+    : new URL(canonicalHref).origin;
+const absoluteImage = image.startsWith("http")
+    ? image
+    : `${siteOrigin}${image.startsWith("/") ? image : `/${image}`}`;
 ---
 
 <!doctype html>
-<html lang={lang} dir={dir}>
+<html
+    lang={lang}
+    dir={dir}
+    data-static-i18n={isStaticBilingual ? "true" : undefined}
+>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,7 +77,7 @@ const canonicalHref = canonical ?? Astro.url.toString();
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content={type} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={absoluteImage} />
         <meta property="og:url" content={canonicalHref} />
         <meta property="og:locale" content={lang === "he" ? "he_IL" : "en_US"} />
         {
@@ -86,7 +96,7 @@ const canonicalHref = canonical ?? Astro.url.toString();
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
+        <meta name="twitter:image" content={absoluteImage} />
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="/favicon.png" />
@@ -118,73 +128,47 @@ const canonicalHref = canonical ?? Astro.url.toString();
             )
         }
         <slot />
-        {
-            !isStaticBilingual && (
-                <script>
-                    import { inject } from "@vercel/analytics";
-                    import Lenis from "lenis";
-                    import "../scripts/i18n.js";
+        <script>
+            import { inject } from "@vercel/analytics";
+            import Lenis from "lenis";
+            // i18n.js self-gates via <html data-static-i18n="true"> on
+            // server-rendered bilingual pages, so it's safe to load everywhere.
+            import "../scripts/i18n.js";
 
-                    inject();
+            inject();
 
-                    const lenis = new Lenis({
-                        duration: 1.5,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        orientation: "vertical",
-                        gestureOrientation: "vertical",
-                        smoothWheel: true,
-                    });
+            const lenis = new Lenis({
+                duration: 1.5,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: "vertical",
+                gestureOrientation: "vertical",
+                smoothWheel: true,
+            });
 
-                    function raf(time) {
-                        lenis.raf(time);
-                        requestAnimationFrame(raf);
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+
+            // Static-bilingual pages have a hard-coded language toggle <a>.
+            // Persist the chosen language so the homepage (client-side i18n)
+            // opens in the same language next visit.
+            const toggle = document.querySelector(".static-lang-toggle");
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const altLang = toggle.getAttribute("data-alt-lang");
+                    if (altLang) {
+                        try {
+                            localStorage.setItem("portfolio-lang", altLang);
+                        } catch (e) {
+                            /* localStorage unavailable */
+                        }
                     }
-
-                    requestAnimationFrame(raf);
-                </script>
-            )
-        }
-        {
-            isStaticBilingual && (
-                <script>
-                    import { inject } from "@vercel/analytics";
-                    import Lenis from "lenis";
-
-                    inject();
-
-                    const lenis = new Lenis({
-                        duration: 1.5,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        orientation: "vertical",
-                        gestureOrientation: "vertical",
-                        smoothWheel: true,
-                    });
-
-                    function raf(time) {
-                        lenis.raf(time);
-                        requestAnimationFrame(raf);
-                    }
-
-                    requestAnimationFrame(raf);
-
-                    // Persist language choice when user clicks the static toggle,
-                    // so the homepage (which uses client-side i18n) opens in the chosen language next visit.
-                    const toggle = document.querySelector(".static-lang-toggle");
-                    if (toggle) {
-                        toggle.addEventListener("click", () => {
-                            const altLang = toggle.getAttribute("data-alt-lang");
-                            if (altLang) {
-                                try {
-                                    localStorage.setItem("portfolio-lang", altLang);
-                                } catch (e) {
-                                    /* localStorage unavailable */
-                                }
-                            }
-                        });
-                    }
-                </script>
-            )
-        }
+                });
+            }
+        </script>
     </body>
 </html>
 

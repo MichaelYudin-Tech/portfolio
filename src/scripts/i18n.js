@@ -345,14 +345,23 @@ function toggleLang() {
     setLang(current === "en" ? "he" : "en");
 }
 
-// Initialize on load
-document.addEventListener("DOMContentLoaded", () => {
-    applyLang(getLang());
-});
+// Static-bilingual pages (e.g. /blog, /he/blog) render their language server-side
+// and must not be touched by client-side translation. They opt out via
+// <html data-static-i18n="true">.
+const isStaticPage =
+    typeof document !== "undefined" &&
+    document.documentElement.dataset.staticI18n === "true";
 
-// Also apply immediately for inline scripts that run after DOM is ready
-if (document.readyState !== "loading") {
-    applyLang(getLang());
+if (!isStaticPage) {
+    // Initialize on load
+    document.addEventListener("DOMContentLoaded", () => {
+        applyLang(getLang());
+    });
+
+    // Also apply immediately for inline scripts that run after DOM is ready
+    if (document.readyState !== "loading") {
+        applyLang(getLang());
+    }
 }
 
 // Expose globally
