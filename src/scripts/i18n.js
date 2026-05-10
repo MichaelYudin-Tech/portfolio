@@ -44,6 +44,17 @@ const translations = {
         "blog.link.label": "Blog",
         "blog.link.href": "/blog",
 
+        // Featured writing on homepage
+        "writing.label": "Latest Writing",
+        "writing.all": "All posts",
+        "writing.post.tag": "Web Development",
+        "writing.post.date": "May 10, 2026",
+        "writing.post.title": "Astro vs WordPress for Small Business",
+        "writing.post.desc":
+            "Why I stopped building marketing sites with WordPress, and what my Astro stack actually delivers for clients.",
+        "writing.post.cta": "Read post",
+        "writing.post.href": "/blog/why-astro-not-wordpress",
+
         // Section labels
         "projects.label": "Current Projects & Clients",
 
@@ -186,6 +197,17 @@ const translations = {
         // Blog nav
         "blog.link.label": "בלוג",
         "blog.link.href": "/he/blog",
+
+        // Featured writing on homepage
+        "writing.label": "מהבלוג",
+        "writing.all": "לכל הפוסטים",
+        "writing.post.tag": "פיתוח אתרים",
+        "writing.post.date": "11 במאי 2026",
+        "writing.post.title": "Astro מול WordPress לאתרים עסקיים",
+        "writing.post.desc":
+            "למה הפסקתי לבנות אתרי תדמית בוורדפרס, ומה הסטאק של Astro באמת נותן ללקוחות שלי.",
+        "writing.post.cta": "לקריאת הפוסט",
+        "writing.post.href": "/he/blog/why-astro-not-wordpress",
 
         // Section labels
         "projects.label": "פרויקטים ולקוחות",

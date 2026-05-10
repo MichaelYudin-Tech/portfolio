@@ -73,28 +73,71 @@ const projects = [
             MichaelTech — Web Development, Software Solutions & Digital Marketing. Custom web development and software solutions for businesses. We build fast, modern websites, web applications, and software systems tailored to business needs. Our services include website development, web apps, business management systems, landing pages, Google Ads campaigns, SEO, and ongoing digital marketing. From a simple business site to a complete management system — we help businesses build a strong digital presence and achieve real results.<br/><br/>Full-Stack Developer from Israel. Specializing in Production-grade web applications, Real-Time systems, and Cross-Platform mobile solutions with React, TypeScript, and Supabase.
         </Header>
 
-        <nav class="primary-nav">
-            <a
-                href="/blog"
-                class="nav-link"
-                data-i18n="blog.link.label"
-                data-i18n-href="blog.link.href"
-            >
-                Blog
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
+        <section class="writing-section" aria-label="Latest writing">
+            <div class="writing-header">
+                <p class="section-label" data-i18n="writing.label">
+                    Latest Writing
+                </p>
+                <a
+                    href="/blog"
+                    class="all-posts"
+                    data-i18n-href="blog.link.href"
                 >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                </svg>
+                    <span data-i18n="writing.all">All posts</span>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <a
+                href="/blog/why-astro-not-wordpress"
+                data-i18n-href="writing.post.href"
+                class="writing-card"
+            >
+                <div class="writing-meta">
+                    <span class="writing-tag" data-i18n="writing.post.tag"
+                        >Web Development</span
+                    >
+                    <span class="meta-dot" aria-hidden="true">·</span>
+                    <time
+                        datetime="2026-05-10"
+                        data-i18n="writing.post.date">May 10, 2026</time
+                    >
+                </div>
+                <h2 data-i18n="writing.post.title">
+                    Astro vs WordPress for Small Business
+                </h2>
+                <p data-i18n="writing.post.desc">
+                    Why I stopped building marketing sites with WordPress, and
+                    what my Astro stack actually delivers for clients.
+                </p>
+                <span class="writing-cta">
+                    <span data-i18n="writing.post.cta">Read post</span>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </span>
             </a>
-        </nav>
+        </section>
 
         <section>
             <p class="section-label" data-i18n="projects.label">
@@ -137,50 +180,139 @@ const projects = [
         margin-bottom: 100px;
     }
 
-    .primary-nav {
-        margin: -60px 0 60px;
+    .writing-section {
+        margin: -40px 0 80px;
+        animation: fadeUp 0.8s ease-out 0.05s backwards;
+    }
+
+    .writing-header {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 16px;
+        margin-bottom: 16px;
         flex-wrap: wrap;
     }
 
-    .nav-link {
+    .writing-section .section-label {
+        margin-bottom: 0;
+    }
+
+    .all-posts {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        font-size: 0.9rem;
+        gap: 6px;
+        font-size: 0.85rem;
         font-weight: 500;
         color: var(--text-muted);
         text-decoration: none;
-        padding: 10px 20px;
-        border: 1px solid var(--card-border);
+        transition: color 0.35s ease;
+    }
+
+    .all-posts svg {
+        width: 13px;
+        height: 13px;
+        transition: transform 0.35s ease;
+    }
+
+    .all-posts:hover {
+        color: var(--accent);
+    }
+
+    .all-posts:hover svg {
+        transform: translateX(3px);
+    }
+
+    .writing-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
         background: var(--card-bg);
-        border-radius: 24px;
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 28px;
         transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .nav-link svg {
+    .writing-card:hover {
+        border-color: rgba(201, 162, 39, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .writing-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        flex-wrap: wrap;
+    }
+
+    .writing-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 4px 12px;
+        background: rgba(201, 162, 39, 0.12);
+        color: var(--accent);
+        border-radius: 16px;
+        font-weight: 500;
+    }
+
+    .meta-dot {
+        opacity: 0.5;
+    }
+
+    .writing-card h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        color: var(--text);
+        margin-bottom: 10px;
+    }
+
+    .writing-card p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 18px;
+        font-weight: 300;
+    }
+
+    .writing-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .writing-cta svg {
         width: 14px;
         height: 14px;
         transition: transform 0.35s ease;
     }
 
-    .nav-link:hover {
-        color: var(--accent);
-        border-color: rgba(201, 162, 39, 0.4);
-        transform: translateY(-1px);
+    .writing-card:hover .writing-cta svg {
+        transform: translateX(4px);
     }
 
-    .nav-link:hover svg {
-        transform: translateX(3px);
-    }
-
-    [dir="rtl"] .nav-link svg {
+    [dir="rtl"] .all-posts svg,
+    [dir="rtl"] .writing-cta svg {
         transform: scaleX(-1);
     }
 
-    [dir="rtl"] .nav-link:hover svg {
+    [dir="rtl"] .all-posts:hover svg {
         transform: scaleX(-1) translateX(3px);
+    }
+
+    [dir="rtl"] .writing-card:hover .writing-cta svg {
+        transform: scaleX(-1) translateX(4px);
     }
 
     @media (max-width: 600px) {
