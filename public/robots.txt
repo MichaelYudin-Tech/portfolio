@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://michaeltech.net/sitemap.xml
+Sitemap: https://michaeltech.net/sitemap-index.xml
