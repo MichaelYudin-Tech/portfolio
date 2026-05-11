@@ -5,7 +5,10 @@
       "Bash(bun run *)",
       "Bash(grep -v \":0$\")",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "PowerShell($f = Get-Item 'D:\\\\Michael\\\\Projects\\\\portfolio\\\\src\\\\assets\\\\pigum-rms.png'; Write-Output \"Size: $\\($f.Length\\) bytes\"; Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\($f.FullName\\); Write-Output \"Dimensions: $\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(node -e \"const sharp=require\\('sharp'\\); sharp\\('src/assets/pigum-rms.png'\\).webp\\({quality:88}\\).toFile\\('public/assets/pigum-rms.webp'\\).then\\(i=>console.log\\('OK',i\\)\\).catch\\(e=>{console.error\\(e\\);process.exit\\(1\\)}\\)\")",
+      "Bash(npm run *)"
     ]
   }
 }
