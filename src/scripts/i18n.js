@@ -208,7 +208,6 @@ const translations = {
 
         "pigumrms.evidence.label": "Evidence by Design",
         "pigumrms.evidence.p1": "Rental disputes happen. A customer claims a unit arrived damaged. A site manager insists nobody signed for the delivery. A piece of equipment comes back with a dent nobody owns. The platform is built so the evidence is already on the record before the dispute exists — photos at delivery, photos at return, signatures from whoever physically received the units.",
-        "pigumrms.evidence.p2": "The rental contract and the delivery receipt are deliberately kept separate. The contract is signed in advance by the customer's authorized representative. The delivery receipt is signed on-site by whoever takes the units — a foreman, a site engineer, a driver. The same person rarely signs both, and the platform doesn't pretend otherwise.",
 
         "pigumrms.arch.label": "Architecture",
         "pigumrms.arch.frontend": "Frontend",
@@ -389,15 +388,14 @@ const translations = {
         // Pigum Yashir RMS page
         "pigumrms.back": "חזרה",
         "pigumrms.tag1": "בפיתוח",
-        "pigumrms.tag2": "עברית מהיסוד",
-        "pigumrms.tag3": "מתאימה לכל ענף השכרה",
+        "pigumrms.tag2": "מתאימה לכל ענף השכרה",
         "pigumrms.title": "Pigum Yashir RMS",
         "pigumrms.subtitle": "מערכת ניהול השכרות",
-        "pigumrms.hero.desc": "מערכת מלאה לניהול עסק השכרה — מלאי, לקוחות, מסירות בשטח, ותיעוד שמחזיק כשמגיעים לבירור — בנויה סביב איך באמת רץ עסק השכרה קטן בעברית, באתרי בנייה בישראל.",
+        "pigumrms.hero.desc": "מערכת מלאה לניהול עסק השכרה — מלאי, לקוחות, מסירות בשטח, ותיעוד שמחזיק כשמגיעים לבירור — בנויה סביב איך שבאמת עובד עסק השכרת ציוד בנייה.",
 
         "pigumrms.ops.label": "תפעול השכרות",
         "pigumrms.ops.p1": "כל עסק השכרה בנוי על אותם ארבעה דברים. יש ציוד — בכל רגע נתון הוא זמין, מוזמן, בתיקון או יצא ללקוח. יש לקוחות שמזמינים מראש לטווח תאריכים מסוים, לפעמים שבועות לפני האיסוף. יש מסירות פיזיות — היציאה מהמחסן והחזרה אליו — שמחייבות תמונות וחתימה. ויש תיעוד שצריך להחזיק כשלקוח חולק על חיוב או טוען לנזק כבר באיסוף.",
-        "pigumrms.ops.p2": "ארבעת הדברים האלה לא משתנים — לא בין פיגומים לאוהלים לאירועים, ולא בין גנרטורים לציוד רפואי. הענף מתחלף. אופי התפעול נשאר. סביב זה בנינו את Pigum Yashir RMS.",
+        "pigumrms.ops.p2": "ארבעת הדברים האלה לא משתנים — לא בין פיגומים לאוהלים לאירועים, ולא בין גנרטורים לציוד רפואי. הענף מתחלף. אופי התפעול נשאר. סביב זה בניתי את Pigum Yashir RMS.",
 
         "pigumrms.worlds.label": "שני עולמות, מערכת אחת",
         "pigumrms.worlds.office.tag": "המשרד",
@@ -405,7 +403,7 @@ const translations = {
         "pigumrms.worlds.office.desc": "לוח זמינות חי של כל יחידה לשבועיים קדימה. סטטוס המלאי במבט אחד, כרטיס לקוח עם כל ההיסטוריה, ויצירת הזמנה שתופסת כפילויות בזמן אמת — לא אחרי שהמשאית כבר יצאה.",
         "pigumrms.worlds.field.tag": "השטח",
         "pigumrms.worlds.field.title": "מסך מובייל לצוות השטח",
-        "pigumrms.worlds.field.desc": "המסירות והאיסופים של היום. הקשה אחת ונכנסים למסירה — צילום, חתימה, סיום בפחות מ-30 שניות בין המשאית ללקוח, גם עם הקליטה שיש באתר בנייה.",
+        "pigumrms.worlds.field.desc": "המסירות והאיסופים של היום. לחיצה אחת ונכנסים למסירה — צילום, חתימה, סיום בפחות מ-30 שניות בין המשאית ללקוח, גם עם הקליטה שיש באתר בנייה.",
         "pigumrms.worlds.foot": "אותם נתונים, אותו מסד נתונים. כל ממשק תפור למקום שבו העבודה באמת מתרחשת.",
 
         "pigumrms.cap.label": "יכולות",
@@ -418,21 +416,20 @@ const translations = {
         "pigumrms.cap.4.title": "הזמנות, החזרות וביטולים",
         "pigumrms.cap.4.desc": "כל מחזור החיים של ההזמנה — מהזמנה ראשונית, דרך מסירה בשטח, שינויים תוך כדי השכרה, החזרה והתחשבנות.",
         "pigumrms.cap.5.title": "תהליך מסירה במובייל לצוות השטח",
-        "pigumrms.cap.5.desc": "בנוי לעבודה מסמארטפון בתוך המשאית. מסך אחד עם המסירות והאיסופים של היום, הקשה אחת ופותחים את המסירה.",
+        "pigumrms.cap.5.desc": "בנוי לעבודה מסמארטפון בתוך המשאית. מסך אחד עם המסירות והאיסופים של היום, לחיצה אחת ופותחים את המסירה.",
         "pigumrms.cap.6.title": "יעד מסירה בפחות מ-30 שניות",
         "pigumrms.cap.6.desc": "תמונה, חתימה, אישור — מסירה שלמה גם כשעומדים בין המשאית ללקוח עם קליטה גרועה.",
         "pigumrms.cap.7.title": "דחיסת תמונות בדפדפן",
-        "pigumrms.cap.7.desc": "התמונות נדחסות במכשיר לפני שהן עולות, כדי שלא נתקעים על קליטה חלשה באתר בנייה.",
-        "pigumrms.cap.8.title": "חתימה דיגיטלית עם גיבוי של צילום נייר",
-        "pigumrms.cap.8.desc": "ברירת המחדל היא חתימה על מסך המגע. אם צריך — צילום של נייר חתום נקלט באותה דרך בדיוק.",
+        "pigumrms.cap.7.desc": "התמונות נדחסות במכשיר לפני שהן עולות, כדי לא להתקע על קליטה חלשה באתר בנייה.",
+        "pigumrms.cap.8.title": "חתימה דיגיטלית עם גיבוי של צילום",
+        "pigumrms.cap.8.desc": "ברירת המחדל היא חתימה על מסך המגע. אם צריך — צילום של מסמך חתום נקלט באותה דרך בדיוק.",
         "pigumrms.cap.9.title": "עברית RTL מקצה לקצה",
-        "pigumrms.cap.9.desc": "בנויה בעברית מהיסוד — מהמודל של הנתונים ומעלה. לא שכבת תרגום שהודבקה על אפליקציה אנגלית.",
+        "pigumrms.cap.9.desc": "בנויה בעברית מהיסוד — מהמודל של הנתונים ומעלה. לא שכבת תרגום שהודבקה על אפליקציה באנגלית.",
         "pigumrms.cap.10.title": "הרשאות לפי תפקיד, ברמת השורה במסד הנתונים",
         "pigumrms.cap.10.desc": "צוות המשרד וצוות השטח רואים בדיוק את מה שהם אמורים לראות. ההרשאות נאכפות בתוך מסד הנתונים, לא רק בממשק.",
 
         "pigumrms.evidence.label": "תיעוד מובנה במערכת",
         "pigumrms.evidence.p1": "מחלוקות בהשכרה קורות. לקוח טוען שיחידה הגיעה פגומה. מנהל אתר מתעקש שאף אחד לא חתם על המסירה. ציוד חוזר עם מכה שאף אחד לא לוקח עליה אחריות. בנינו את המערכת כך שהתיעוד כבר נמצא במקום עוד לפני שיש בכלל ויכוח — תמונות במסירה, תמונות בהחזרה, וחתימה ממי שבאמת קיבל את היחידות בשטח.",
-        "pigumrms.evidence.p2": "החוזה ותעודת המשלוח הם בכוונה שני מסמכים נפרדים. את החוזה חותם מראש מורשה החתימה של הלקוח. את תעודת המשלוח חותם בשטח מי שמקבל את היחידות בפועל — מנהל עבודה, מהנדס אתר או נהג. בפועל זה כמעט אף פעם לא אותו אדם, והמערכת לא מנסה להעמיד פנים אחרת.",
 
         "pigumrms.arch.label": "ארכיטקטורה",
         "pigumrms.arch.frontend": "Frontend",
@@ -447,9 +444,9 @@ const translations = {
         "pigumrms.vertical.item.3": "השכרת ציוד לאירועים",
         "pigumrms.vertical.item.4": "ציוד הגברה והפקה",
         "pigumrms.vertical.item.5": "השכרה ייחודית — ציוד רפואי, מכשור מדעי, רכבים מיוחדים",
-        "pigumrms.vertical.tail": "התאמה לענף חדש כוללת נתונים שייחודיים לענף — מספרים סידוריים, אישורים תקפים, ניהול פיקדונות — וכיול של תהליכי העבודה והשפה. אם זה רלוונטי לעסק שלך, אפשר לדבר.",
+        "pigumrms.vertical.tail": "התאמה לענף חדש כוללת נתונים שייחודיים לענף — מספרים סידוריים, אישורים תקפים, ניהול פיקדונות — וכיול של תהליכי העבודה והשפה. אם זה רלוונטי לעסק שלכם, בואו נדבר.",
 
-        "pigumrms.note.text": "פרויקט בפיתוח פעיל ללקוח אמיתי — עסק השכרה ישראלי, כרגע בפיילוט. קשור: אותו לקוח מפעיל גם את <a href=\"https://pigum-yashir.co.il\" target=\"_blank\" rel=\"noopener noreferrer\">pigum-yashir.co.il</a> — פרויקט נפרד שגם אותו בניתי. הקוד סגור. צילומי מסך וסיור חי — לפי בקשה.",
+        "pigumrms.note.text": "פרויקט בפיתוח פעיל. הקוד סגור. צילומי מסך — לפי בקשה.",
         "pigumrms.note.cta": "בקשו הדגמה",
     },
 };

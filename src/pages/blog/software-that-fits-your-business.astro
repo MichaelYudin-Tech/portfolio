@@ -1,0 +1,561 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Noise from "../../components/Noise.astro";
+import NoiseReveal from "../../components/NoiseReveal.astro";
+import Orb from "../../components/Orb.astro";
+import Footer from "../../components/Footer.astro";
+import WorkWithMe from "../../components/WorkWithMe.astro";
+
+const siteUrl = "https://michaeltech.net";
+const slug = "software-that-fits-your-business";
+const canonical = `${siteUrl}/blog/${slug}`;
+const altLangUrl = `${siteUrl}/he/blog/${slug}`;
+const datePublished = "2026-05-11";
+const dateModified = "2026-05-11";
+
+const title =
+    "Custom Software That Fits Your Business: How I Work With Clients | MichaelTech";
+const description =
+    "How I build custom software for small businesses — starting on the floor, shipping early, in your language, with code you own. The process behind the work.";
+
+const keywords = [
+    "custom software for small business",
+    "bespoke business software development",
+    "custom software developer israel",
+    "small business software solutions",
+    "operational software development",
+    "custom business management system",
+    "internal tools developer",
+    "field operations software",
+].join(", ");
+
+const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline:
+        "How I Build Software That Fits Around Your Business — Not the Other Way Around",
+    description,
+    image: [`${siteUrl}/og-image.png`],
+    datePublished,
+    dateModified,
+    inLanguage: "en",
+    author: {
+        "@type": "Person",
+        name: "Michael Yudin",
+        url: siteUrl,
+    },
+    publisher: {
+        "@type": "Organization",
+        name: "MichaelTech",
+        url: siteUrl,
+        logo: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/favicon.png`,
+        },
+    },
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonical,
+    },
+    keywords,
+};
+
+const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteUrl}/blog`,
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: "Custom Software That Fits Your Business",
+            item: canonical,
+        },
+    ],
+};
+---
+
+<Layout
+    title={title}
+    description={description}
+    lang="en"
+    altLangUrl={altLangUrl}
+    altLangCode="he"
+    canonical={canonical}
+    type="article"
+    publishedTime={datePublished}
+    modifiedTime={dateModified}
+    author="Michael Yudin"
+    keywords={keywords}
+>
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(articleJsonLd)}
+    />
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(breadcrumbsJsonLd)}
+    />
+
+    <Noise />
+    <NoiseReveal />
+    <Orb />
+
+    <div class="page">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/blog">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Software that fits your business</span>
+        </nav>
+
+        <article>
+            <header class="hero">
+                <div class="hero-meta">
+                    <span class="tag">Custom Software</span>
+                    <time datetime={datePublished}>May 11, 2026</time>
+                    <span class="dot" aria-hidden="true">·</span>
+                    <span>8 min read</span>
+                </div>
+                <h1>
+                    How I Build Software That Fits Around Your Business — Not
+                    the Other Way Around
+                </h1>
+                <p class="lede">
+                    Most custom software projects for small businesses leave the
+                    owner frustrated. Not because of the technology — because of
+                    where they start. Here's how I work differently, and what
+                    clients end up with at the end of it.
+                </p>
+            </header>
+
+            <div class="prose">
+                <p>
+                    Walk into any small or mid-size business that commissioned
+                    custom software in the last few years and you'll see the
+                    same pattern. They signed off on a 50-page spec. Paid a
+                    third up front. Waited four months. Ended up with a system
+                    nobody wants to open, because it was built around a
+                    flowchart — not around the day-to-day of the people who
+                    actually use it.
+                </p>
+
+                <p>
+                    I work differently. Here's what it looks like — and why the
+                    clients who go through this process with me don't go back.
+                </p>
+
+                <h2>Why most "custom software" projects disappoint</h2>
+
+                <p>
+                    Custom software for a small business doesn't fail because
+                    the developers aren't good enough. It fails because it
+                    starts in the wrong place: a written spec. A spec captures
+                    how one executive imagines the business in a vacuum. It
+                    doesn't capture how the driver loads a truck, how the
+                    office clerk enters an order, how the warehouse manager
+                    keeps a parallel Excel because the system never quite
+                    matched reality.
+                </p>
+
+                <p>
+                    Field staff don't read specs. They open the app, try to do
+                    their job in it, and if it fights them — they go back to
+                    Excel and WhatsApp.
+                </p>
+
+                <p>Four failure patterns I see again and again:</p>
+
+                <ul>
+                    <li>
+                        <strong>All-or-nothing launch.</strong> Six months of
+                        silence, then 80 screens drop at once. Half don't match
+                        how anyone actually works. The team quietly ignores
+                        them.
+                    </li>
+                    <li>
+                        <strong>Translation bolted on at the end.</strong> Built
+                        in English, translated to Hebrew (or any non-English
+                        market language) at the last minute. Forms mirror wrong,
+                        dates are in the wrong format, every sentence is
+                        addressed to a male user only.
+                    </li>
+                    <li>
+                        <strong>Wrong device, wrong context.</strong> Buttons
+                        sized for a developer at a desk get used by a field
+                        worker with gloves and direct sunlight on the screen.
+                    </li>
+                    <li>
+                        <strong>No real ownership.</strong> Code on the agency's
+                        server, hosting on their account, every change a fresh
+                        quote. The lock-in is the business model.
+                    </li>
+                </ul>
+
+                <p>
+                    The common thread: nobody designed the system around where
+                    the work actually happens.
+                </p>
+
+                <h2>How I actually work — six phases</h2>
+
+                <h3>1. I show up in person, not over a spec</h3>
+
+                <p>
+                    The first thing I do is come to the business. Two or three
+                    hours on site. Not just with the founder — with the clerk
+                    entering orders, the driver loading the truck, the
+                    warehouse manager maintaining the side-Excel. I ask what
+                    annoys them every day. I watch where they enter the same
+                    data twice, where they keep paper notes stuck to the
+                    monitor, where they call each other to verify something
+                    the system should already be showing.
+                </p>
+
+                <p>
+                    This is the real difference. A spec describes what the
+                    buyer thinks the business needs. A site visit shows where
+                    the friction actually lives.
+                </p>
+
+                <h3>2. Something useful ships in weeks, not months</h3>
+
+                <p>
+                    Within two to four weeks of kickoff, a working slice
+                    exists. Not the whole system. Not 80 screens. One or two
+                    features that replace a painful manual process — a stock
+                    check, an order intake, a digital signature instead of a
+                    paper one. The team is already using it by week three.
+                    Things that don't work, we fix. Things we didn't think of,
+                    we add in the next cycle.
+                </p>
+
+                <p>
+                    You see the system running long before the 50% milestone.
+                    That changes the entire dynamic. You're not paying against
+                    a promise. You're paying against something already
+                    operating in your business.
+                </p>
+
+                <h3>3. Hebrew (or your market language) from the database out</h3>
+
+                <p>
+                    I don't translate. I build the system in the target
+                    language from the data model up — field names, addressing
+                    conventions, date formats, reading direction. RTL on day
+                    one, not a CSS skin glued on at the end. Status labels
+                    match the way the team talks about them in the office, not
+                    what a developer imagined from a glossary.
+                </p>
+
+                <p>
+                    A client told me once: "This is the first system that talks
+                    to me in actual Hebrew, not translator-Hebrew." That
+                    doesn't come from an auto-translate pass. It comes from
+                    sitting with the people who use the system and writing the
+                    screens in their voice.
+                </p>
+
+                <h3>4. The rules can't lie — they're enforced where they matter</h3>
+
+                <p>
+                    If you can't book the same truck for two overlapping dates,
+                    that's not a check in the UI — that's a database
+                    constraint. If only a manager can authorize a 15% discount,
+                    it isn't just a greyed-out button — it's a server-side
+                    rule. If a stock movement is signed off, it can never be
+                    deleted, only paired with a correction record.
+                </p>
+
+                <p>
+                    That sounds technical, but it's the difference between a
+                    system you trust and a system you re-verify in Excel every
+                    evening. When the rules live in the data layer, the UI
+                    matters less. The data can't be broken — not by accident,
+                    not on purpose.
+                </p>
+
+                <h3>5. Interface tuned to where each person actually works</h3>
+
+                <p>
+                    The office staff member sits at a 27-inch monitor and sees
+                    a horizontal two-week calendar of every booking. A field
+                    worker in the same business opens the app on a phone, on
+                    patchy cell signal, with the sun in their eyes, and sees
+                    only the two pickups they need to handle today. Same data
+                    underneath, totally different surface — because they're
+                    doing two different jobs.
+                </p>
+
+                <p>
+                    Systems that ignore that distinction — that show the same
+                    dashboard to everyone — force field staff to scroll eight
+                    times to confirm a delivery. So they call the office
+                    instead. So the system stops mattering.
+                </p>
+
+                <h3>6. You own the code</h3>
+
+                <p>
+                    I work on open, standard infrastructure — Supabase,
+                    PostgreSQL, GitHub. The accounts are in your name. The
+                    code is documented. If in three years you decide to work
+                    with a different developer, they can pick it up without
+                    drama. No monthly license that doubles after year one. No
+                    lock-in forcing you back to me for every small change.
+                </p>
+
+                <p>
+                    Which means I have to earn each return engagement on the
+                    work itself. Seems fair, and it also keeps me honest.
+                </p>
+
+                <h2>The kinds of projects I take on</h2>
+
+                <ul>
+                    <li>
+                        <strong>Internal operations systems</strong> —
+                        inventory, rentals, scheduling, customer management,
+                        digital signatures.
+                    </li>
+                    <li>
+                        <strong>Mobile apps for field teams</strong> — drivers,
+                        technicians, maintenance staff, service crews.
+                    </li>
+                    <li>
+                        <strong>Integrations between tools that don't
+                        talk</strong> — invoicing platforms, Google Calendar,
+                        WhatsApp Business, CRM systems, payment processors.
+                    </li>
+                    <li>
+                        <strong>Marketing sites with an internal area</strong>
+                        — admin dashboards, private client portals, booking
+                        systems, manager panels.
+                    </li>
+                    <li>
+                        <strong>Modernizing a legacy system</strong> — when the
+                        existing platform is no longer maintainable, but the
+                        data inside it is critical to keep.
+                    </li>
+                </ul>
+
+                <h2>When this isn't the right fit</h2>
+
+                <p>I'd be lying if I said this works for everyone:</p>
+
+                <ul>
+                    <li>
+                        <strong>You need a system serving 200 active users
+                        from day one.</strong> That's a team project, not a
+                        solo-developer project.
+                    </li>
+                    <li>
+                        <strong>There's a 90%-fit off-the-shelf tool
+                        already.</strong> Sometimes Monday, QuickBooks, or
+                        Shopify is genuinely the right call. I'll tell you that
+                        in the first call, not after I've quoted you.
+                    </li>
+                    <li>
+                        <strong>You want to "order it and forget about
+                        it."</strong> The two hours on site at the start aren't
+                        optional. Without your involvement during discovery,
+                        the result won't be sharp enough.
+                    </li>
+                </ul>
+
+                <h2>How to start</h2>
+
+                <p>
+                    A 30-minute intro call by phone — free, no commitment. If
+                    it sounds like a fit, I come to you for a two-to-three-hour
+                    site visit to see the work in person. After that you get a
+                    clear proposal: scope, milestones, fixed price. No
+                    open-ended hours, no surprise line items.
+                </p>
+
+                <p>
+                    If you'd like to see what this looks like in practice, you
+                    can read <a href="/projects/kt-rms"
+                        >a deeper case study of one recent project</a
+                    >, look at <a href="/projects/pigum-yashir-rms"
+                        >another one running in production</a
+                    >, or scroll down and message me directly. I read and reply
+                    personally.
+                </p>
+            </div>
+        </article>
+
+        <WorkWithMe lang="en" />
+        <Footer lang="en" />
+    </div>
+</Layout>
+
+<style>
+    .page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+    .breadcrumbs a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .breadcrumbs a:hover {
+        color: var(--accent);
+    }
+    .breadcrumbs [aria-current="page"] {
+        color: var(--text);
+    }
+
+    .hero {
+        margin-bottom: 56px;
+        animation: fadeUp 0.8s ease-out;
+    }
+    .hero-meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+    .tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 5px 14px;
+        background: rgba(201, 162, 39, 0.12);
+        color: var(--accent);
+        border-radius: 18px;
+        font-weight: 500;
+    }
+    .dot {
+        color: var(--text-muted);
+        opacity: 0.5;
+    }
+
+    h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--text);
+        margin-bottom: 20px;
+    }
+
+    .lede {
+        font-size: 1.2rem;
+        line-height: 1.65;
+        color: var(--text-muted);
+        font-weight: 300;
+        max-width: 640px;
+    }
+
+    .prose {
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: var(--text);
+        font-weight: 300;
+        animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    .prose p {
+        margin-bottom: 1.4em;
+        color: var(--text);
+        opacity: 0.92;
+    }
+    .prose h2 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        margin: 3em 0 1em;
+        color: var(--text);
+        line-height: 1.25;
+    }
+    .prose h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 2.2em 0 0.8em;
+        color: var(--accent);
+    }
+    .prose ul {
+        margin: 0 0 1.6em 1.4em;
+        padding: 0;
+    }
+    .prose li {
+        margin-bottom: 0.7em;
+        color: var(--text);
+        opacity: 0.92;
+    }
+    .prose strong {
+        color: var(--text);
+        font-weight: 500;
+    }
+    .prose a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        transition: opacity 0.3s ease;
+    }
+    .prose a:hover {
+        opacity: 0.75;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .page {
+            padding: 24px 20px 40px;
+        }
+        .hero {
+            margin-bottom: 40px;
+        }
+        .prose {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .prose ul {
+            margin-left: 1.2em;
+        }
+    }
+</style>
