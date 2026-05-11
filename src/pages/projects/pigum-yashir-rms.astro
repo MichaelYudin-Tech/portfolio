@@ -825,13 +825,16 @@ const verticals = [
         margin-bottom: 24px;
         line-height: 1.7;
     }
-    .note-card a {
+    /* The note paragraph is rewritten by the i18n script via innerHTML,
+       so the inline link loses Astro's scoping hash. Use :global() so
+       the selector matches the freshly-injected anchor. */
+    .note-card :global(a:not(.note-cta)) {
         color: var(--accent);
         text-decoration: none;
         border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
         transition: border-color 0.3s ease;
     }
-    .note-card a:hover {
+    .note-card :global(a:not(.note-cta):hover) {
         border-bottom-color: var(--accent);
     }
     .note-cta {
@@ -839,14 +842,13 @@ const verticals = [
         align-items: center;
         gap: 10px;
         background: var(--accent);
-        color: #fff !important;
+        color: #fff;
         padding: 14px 28px;
         border-radius: 30px;
         text-decoration: none;
         font-weight: 500;
         font-size: 0.95rem;
         transition: all 0.3s ease;
-        border-bottom: none !important;
     }
     .note-cta:hover {
         transform: scale(1.05);
