@@ -6,6 +6,68 @@ import Orb from "../../components/Orb.astro";
 import Footer from "../../components/Footer.astro";
 import WorkWithMe from "../../components/WorkWithMe.astro";
 
+const seoTitle =
+    "Pigum Yashir RMS — Hebrew Rental Management System | Michael Yudin";
+const seoDescription =
+    "Hebrew-first rental management system for Israeli rental businesses — live availability, conflict-free booking, field-staff mobile delivery, and legal-grade evidence trails.";
+const seoImage = "/assets/pigum-rms.webp";
+const seoKeywords =
+    "rental management system, RMS, Hebrew rental software, Israeli rental software, equipment rental, scaffolding rental, generator rental, daterange booking, calendar booking, field operations, photo evidence, digital signature, Supabase, Preact, Hebrew RTL, Pigum Yashir, פיגום ישיר, מערכת ניהול השכרות";
+
+const canonicalUrl = Astro.url.toString();
+const siteOrigin = Astro.site
+    ? new URL(Astro.site).origin
+    : new URL(canonicalUrl).origin;
+const absoluteImage = `${siteOrigin}${seoImage}`;
+
+const ldJson = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "SoftwareApplication",
+            name: "Pigum Yashir RMS",
+            alternateName: [
+                "Pigum Yashir Rental Management System",
+                "פיגום ישיר RMS",
+            ],
+            applicationCategory: "BusinessApplication",
+            applicationSubCategory: "Rental Management System",
+            operatingSystem: "Web Browser, iOS, Android",
+            description: seoDescription,
+            url: canonicalUrl,
+            image: absoluteImage,
+            inLanguage: ["he-IL", "en"],
+            creator: {
+                "@type": "Person",
+                name: "Michael Yudin",
+                url: "https://www.michaeltech.net",
+            },
+            offers: {
+                "@type": "Offer",
+                availability: "https://schema.org/LimitedAvailability",
+                priceCurrency: "ILS",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: siteOrigin + "/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Pigum Yashir RMS",
+                    item: canonicalUrl,
+                },
+            ],
+        },
+    ],
+};
+
 const capabilities = [
     {
         title: "Live Availability, 14+ Days Ahead",
@@ -86,9 +148,18 @@ const verticals = [
 ---
 
 <Layout
-    title="Pigum Yashir RMS | Project Showcase | Michael Yudin"
-    description="Rental management system for an Israeli scaffolding and generator rental business — live availability, field-staff delivery flow, and legal-grade evidence trails. Built Hebrew-first."
+    title={seoTitle}
+    description={seoDescription}
+    image={seoImage}
+    keywords={seoKeywords}
+    author="Michael Yudin"
 >
+    <script
+        type="application/ld+json"
+        slot="head"
+        is:inline
+        set:html={JSON.stringify(ldJson)}
+    />
     <Noise />
     <NoiseReveal />
     <Orb />
@@ -141,9 +212,9 @@ const verticals = [
         </header>
 
         <section class="section">
-            <p class="section-label" data-i18n="pigumrms.ops.label">
+            <h2 class="section-label" data-i18n="pigumrms.ops.label">
                 Rental Operations
-            </p>
+            </h2>
             <p class="body-text" data-i18n="pigumrms.ops.p1">
                 A rental business runs on four constants. There's equipment
                 that's either available, booked, in repair, or out on rent
@@ -163,9 +234,9 @@ const verticals = [
         </section>
 
         <section class="section worlds-section">
-            <p class="section-label" data-i18n="pigumrms.worlds.label">
+            <h2 class="section-label" data-i18n="pigumrms.worlds.label">
                 Two Worlds, One System
-            </p>
+            </h2>
             <div class="worlds">
                 <div class="world world-office">
                     <span class="world-tag" data-i18n="pigumrms.worlds.office.tag"
@@ -205,9 +276,9 @@ const verticals = [
         </section>
 
         <section class="section">
-            <p class="section-label" data-i18n="pigumrms.cap.label">
+            <h2 class="section-label" data-i18n="pigumrms.cap.label">
                 Capabilities
-            </p>
+            </h2>
             <div class="features-grid">
                 {
                     capabilities.map((c, i) => (
@@ -228,9 +299,9 @@ const verticals = [
         </section>
 
         <section class="section evidence-section">
-            <p class="section-label" data-i18n="pigumrms.evidence.label">
+            <h2 class="section-label" data-i18n="pigumrms.evidence.label">
                 Evidence by Design
-            </p>
+            </h2>
             <div class="evidence">
                 <p class="body-text" data-i18n="pigumrms.evidence.p1">
                     Rental disputes happen. A customer claims a unit arrived
@@ -254,9 +325,9 @@ const verticals = [
         </section>
 
         <section class="section">
-            <p class="section-label" data-i18n="pigumrms.arch.label">
+            <h2 class="section-label" data-i18n="pigumrms.arch.label">
                 Architecture
-            </p>
+            </h2>
             <div class="arch-diagram">
                 <div class="arch-layer">
                     <span class="arch-label" data-i18n="pigumrms.arch.frontend"
@@ -346,9 +417,9 @@ const verticals = [
         </section>
 
         <section class="section vertical-section">
-            <p class="section-label" data-i18n="pigumrms.vertical.label">
+            <h2 class="section-label" data-i18n="pigumrms.vertical.label">
                 Adaptable to Any Rental Vertical
-            </p>
+            </h2>
             <p class="body-text" data-i18n="pigumrms.vertical.intro">
                 The bones of the platform — dated inventory, customer
                 relationships, field handoffs, evidence trails — are universal
