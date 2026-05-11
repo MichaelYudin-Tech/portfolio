@@ -1,0 +1,847 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Noise from "../../components/Noise.astro";
+import NoiseReveal from "../../components/NoiseReveal.astro";
+import Orb from "../../components/Orb.astro";
+import Footer from "../../components/Footer.astro";
+import WorkWithMe from "../../components/WorkWithMe.astro";
+
+const capabilities = [
+    {
+        title: "Live Availability, 14+ Days Ahead",
+        desc: "Every unit's status at a glance — available, reserved, out on rent, in repair — across the full booking horizon.",
+    },
+    {
+        title: "Calendar View with Conflict-Free Booking",
+        desc: "Daterange-aware booking enforced at the database layer. Two staff members can't double-book the same unit, ever.",
+    },
+    {
+        title: "Customer Directory with Full History",
+        desc: "Every rental, every receipt, every signature tied back to the customer. One-tap to call, WhatsApp, or open the file.",
+    },
+    {
+        title: "Orders, Returns, Cancellations",
+        desc: "Full order lifecycle — initial booking, on-site delivery, mid-rental adjustments, return, and reconciliation.",
+    },
+    {
+        title: "Field-Staff Mobile Delivery Flow",
+        desc: "Built for iPhone use in the truck. Today's deliveries and pickups, one tap into the handoff flow.",
+    },
+    {
+        title: "Sub-30-Second Handoff Target",
+        desc: "Photos, signature, confirm — designed to complete on real cellular conditions between truck and customer.",
+    },
+    {
+        title: "In-Browser Photo Compression",
+        desc: "Photos compressed on device before upload, so the flow doesn't stall on bad reception at a construction site.",
+    },
+    {
+        title: "Digital Signature with Photo-of-Paper Fallback",
+        desc: "Touchscreen signature is the primary path. A photo of a signed paper is captured the same way when needed.",
+    },
+    {
+        title: "Hebrew RTL, Native to the Workflow",
+        desc: "Built Hebrew-first from the data model up — not a translation layer bolted onto an English app.",
+    },
+    {
+        title: "Role-Aware Access with Row-Level Permissions",
+        desc: "Office and field staff see what they're meant to see. Permissions enforced in the database, not just the UI.",
+    },
+];
+
+const stack = {
+    frontend: [
+        "Vite",
+        "Preact",
+        "TypeScript (strict)",
+        "Tailwind CSS",
+        "Logical-property RTL",
+    ],
+    backend: [
+        "Supabase",
+        "PostgreSQL",
+        "Row-Level Security",
+        "Daterange Booking Logic",
+        "Automated Status Timestamping",
+    ],
+    storage: [
+        "Supabase Storage",
+        "Signed-URL Access",
+        "In-Browser Compression Pipeline",
+    ],
+    deployment: [
+        "Netlify",
+        "Continuous Deployment",
+        "Static Hosting",
+    ],
+};
+
+const verticals = [
+    "Construction equipment rental",
+    "Tool rental",
+    "Party and event supply rental",
+    "A/V and production gear",
+    "Specialty rental — medical equipment, scientific instruments, specialty vehicles",
+];
+---
+
+<Layout
+    title="Pigum Yashir RMS | Project Showcase | Michael Yudin"
+    description="Rental management system for an Israeli scaffolding and generator rental business — live availability, field-staff delivery flow, and legal-grade evidence trails. Built Hebrew-first."
+>
+    <Noise />
+    <NoiseReveal />
+    <Orb />
+
+    <div class="page">
+        <a href="/" class="back-link" id="back-home">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            <span data-i18n="pigumrms.back">Back</span>
+        </a>
+
+        <header class="hero">
+            <div class="hero-meta">
+                <span class="tag" data-i18n="pigumrms.tag1"
+                    >Active Development</span
+                >
+                <span class="tag tag-secondary" data-i18n="pigumrms.tag2"
+                    >Hebrew-First</span
+                >
+                <span class="tag tag-secondary" data-i18n="pigumrms.tag3"
+                    >Multi-Vertical</span
+                >
+            </div>
+            <h1 data-i18n="pigumrms.title">Pigum Yashir RMS</h1>
+            <p class="subtitle" data-i18n="pigumrms.subtitle">
+                Rental Management System
+            </p>
+            <p class="hero-description" data-i18n="pigumrms.hero.desc">
+                A complete operational platform for rental businesses —
+                inventory, customer relationships, field handoffs, and legal
+                evidence trails — built around the realities of running a small
+                rental operation in Hebrew on Israeli construction sites.
+            </p>
+            <div class="hero-image">
+                <img
+                    src="/assets/pigum-rms.webp"
+                    alt="Pigum Yashir RMS — login screen"
+                    loading="eager"
+                />
+            </div>
+        </header>
+
+        <section class="section">
+            <p class="section-label" data-i18n="pigumrms.ops.label">
+                Rental Operations
+            </p>
+            <p class="body-text" data-i18n="pigumrms.ops.p1">
+                A rental business runs on four constants. There's equipment
+                that's either available, booked, in repair, or out on rent
+                right now. There are customers booking in advance for specific
+                date ranges, sometimes weeks before pickup. There are physical
+                handoffs — the moment a unit leaves the yard and the moment it
+                comes back — that need photo evidence and signatures. And
+                there's a paper trail that has to hold up when a customer
+                disputes a charge or claims damage on arrival.
+            </p>
+            <p class="body-text" data-i18n="pigumrms.ops.p2">
+                These four constants don't shift between scaffolding and party
+                tents, between generators and medical equipment. The verticals
+                change. The shape of the operation doesn't. Pigum Yashir RMS
+                is built around that shape.
+            </p>
+        </section>
+
+        <section class="section worlds-section">
+            <p class="section-label" data-i18n="pigumrms.worlds.label">
+                Two Worlds, One System
+            </p>
+            <div class="worlds">
+                <div class="world world-office">
+                    <span class="world-tag" data-i18n="pigumrms.worlds.office.tag"
+                        >The Office</span
+                    >
+                    <h3 data-i18n="pigumrms.worlds.office.title">
+                        Manager's Desktop View
+                    </h3>
+                    <p data-i18n="pigumrms.worlds.office.desc">
+                        A live calendar of every unit across the next two
+                        weeks. Inventory status at a glance, customer history
+                        with full rental records, and order creation that
+                        catches double-bookings before they happen — not after
+                        the truck is already loaded.
+                    </p>
+                </div>
+                <div class="world world-field">
+                    <span class="world-tag" data-i18n="pigumrms.worlds.field.tag"
+                        >The Field</span
+                    >
+                    <h3 data-i18n="pigumrms.worlds.field.title">
+                        Field-Staff Mobile View
+                    </h3>
+                    <p data-i18n="pigumrms.worlds.field.desc">
+                        Today's deliveries and pickups. One tap into a
+                        handoff flow with photo capture and signature,
+                        designed to complete in under 30 seconds between truck
+                        and customer — on whatever cell signal the
+                        construction site happens to have.
+                    </p>
+                </div>
+            </div>
+            <p class="worlds-foot" data-i18n="pigumrms.worlds.foot">
+                Same data, same database. Different surfaces, calibrated to
+                where the work actually happens.
+            </p>
+        </section>
+
+        <section class="section">
+            <p class="section-label" data-i18n="pigumrms.cap.label">
+                Capabilities
+            </p>
+            <div class="features-grid">
+                {
+                    capabilities.map((c, i) => (
+                        <div class="feature-card">
+                            <span class="feature-num">
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <h3 data-i18n={`pigumrms.cap.${i + 1}.title`}>
+                                {c.title}
+                            </h3>
+                            <p data-i18n={`pigumrms.cap.${i + 1}.desc`}>
+                                {c.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="section evidence-section">
+            <p class="section-label" data-i18n="pigumrms.evidence.label">
+                Evidence by Design
+            </p>
+            <div class="evidence">
+                <p class="body-text" data-i18n="pigumrms.evidence.p1">
+                    Rental disputes happen. A customer claims a unit arrived
+                    damaged. A site manager insists nobody signed for the
+                    delivery. A piece of equipment comes back with a dent
+                    nobody owns. The platform is built so the evidence is
+                    already on the record before the dispute exists — photos
+                    at delivery, photos at return, signatures from whoever
+                    physically received the units.
+                </p>
+                <p class="body-text" data-i18n="pigumrms.evidence.p2">
+                    The rental contract and the delivery receipt are
+                    deliberately kept separate. The contract is signed in
+                    advance by the customer's authorized representative. The
+                    delivery receipt is signed on-site by whoever takes the
+                    units — a foreman, a site engineer, a driver. The same
+                    person rarely signs both, and the platform doesn't pretend
+                    otherwise.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <p class="section-label" data-i18n="pigumrms.arch.label">
+                Architecture
+            </p>
+            <div class="arch-diagram">
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="pigumrms.arch.frontend"
+                        >Frontend</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.frontend.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="pigumrms.arch.backend"
+                        >Backend</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.backend.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="pigumrms.arch.storage"
+                        >Storage & Media</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.storage.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="arch-connector">
+                    <svg
+                        viewBox="0 0 24 40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    >
+                        <path d="M12 0v40"></path>
+                        <path d="M8 36l4 4 4-4"></path>
+                    </svg>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-label" data-i18n="pigumrms.arch.deploy"
+                        >Deployment</span
+                    >
+                    <div class="arch-items">
+                        {
+                            stack.deployment.map((t) => (
+                                <span class="arch-chip">{t}</span>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section vertical-section">
+            <p class="section-label" data-i18n="pigumrms.vertical.label">
+                Adaptable to Any Rental Vertical
+            </p>
+            <p class="body-text" data-i18n="pigumrms.vertical.intro">
+                The bones of the platform — dated inventory, customer
+                relationships, field handoffs, evidence trails — are universal
+                to rental. The current deployment serves a scaffolding and
+                generator rental business; the same foundation adapts cleanly
+                to:
+            </p>
+            <ul class="vertical-list">
+                {
+                    verticals.map((v, i) => (
+                        <li data-i18n={`pigumrms.vertical.item.${i + 1}`}>
+                            {v}
+                        </li>
+                    ))
+                }
+            </ul>
+            <p class="body-text vertical-tail" data-i18n="pigumrms.vertical.tail">
+                Adapting to a new vertical involves vertical-specific data —
+                serial numbers, certifications, deposit handling — workflow
+                tuning, and language. The platform is available for engagement
+                on these adaptations.
+            </p>
+        </section>
+
+        <section class="section note-section">
+            <div class="note-card">
+                <p data-i18n="pigumrms.note.text">
+                    Active development for a real Israeli rental business,
+                    currently in pilot deployment. Related: the same business
+                    runs <a
+                        href="https://pigum-yashir.co.il"
+                        target="_blank"
+                        rel="noopener noreferrer">pigum-yashir.co.il</a
+                    > — separate project, also built by me. Code is private. Screenshots
+                    and live walkthroughs available on request.
+                </p>
+                <a
+                    href="mailto:Michael.Yudin@protonmail.com"
+                    class="note-cta"
+                    id="pigum-rms-contact"
+                >
+                    <span data-i18n="pigumrms.note.cta">Request a Demo</span>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <WorkWithMe />
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    /* Page-scoped palette override — Pigum Yashir RMS identity.
+       Navy / cream / orange replace the portfolio's gold accent for this page only. */
+    .page {
+        --accent: #c76a1a;
+        --accent-rgb: 199, 106, 26;
+        --panel-navy: #1e3a52;
+        --cream: #f2ebd9;
+
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 48px;
+        transition: color 0.3s ease;
+    }
+    .back-link:hover {
+        color: var(--accent);
+    }
+    .back-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Hero */
+    .hero {
+        margin-bottom: 80px;
+        animation: fadeUp 0.8s ease-out;
+    }
+    .hero-meta {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 6px 14px;
+        background: rgba(var(--accent-rgb), 0.14);
+        color: var(--accent);
+        border-radius: 20px;
+        font-weight: 500;
+    }
+    .tag-secondary {
+        background: rgba(138, 138, 138, 0.1);
+        color: var(--text-muted);
+    }
+    h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+        color: var(--text);
+    }
+    .subtitle {
+        font-family: "Fraunces", serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: var(--accent);
+        margin-bottom: 24px;
+    }
+    .hero-description {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 640px;
+        line-height: 1.7;
+        font-weight: 300;
+        margin-bottom: 32px;
+    }
+    .hero-image {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+        background: var(--panel-navy);
+    }
+    .hero-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Sections */
+    .section {
+        margin-bottom: 80px;
+        animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    .section-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 28px;
+        font-weight: 500;
+    }
+    .body-text {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+    .body-text + .body-text {
+        margin-top: 20px;
+    }
+
+    /* Two Worlds */
+    .worlds {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .world {
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 32px;
+        transition:
+            border-color 0.35s ease,
+            transform 0.35s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .world:hover {
+        border-color: rgba(var(--accent-rgb), 0.4);
+        transform: translateY(-2px);
+    }
+    .world-office {
+        background:
+            linear-gradient(180deg, rgba(30, 58, 82, 0.18), rgba(30, 58, 82, 0.05)),
+            var(--card-bg);
+    }
+    .world-field {
+        background:
+            linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-rgb), 0.02)),
+            var(--card-bg);
+    }
+    .world-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 4px 10px;
+        background: rgba(var(--accent-rgb), 0.12);
+        color: var(--accent);
+        border-radius: 4px;
+        margin-bottom: 16px;
+        font-weight: 500;
+    }
+    .world h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-bottom: 12px;
+        color: var(--text);
+    }
+    .world p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        font-weight: 300;
+    }
+    .worlds-foot {
+        margin-top: 24px;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        font-style: italic;
+        font-weight: 300;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    /* Capabilities grid */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .feature-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 28px;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+    }
+    .feature-card:hover {
+        border-color: rgba(var(--accent-rgb), 0.35);
+        transform: translateY(-2px);
+    }
+    .feature-num {
+        font-family: "Fraunces", serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--accent);
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .feature-card h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-bottom: 8px;
+        color: var(--text);
+        line-height: 1.35;
+    }
+    .feature-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* Evidence */
+    .evidence-section .body-text {
+        max-width: 760px;
+    }
+    .evidence {
+        border-left: 2px solid rgba(var(--accent-rgb), 0.5);
+        padding-left: 28px;
+    }
+
+    /* Architecture */
+    .arch-diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .arch-layer {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 24px 32px;
+        width: 100%;
+        text-align: center;
+        transition: border-color 0.3s ease;
+    }
+    .arch-layer:hover {
+        border-color: rgba(var(--accent-rgb), 0.35);
+    }
+    .arch-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 14px;
+    }
+    .arch-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    .arch-chip {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+        background: rgba(var(--accent-rgb), 0.1);
+        color: var(--text);
+        border-radius: 6px;
+        font-weight: 400;
+    }
+    .arch-connector {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .arch-connector svg {
+        width: 16px;
+        height: 32px;
+        color: var(--card-border);
+    }
+
+    /* Verticals */
+    .vertical-list {
+        margin: 24px 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .vertical-list li {
+        padding: 14px 18px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.45;
+        transition: border-color 0.3s ease;
+    }
+    .vertical-list li:hover {
+        border-color: rgba(var(--accent-rgb), 0.35);
+    }
+    .vertical-tail {
+        margin-top: 8px;
+    }
+
+    /* Note / CTA */
+    .note-section {
+        margin-bottom: 40px;
+    }
+    .note-card {
+        text-align: center;
+        padding: 48px 32px;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        border-radius: 16px;
+        background: linear-gradient(
+            135deg,
+            rgba(var(--accent-rgb), 0.07),
+            rgba(30, 58, 82, 0.05)
+        );
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            0 0 60px rgba(var(--accent-rgb), 0.05);
+    }
+    .note-card p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 24px;
+        line-height: 1.7;
+    }
+    .note-card a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+        transition: border-color 0.3s ease;
+    }
+    .note-card a:hover {
+        border-bottom-color: var(--accent);
+    }
+    .note-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent);
+        color: #fff !important;
+        padding: 14px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        border-bottom: none !important;
+    }
+    .note-cta:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.4);
+    }
+    .note-cta svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* RTL: flip the arrow on the back link and CTA */
+    :global([dir="rtl"]) .back-link svg,
+    :global([dir="rtl"]) .note-cta svg {
+        transform: scaleX(-1);
+    }
+
+    /* RTL: evidence border on the right edge */
+    :global([dir="rtl"]) .evidence {
+        border-left: none;
+        border-right: 2px solid rgba(var(--accent-rgb), 0.5);
+        padding-left: 0;
+        padding-right: 28px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .page {
+            padding: 24px 20px 40px;
+        }
+        .hero {
+            margin-bottom: 56px;
+        }
+        .worlds {
+            grid-template-columns: 1fr;
+        }
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        .vertical-list {
+            grid-template-columns: 1fr;
+        }
+        .section {
+            margin-bottom: 56px;
+        }
+        .arch-layer {
+            padding: 20px 16px;
+        }
+        .world {
+            padding: 24px;
+        }
+        .evidence {
+            padding-left: 18px;
+        }
+        :global([dir="rtl"]) .evidence {
+            padding-right: 18px;
+        }
+    }
+</style>

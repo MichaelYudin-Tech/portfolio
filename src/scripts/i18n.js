@@ -79,6 +79,10 @@ const translations = {
         "project.pigumyashir.tag": "Business",
         "project.pigumyashir.desc": "Marketing site for an Israeli mobile scaffolding rental service — interactive price calculator, transparent pricing, and direct WhatsApp contact.",
 
+        "project.pigumrms.title": "Pigum Yashir RMS",
+        "project.pigumrms.tag": "Pigum Yashir RMS",
+        "project.pigumrms.desc": "Rental management system for an Israeli scaffolding and generator rental business. Live availability, conflict-free booking, field-staff delivery flow, and legal-grade evidence trails — built Hebrew-first.",
+
         // WorkWithMe / Contact
         "contact.cta": "Let's work together",
         "contact.label": "Get in Touch",
@@ -157,6 +161,72 @@ const translations = {
 
         "ktrms.note.text": "This is an active, production-targeted project for a real business client. Code is private. Screenshots and live demo available on request.",
         "ktrms.note.cta": "Request a Demo",
+
+        // Pigum Yashir RMS page
+        "pigumrms.back": "Back",
+        "pigumrms.tag1": "Active Development",
+        "pigumrms.tag2": "Hebrew-First",
+        "pigumrms.tag3": "Multi-Vertical",
+        "pigumrms.title": "Pigum Yashir RMS",
+        "pigumrms.subtitle": "Rental Management System",
+        "pigumrms.hero.desc": "A complete operational platform for rental businesses — inventory, customer relationships, field handoffs, and legal evidence trails — built around the realities of running a small rental operation in Hebrew on Israeli construction sites.",
+
+        "pigumrms.ops.label": "Rental Operations",
+        "pigumrms.ops.p1": "A rental business runs on four constants. There's equipment that's either available, booked, in repair, or out on rent right now. There are customers booking in advance for specific date ranges, sometimes weeks before pickup. There are physical handoffs — the moment a unit leaves the yard and the moment it comes back — that need photo evidence and signatures. And there's a paper trail that has to hold up when a customer disputes a charge or claims damage on arrival.",
+        "pigumrms.ops.p2": "These four constants don't shift between scaffolding and party tents, between generators and medical equipment. The verticals change. The shape of the operation doesn't. Pigum Yashir RMS is built around that shape.",
+
+        "pigumrms.worlds.label": "Two Worlds, One System",
+        "pigumrms.worlds.office.tag": "The Office",
+        "pigumrms.worlds.office.title": "Manager's Desktop View",
+        "pigumrms.worlds.office.desc": "A live calendar of every unit across the next two weeks. Inventory status at a glance, customer history with full rental records, and order creation that catches double-bookings before they happen — not after the truck is already loaded.",
+        "pigumrms.worlds.field.tag": "The Field",
+        "pigumrms.worlds.field.title": "Field-Staff Mobile View",
+        "pigumrms.worlds.field.desc": "Today's deliveries and pickups. One tap into a handoff flow with photo capture and signature, designed to complete in under 30 seconds between truck and customer — on whatever cell signal the construction site happens to have.",
+        "pigumrms.worlds.foot": "Same data, same database. Different surfaces, calibrated to where the work actually happens.",
+
+        "pigumrms.cap.label": "Capabilities",
+        "pigumrms.cap.1.title": "Live Availability, 14+ Days Ahead",
+        "pigumrms.cap.1.desc": "Every unit's status at a glance — available, reserved, out on rent, in repair — across the full booking horizon.",
+        "pigumrms.cap.2.title": "Calendar View with Conflict-Free Booking",
+        "pigumrms.cap.2.desc": "Daterange-aware booking enforced at the database layer. Two staff members can't double-book the same unit, ever.",
+        "pigumrms.cap.3.title": "Customer Directory with Full History",
+        "pigumrms.cap.3.desc": "Every rental, every receipt, every signature tied back to the customer. One-tap to call, WhatsApp, or open the file.",
+        "pigumrms.cap.4.title": "Orders, Returns, Cancellations",
+        "pigumrms.cap.4.desc": "Full order lifecycle — initial booking, on-site delivery, mid-rental adjustments, return, and reconciliation.",
+        "pigumrms.cap.5.title": "Field-Staff Mobile Delivery Flow",
+        "pigumrms.cap.5.desc": "Built for iPhone use in the truck. Today's deliveries and pickups, one tap into the handoff flow.",
+        "pigumrms.cap.6.title": "Sub-30-Second Handoff Target",
+        "pigumrms.cap.6.desc": "Photos, signature, confirm — designed to complete on real cellular conditions between truck and customer.",
+        "pigumrms.cap.7.title": "In-Browser Photo Compression",
+        "pigumrms.cap.7.desc": "Photos compressed on device before upload, so the flow doesn't stall on bad reception at a construction site.",
+        "pigumrms.cap.8.title": "Digital Signature with Photo-of-Paper Fallback",
+        "pigumrms.cap.8.desc": "Touchscreen signature is the primary path. A photo of a signed paper is captured the same way when needed.",
+        "pigumrms.cap.9.title": "Hebrew RTL, Native to the Workflow",
+        "pigumrms.cap.9.desc": "Built Hebrew-first from the data model up — not a translation layer bolted onto an English app.",
+        "pigumrms.cap.10.title": "Role-Aware Access with Row-Level Permissions",
+        "pigumrms.cap.10.desc": "Office and field staff see what they're meant to see. Permissions enforced in the database, not just the UI.",
+
+        "pigumrms.evidence.label": "Evidence by Design",
+        "pigumrms.evidence.p1": "Rental disputes happen. A customer claims a unit arrived damaged. A site manager insists nobody signed for the delivery. A piece of equipment comes back with a dent nobody owns. The platform is built so the evidence is already on the record before the dispute exists — photos at delivery, photos at return, signatures from whoever physically received the units.",
+        "pigumrms.evidence.p2": "The rental contract and the delivery receipt are deliberately kept separate. The contract is signed in advance by the customer's authorized representative. The delivery receipt is signed on-site by whoever takes the units — a foreman, a site engineer, a driver. The same person rarely signs both, and the platform doesn't pretend otherwise.",
+
+        "pigumrms.arch.label": "Architecture",
+        "pigumrms.arch.frontend": "Frontend",
+        "pigumrms.arch.backend": "Backend",
+        "pigumrms.arch.storage": "Storage & Media",
+        "pigumrms.arch.deploy": "Deployment",
+
+        "pigumrms.vertical.label": "Adaptable to Any Rental Vertical",
+        "pigumrms.vertical.intro": "The bones of the platform — dated inventory, customer relationships, field handoffs, evidence trails — are universal to rental. The current deployment serves a scaffolding and generator rental business; the same foundation adapts cleanly to:",
+        "pigumrms.vertical.item.1": "Construction equipment rental",
+        "pigumrms.vertical.item.2": "Tool rental",
+        "pigumrms.vertical.item.3": "Party and event supply rental",
+        "pigumrms.vertical.item.4": "A/V and production gear",
+        "pigumrms.vertical.item.5": "Specialty rental — medical equipment, scientific instruments, specialty vehicles",
+        "pigumrms.vertical.tail": "Adapting to a new vertical involves vertical-specific data — serial numbers, certifications, deposit handling — workflow tuning, and language. The platform is available for engagement on these adaptations.",
+
+        "pigumrms.note.text": "Active development for a real Israeli rental business, currently in pilot deployment. Related: the same business runs <a href=\"https://pigum-yashir.co.il\" target=\"_blank\" rel=\"noopener noreferrer\">pigum-yashir.co.il</a> — separate project, also built by me. Code is private. Screenshots and live walkthroughs available on request.",
+        "pigumrms.note.cta": "Request a Demo",
     },
 
     he: {
@@ -232,6 +302,10 @@ const translations = {
         "project.pigumyashir.title": "פיגום ישיר",
         "project.pigumyashir.tag": "עסקי",
         "project.pigumyashir.desc": "אתר שיווקי לחברת השכרת פיגומים ניידים בישראל — מחשבון מחיר אינטראקטיבי, מחירים שקופים ויצירת קשר ישירה בוואטסאפ.",
+
+        "project.pigumrms.title": "Pigum Yashir RMS",
+        "project.pigumrms.tag": "Pigum Yashir RMS",
+        "project.pigumrms.desc": "מערכת ניהול השכרות לעסק ישראלי להשכרת פיגומים וגנרטורים. זמינות בזמן אמת, הזמנה בלי התנגשויות, תהליך מסירה בשטח לצוות, ותיעוד ברמה שעומדת במחלוקת — בנויה בעברית מהיסוד.",
 
         // WorkWithMe / Contact
         "contact.cta": "בואו נעבוד ביחד",
@@ -311,6 +385,72 @@ const translations = {
 
         "ktrms.note.text": "זהו פרויקט פעיל שנבנה עבור לקוח עסקי אמיתי. הקוד סגור. צילומי מסך והדגמה חיה — לפי בקשה.",
         "ktrms.note.cta": "בקשו הדגמה",
+
+        // Pigum Yashir RMS page
+        "pigumrms.back": "חזרה",
+        "pigumrms.tag1": "בפיתוח פעיל",
+        "pigumrms.tag2": "עברית מהיסוד",
+        "pigumrms.tag3": "מתאימה לכל ענף",
+        "pigumrms.title": "Pigum Yashir RMS",
+        "pigumrms.subtitle": "מערכת ניהול השכרות",
+        "pigumrms.hero.desc": "פלטפורמה תפעולית מלאה לעסקי השכרה — ניהול מלאי, יחסי לקוחות, מסירות בשטח ותיק תיעוד שעומד במחלוקות — בנויה סביב המציאות של תפעול עסק השכרה קטן בעברית, באתרי בנייה בישראל.",
+
+        "pigumrms.ops.label": "תפעול השכרות",
+        "pigumrms.ops.p1": "עסק השכרה רץ על ארבעה קבועים. יש ציוד שהוא או זמין, או מוזמן, או בתיקון, או יצא להשכרה ברגע זה. יש לקוחות שמזמינים מראש לטווח תאריכים מסוים, לפעמים שבועות לפני האיסוף. יש מסירות פיזיות — הרגע שיחידה יוצאת מהמחסן והרגע שהיא חוזרת — שמחייבות תיעוד תמונות וחתימה. ויש תיק תיעוד שצריך להחזיק כשלקוח חולק על חיוב או טוען לנזק כבר באיסוף.",
+        "pigumrms.ops.p2": "ארבעת הקבועים האלה לא משתנים בין פיגומים לאוהלים לאירועים, בין גנרטורים לציוד רפואי. הענף משתנה. צורת התפעול לא. Pigum Yashir RMS בנויה סביב הצורה הזאת.",
+
+        "pigumrms.worlds.label": "שני עולמות, מערכת אחת",
+        "pigumrms.worlds.office.tag": "המשרד",
+        "pigumrms.worlds.office.title": "תצוגת המנהל בדסקטופ",
+        "pigumrms.worlds.office.desc": "יומן חי של כל יחידה לשבועיים קדימה. סטטוס מלאי במבט אחד, כרטיס לקוח עם היסטוריית השכרות מלאה, ויצירת הזמנה שתופסת כפילויות לפני שהן קורות — לא אחרי שהמשאית כבר עמוסה.",
+        "pigumrms.worlds.field.tag": "השטח",
+        "pigumrms.worlds.field.title": "תצוגת מובייל לצוות השטח",
+        "pigumrms.worlds.field.desc": "המסירות והאיסופים של היום. הקשה אחת לתהליך מסירה עם צילום וחתימה, מתוכנן לסיום בפחות מ-30 שניות בין המשאית ללקוח — על איזו קליטה שיש באתר הבנייה.",
+        "pigumrms.worlds.foot": "אותם נתונים, אותו מסד נתונים. ממשקים שונים, מכוילים לאן שהעבודה באמת קורית.",
+
+        "pigumrms.cap.label": "יכולות",
+        "pigumrms.cap.1.title": "זמינות בזמן אמת, ל-14+ ימים קדימה",
+        "pigumrms.cap.1.desc": "סטטוס של כל יחידה במבט אחד — זמינה, מוזמנת, יצאה להשכרה, בתיקון — לאורך כל אופק ההזמנות.",
+        "pigumrms.cap.2.title": "יומן עם הזמנה ללא התנגשויות",
+        "pigumrms.cap.2.desc": "לוגיקת הזמנה מבוססת טווחי תאריכים, נאכפת ברמת מסד הנתונים. שני אנשים בצוות לא יכולים להזמין את אותה יחידה לאותם תאריכים, נקודה.",
+        "pigumrms.cap.3.title": "כרטיס לקוח עם היסטוריה מלאה",
+        "pigumrms.cap.3.desc": "כל השכרה, כל קבלה, כל חתימה מקושרות ללקוח. הקשה אחת להתקשרות, וואטסאפ או פתיחת התיק.",
+        "pigumrms.cap.4.title": "הזמנות, החזרות וביטולים",
+        "pigumrms.cap.4.desc": "כל מחזור החיים של ההזמנה — הזמנה ראשונית, מסירה בשטח, שינויים תוך כדי השכרה, החזרה והתחשבנות.",
+        "pigumrms.cap.5.title": "תהליך מסירה במובייל לצוות השטח",
+        "pigumrms.cap.5.desc": "בנוי לעבודה מאייפון בתוך המשאית. המסירות והאיסופים של היום, הקשה אחת לתהליך המסירה.",
+        "pigumrms.cap.6.title": "יעד מסירה בפחות מ-30 שניות",
+        "pigumrms.cap.6.desc": "תמונות, חתימה, אישור — מתוכנן להסתיים בתנאי קליטה אמיתיים בין המשאית ללקוח.",
+        "pigumrms.cap.7.title": "דחיסת תמונות בדפדפן",
+        "pigumrms.cap.7.desc": "תמונות נדחסות במכשיר לפני העלאה, כדי שהתהליך לא ייתקע על קליטה גרועה באתר בנייה.",
+        "pigumrms.cap.8.title": "חתימה דיגיטלית עם גיבוי של צילום נייר",
+        "pigumrms.cap.8.desc": "חתימה במסך מגע היא הדרך הראשית. צילום של נייר חתום נקלט באותה צורה כשצריך.",
+        "pigumrms.cap.9.title": "עברית RTL, בתוך תהליך העבודה",
+        "pigumrms.cap.9.desc": "בנויה בעברית מהיסוד — מהמודל של הנתונים ומעלה. לא שכבת תרגום שהורכבה על אפליקציה אנגלית.",
+        "pigumrms.cap.10.title": "הרשאות לפי תפקיד, ברמת השורה במסד הנתונים",
+        "pigumrms.cap.10.desc": "צוות המשרד וצוות השטח רואים את מה שהם אמורים לראות. ההרשאות נאכפות במסד הנתונים, לא רק בממשק.",
+
+        "pigumrms.evidence.label": "תיעוד מובנה במערכת",
+        "pigumrms.evidence.p1": "מחלוקות בהשכרה קורות. לקוח טוען שיחידה הגיעה פגומה. מנהל אתר מתעקש שאף אחד לא חתם על המסירה. ציוד חוזר עם מכה שאף אחד לא לוקח עליה אחריות. המערכת בנויה כך שהתיעוד כבר קיים על הרישום עוד לפני שהמחלוקת בכלל נולדה — תמונות במסירה, תמונות בהחזרה, חתימות ממי שפיזית קיבל את היחידות.",
+        "pigumrms.evidence.p2": "החוזה ותעודת המשלוח הם שני מסמכים נפרדים בכוונה. החוזה נחתם מראש על ידי מורשה החתימה של הלקוח. תעודת המשלוח נחתמת בשטח על ידי מי שלוקח את היחידות בפועל — מנהל עבודה, מהנדס אתר, נהג. אותו אדם כמעט אף פעם לא חותם על שניהם, והמערכת לא מעמידה פנים אחרת.",
+
+        "pigumrms.arch.label": "ארכיטקטורה",
+        "pigumrms.arch.frontend": "Frontend",
+        "pigumrms.arch.backend": "Backend",
+        "pigumrms.arch.storage": "אחסון ומדיה",
+        "pigumrms.arch.deploy": "פריסה",
+
+        "pigumrms.vertical.label": "מתאימה לכל ענף השכרה",
+        "pigumrms.vertical.intro": "התשתית של המערכת — מלאי לפי תאריכים, יחסי לקוחות, מסירות בשטח, תיק תיעוד — אוניברסלית לכל סוג של השכרה. הפריסה הנוכחית משרתת עסק להשכרת פיגומים וגנרטורים; אותה תשתית מתאימה בקלות גם ל:",
+        "pigumrms.vertical.item.1": "השכרת ציוד בנייה",
+        "pigumrms.vertical.item.2": "השכרת כלי עבודה",
+        "pigumrms.vertical.item.3": "השכרת ציוד לאירועים",
+        "pigumrms.vertical.item.4": "ציוד הגברה והפקה",
+        "pigumrms.vertical.item.5": "השכרה ייחודית — ציוד רפואי, מכשור מדעי, רכבים מיוחדים",
+        "pigumrms.vertical.tail": "התאמה לענף חדש כוללת נתונים ייחודיים לענף — מספרים סידוריים, אישורים תקפים, ניהול פיקדונות — כיול תהליכי עבודה ושפה. המערכת זמינה להתקשרות סביב התאמות כאלה.",
+
+        "pigumrms.note.text": "פיתוח פעיל ללקוח אמיתי — עסק השכרה ישראלי, כרגע בשלבי פיילוט. קשור לפרויקט: אותו עסק מפעיל את <a href=\"https://pigum-yashir.co.il\" target=\"_blank\" rel=\"noopener noreferrer\">pigum-yashir.co.il</a> — פרויקט נפרד, גם הוא נבנה על ידי. הקוד סגור. צילומי מסך וסיור חי — לפי בקשה.",
+        "pigumrms.note.cta": "בקשו הדגמה",
     },
 };
 
